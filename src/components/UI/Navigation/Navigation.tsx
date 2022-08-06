@@ -1,16 +1,20 @@
 import { Component } from 'react';
+import { currentCategoryVar } from '../../../graphql/cache';
 import { QUERY_CATEGORIES } from '../../../graphql/queries';
-import { injectQuery } from '../../../hocs/injectQuery';
+import { injectCategoriesQuery } from '../../../hocs/injectCategoriesQuery';
 import NavigationItem from './NavigationItem';
 import { StyledNavigation, StyledNavigationList } from './styles';
 
 class Navigation extends Component<any, any> {
   constructor(props: any) {
-    super(props)
+    super(props);
   }
+
+  handleClick = (category: string) => currentCategoryVar(category)
 
   render() {
     const categories = this.props.data.data?.categories;
+    const currentCategory = this.props.data.currentCategory;
 
     return (
       <StyledNavigation>
@@ -20,7 +24,8 @@ class Navigation extends Component<any, any> {
               <NavigationItem
                 key={category.name}
                 category={category.name}
-                active={true}
+                active={category.name === currentCategory}
+                handleClick={this.handleClick}
               />
             )
           })}
@@ -30,4 +35,4 @@ class Navigation extends Component<any, any> {
   }
 }
 
-export default injectQuery(Navigation, QUERY_CATEGORIES);
+export default injectCategoriesQuery(Navigation, QUERY_CATEGORIES);

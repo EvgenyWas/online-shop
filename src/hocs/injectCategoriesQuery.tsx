@@ -1,22 +1,9 @@
 import { DocumentNode, useQuery, useReactiveVar } from "@apollo/client";
 import { ComponentType, ReactElement } from "react";
-import { currentCurrencyVar } from "../graphql/cache";
+import { currentCategoryVar } from "../graphql/cache";
+import { InjectedCategoriesProps, TVariable } from "./types";
 
-type InjectedProps = {
-  data: {
-    loading: boolean,
-    error: Error | null,
-    data: any,
-  }
-  currentCurrency: string
-};
-
-type TVariable = {
-  key: string,
-  value: string,
-};
-
-export const injectQuery = <S extends InjectedProps>(
+export const injectCategoriesQuery = <S extends InjectedCategoriesProps>(
     Component: ComponentType<S>, 
     query: DocumentNode, 
     queryVariable?: TVariable
@@ -27,13 +14,12 @@ export const injectQuery = <S extends InjectedProps>(
     const { loading, error, data } = useQuery(query, {
       variables: variablesCondition,
     });
-    const currentCurrency = useReactiveVar(currentCurrencyVar);
+    const currentCategory = useReactiveVar(currentCategoryVar);
 
     return (
       <Component
         {...props as S}
-        data={{loading, error, data}}
-        currentCurrency={currentCurrency}
+        data={{loading, error, data, currentCategory}} 
       />
     )
   };

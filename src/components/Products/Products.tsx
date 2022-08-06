@@ -1,27 +1,32 @@
 import { Component } from 'react'
-import { QUERY_CATEGORY_PRODUCTS } from '../../graphql/queries'
-import { injectQuery } from '../../hocs/injectQuery'
+import { injectPLPReactiveVars } from '../../hocs/injectPLPReactiveVars'
+import { getCurrentPrice, requestProductsQuery } from '../../utils/utils'
 import ProductCard from './ProductCard'
 import { StyledProducts } from './styles'
 
 class Products extends Component<any, any> {
-  constructor(props: any) {
-    super(props)
-  };
+  componentDidMount() {
+    requestProductsQuery(this.props.data.currentCategory);
+  }
+
+  componentDidUpdate() {    
+    requestProductsQuery(this.props.data.currentCategory);
+  }
 
   render() {
-    const products = this.props.data.data?.category?.products;
+    const products = this.props.data.PLP.category?.products;
+    const currentCurrency = this.props.data.currentCurrency;
 
     return (
       <StyledProducts className='container'>
-        {products?.map((product: any) => {
+        {products?.map((product: any) => {          
           return (
             <ProductCard
               key={product.id}
               name={product.name}
               image={product.gallery[0]}
-              price={product.prices[0].amount}
-              currencySymbol={product.prices[0].currency.symbol}
+              price={getCurrentPrice(product.prices, currentCurrency)?.amount}
+              currencySymbol={getCurrentPrice(product.prices, currentCurrency)?.currency.symbol}
               inStock={product.inStock}
             />
           )
@@ -31,9 +36,4 @@ class Products extends Component<any, any> {
   }
 };
 
-const queryVariable = {
-  key: 'category',
-  value: 'all',
-}
-
-export default injectQuery(Products, QUERY_CATEGORY_PRODUCTS, queryVariable)
+export default injectPLPReactiveVars(Products);

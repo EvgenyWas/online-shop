@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import iconDropDownArrow from '../../../assets/icons/nav/icon-drop-down-arrow.svg';
+import { currentCurrencyVar } from '../../../graphql/cache';
 import { QUERY_CURRENCIES } from '../../../graphql/queries';
 import { injectQuery } from '../../../hocs/injectQuery';
 import OutsideClick from '../../../hocs/OutsideClick';
@@ -18,7 +19,11 @@ class CurrencySwitcher extends Component<any, State> {
         };
     };
 
-    handleClick = () => {
+    componentDidMount() {
+        currentCurrencyVar(this.props.data.data?.currencies[0].symbol)
+    };
+
+    handleSwitcherClick = () => {
         this.setState(({ isOpen }) => ({
           isOpen: !isOpen
         }));        
@@ -28,30 +33,37 @@ class CurrencySwitcher extends Component<any, State> {
         if(this.state.isOpen) {
             this.setState({ isOpen: false });
         }
+    };
+
+    handleChoiceClick = (symbol: string) => {
+        currentCurrencyVar(symbol);
+        this.setState({ isOpen: false })
     }
 
     render() {
         const currencies = this.props.data.data?.currencies;
+        const currentCurrency = this.props.currentCurrency;
 
         return (
-            <OutsideClick handler={this.handleOutsideClick}>
+            <OutsideClick handler={this.handleOutsideClick} >
                 <StyledCurrencySwitcher>
-                    <StyledCurrentCurrency  onClick={this.handleClick} >
-                        $
+                    <StyledCurrentCurrency  onClick={this.handleSwitcherClick} >
+                        {currentCurrency}
                     </StyledCurrentCurrency>
-                    <StyledCurrencyOverlay isOpen={this.state.isOpen}>
+                    <StyledCurrencyOverlay isOpen={this.state.isOpen} >
                         {currencies?.map((currency: any) => {
                             return (
                                 <CurrencySwitcherItem
                                     key={currency.symbol}
                                     label={currency.label}
                                     symbol={currency.symbol}
+                                    onClick={() => this.handleChoiceClick(currency.symbol)}
                                 />
                             )
                         })}
                     </StyledCurrencyOverlay>
                     <StyledDropDown isOpen={this.state.isOpen}>
-                        <img src={iconDropDownArrow} alt="Drop down arrow" onClick={this.handleClick} />
+                        <img src={iconDropDownArrow} alt="Drop down arrow" onClick={this.handleSwitcherClick} />
                     </StyledDropDown>
                 </StyledCurrencySwitcher>
             </OutsideClick>

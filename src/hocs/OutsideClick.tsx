@@ -1,13 +1,9 @@
-import { Component, createRef, Fragment, LegacyRef, ReactElement, RefObject } from "react";
+import { Component, createRef, RefObject } from "react";
+import { OutsideClickProps } from "./types";
 
-type Props = {
-    children: ReactElement,
-    handler: (event: MouseEvent | TouchEvent | KeyboardEvent) => void
-}
-
-export default class OutsideClick extends Component<Props> {
+export default class OutsideClick extends Component<OutsideClickProps> {
     wrapperRef: RefObject<HTMLDivElement> | undefined;  
-    constructor(props: Props) {
+    constructor(props: OutsideClickProps) {
         super(props);
 
         this.wrapperRef = createRef();
