@@ -1,6 +1,6 @@
 import { useReactiveVar } from "@apollo/client";
 import { ComponentType } from "react";
-import { currentCategoryVar, currentCurrencyVar, PLPVar } from "../graphql/cache";
+import { currentCategoryVar, currentCurrencyVar, productsVar } from "../graphql/cache";
 import { InjectedPLPProps } from "./types";
 
 export const injectPLPReactiveVars = <S extends InjectedPLPProps>(
@@ -10,12 +10,12 @@ export const injectPLPReactiveVars = <S extends InjectedPLPProps>(
   return (props: S) => {
     const currentCategory = useReactiveVar(currentCategoryVar);
     const currentCurrency = useReactiveVar(currentCurrencyVar);
-    const PLP = useReactiveVar(PLPVar);
+    const products = useReactiveVar(productsVar);
     
     return (
       <WrappedComponent
         {...props as S}
-        data={{ currentCategory, currentCurrency, PLP }}
+        data={{ currentCategory, currentCurrency, products }}
       />
     );
   }

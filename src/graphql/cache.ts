@@ -1,6 +1,6 @@
 import { InMemoryCache, makeVar } from "@apollo/client";
 
-export const PLPVar = makeVar([]);
+export const productsVar = makeVar([]);
 export const currentCurrencyVar = makeVar('$');
 export const currentCategoryVar = makeVar('all');
 export const cartVar = makeVar([]);
@@ -9,9 +9,9 @@ export const cache = new InMemoryCache({
     typePolicies: {
         Query: {
             fields: {
-                PLP: {
+                products: {
                     read() {
-                        return PLPVar()
+                        return productsVar()
                     }
                 },
                 currentCurrency: {

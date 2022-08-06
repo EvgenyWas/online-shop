@@ -1,4 +1,4 @@
-import { PLPVar } from "../graphql/cache";
+import { productsVar } from "../graphql/cache";
 import { client } from "../graphql/client";
 import { QUERY_CATEGORY_PRODUCTS } from "../graphql/queries";
 import { TPrice } from "../types/types";
@@ -23,5 +23,5 @@ export async function requestProductsQuery(category: string) {
         query: QUERY_CATEGORY_PRODUCTS,
         variables: {category: category}
     });
-    PLPVar(response.data);
+    productsVar(response.data);
 };

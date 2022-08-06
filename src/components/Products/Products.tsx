@@ -14,7 +14,7 @@ class Products extends Component<any, any> {
   }
 
   render() {
-    const products = this.props.data.PLP.category?.products;
+    const products = this.props.data.products.category?.products;
     const currentCurrency = this.props.data.currentCurrency;
 
     return (
