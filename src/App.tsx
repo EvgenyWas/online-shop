@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
-import CategoriesPage from './pages/CategoriesPage';
+import PLPPage from './pages/PLPPage';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Navbar/>
-        <CategoriesPage/>
+        <Navbar />
+        <PLPPage />
       </div>
     );
   }

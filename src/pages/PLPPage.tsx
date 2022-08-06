@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import CategoryName from '../components/Products/CategoryName'
 import Products from '../components/Products/Products'
 

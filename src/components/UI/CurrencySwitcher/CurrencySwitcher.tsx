@@ -8,7 +8,8 @@ import CurrencySwitcherItem from './CurrencySwitcherItem';
 import { StyledCurrencyOverlay, StyledCurrencySwitcher, StyledCurrentCurrency, StyledDropDown } from './styles';
 
 type State = {
-    isOpen: boolean
+    isOpen: boolean,
+    symbol: string
 };
 
 class CurrencySwitcher extends Component<any, State> {
@@ -16,11 +17,8 @@ class CurrencySwitcher extends Component<any, State> {
         super(props);
         this.state = {
           isOpen: false,
+          symbol: '$'
         };
-    };
-
-    componentDidMount() {
-        currentCurrencyVar(this.props.data.data?.currencies[0].symbol)
     };
 
     handleSwitcherClick = () => {
@@ -37,18 +35,20 @@ class CurrencySwitcher extends Component<any, State> {
 
     handleChoiceClick = (symbol: string) => {
         currentCurrencyVar(symbol);
-        this.setState({ isOpen: false })
+        this.setState({ 
+            isOpen: false,
+            symbol: symbol
+        })
     }
 
     render() {
         const currencies = this.props.data.data?.currencies;
-        const currentCurrency = this.props.currentCurrency;
 
         return (
             <OutsideClick handler={this.handleOutsideClick} >
                 <StyledCurrencySwitcher>
                     <StyledCurrentCurrency  onClick={this.handleSwitcherClick} >
-                        {currentCurrency}
+                        {this.state.symbol}
                     </StyledCurrentCurrency>
                     <StyledCurrencyOverlay isOpen={this.state.isOpen} >
                         {currencies?.map((currency: any) => {

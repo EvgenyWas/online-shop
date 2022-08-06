@@ -1,7 +1,7 @@
 import { InMemoryCache, makeVar } from "@apollo/client";
 
 export const PLPVar = makeVar([]);
-export const currentCurrencyVar = makeVar({});
+export const currentCurrencyVar = makeVar('$');
 export const currentCategoryVar = makeVar('all');
 export const cartVar = makeVar([]);
 
