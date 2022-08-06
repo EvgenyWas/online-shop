@@ -1,6 +1,7 @@
 import { InMemoryCache, makeVar } from "@apollo/client";
 
 export const productsVar = makeVar([]);
+export const currentProductVar = makeVar('');
 export const currentCurrencyVar = makeVar('$');
 export const currentCategoryVar = makeVar('all');
 export const cartVar = makeVar([]);
@@ -12,6 +13,11 @@ export const cache = new InMemoryCache({
                 products: {
                     read() {
                         return productsVar()
+                    }
+                },
+                currentProduct: {
+                    read() {
+                        return currentProductVar()
                     }
                 },
                 currentCurrency: {

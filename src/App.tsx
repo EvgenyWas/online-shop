@@ -1,14 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
-import PLPPage from './pages/PLPPage';
+import AppRouter from './router/AppRouter';
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <PLPPage />
-      </div>
+      <Router>
+        <Navbar/>
+        <AppRouter/>
+      </Router>
     );
   }
 }

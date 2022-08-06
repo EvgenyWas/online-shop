@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { mediumLightFragment } from "../../styles/fragments";
 
-export const StyledProducts = styled.section`
+export const StyledProducts = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 40px;

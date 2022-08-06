@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { currentCategoryVar } from '../../../graphql/cache'
+import { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { StyledNavigationItem } from './styles'
 
 type Props = {
@@ -9,13 +9,16 @@ type Props = {
 }
 
 export default class NavigationItem extends Component<Props> {
-    // handleClick = () => currentCategoryVar(this.props.category);
-
     render() {
         return (
-            <StyledNavigationItem className={this.props.active ? 'nav-item--active': ''} onClick={() => this.props.handleClick(this.props.category)}>
-                {this.props.category.toUpperCase()}
-            </StyledNavigationItem>
+            <Link to='/products'>
+                <StyledNavigationItem 
+                    className={this.props.active ? 'nav-item--active': ''} 
+                    onClick={() => this.props.handleClick(this.props.category)}
+                >
+                    {this.props.category.toUpperCase()}
+                </StyledNavigationItem>
+            </Link>
         )
     }
 }

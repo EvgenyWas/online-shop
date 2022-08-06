@@ -56,7 +56,13 @@ const GlobalStyles = createGlobalStyle`
     }
 
     a {
-        text-decoration: none;
+        text-decoration: inherit;
+        color: inherit;
+
+        &:focus, &:hover, &:visited, &:link, &:active {
+            text-decoration: inherit;
+            color: inherit;
+        }
     }
 
     /* Make images easier to work with */

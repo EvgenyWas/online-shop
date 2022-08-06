@@ -23,6 +23,7 @@ class Products extends Component<any, any> {
           return (
             <ProductCard
               key={product.id}
+              id={product.id}
               name={product.name}
               image={product.gallery[0]}
               price={getCurrentPrice(product.prices, currentCurrency)?.amount}
