@@ -125,6 +125,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
+        padding-top: 24px;
         font-family: ${({ theme }) => theme.fonts.primary};
         font-style: normal;
         font-weight: ${({ theme }) => theme.fontWeights.regular};
