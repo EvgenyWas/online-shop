@@ -12,7 +12,8 @@ export const baseTheme: ITheme = {
 
     fonts: {
         primary: "'Raleway', sans-serif",
-        secondary: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+        secondary: "Roboto Condensed",
+        tertiary: "'Source Sans Pro', sans-serif"
     },
 
     fontSizes: {
@@ -40,6 +41,7 @@ export const baseTheme: ITheme = {
         light: 300,
         regular: 400,
         medium: 500,
+        semibold: 600,
         bold: 700,
     },
 

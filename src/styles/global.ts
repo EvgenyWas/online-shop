@@ -27,6 +27,7 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
         margin-block-start: 0;
         margin-block-end: 0;
+        text-decoration: none;
     }
 
     /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -78,11 +79,15 @@ const GlobalStyles = createGlobalStyle`
     textarea,
     select {
         border: none;
-    font: inherit;
+        font: inherit;
         color: inherit;
         background-color: transparent;
         font-family: inherit;
-    cursor: pointer;
+        cursor: pointer;
+    }
+
+    input {
+        all: unset;
     }
 
     input[type=text]::-ms-clear { display: none; width : 0; height: 0; }

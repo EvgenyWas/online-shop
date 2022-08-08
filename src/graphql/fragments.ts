@@ -1,7 +1,24 @@
 import { gql } from "@apollo/client";
 
-export const PRODUCTS = gql`
-  fragment Products on Product {
+export const PRODUCT_PLP = gql`
+  fragment ProductPLP on Product {
+    id,
+    name,
+    inStock,
+    gallery,
+    brand,
+    prices {
+      amount,
+      currency {
+        label,
+        symbol
+      }
+    }
+  }
+`
+
+export const PRODUCT_PDP = gql`
+  fragment ProductPDP on Product {
     id,
     name,
     inStock,

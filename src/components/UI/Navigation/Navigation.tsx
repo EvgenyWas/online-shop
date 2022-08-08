@@ -5,7 +5,7 @@ import { injectCategoriesQuery } from '../../../hocs/injectCategoriesQuery';
 import NavigationItem from './NavigationItem';
 import { StyledNavigation, StyledNavigationList } from './styles';
 
-class Navigation extends Component<any, any> {
+class Navigation extends Component<any> {
   constructor(props: any) {
     super(props);
   }

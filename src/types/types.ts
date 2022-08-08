@@ -5,3 +5,9 @@ export type TPrice = {
         symbol: string
     }
 }
+
+export type TAttribute = {
+    displayValue: string
+    value: string,
+    id: string
+};

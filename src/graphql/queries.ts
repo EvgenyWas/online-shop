@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { PRODUCTS } from "./fragments";
+import { PRODUCT_PDP, PRODUCT_PLP } from "./fragments";
 
 export const QUERY_CATEGORIES = gql`
   query Categories {
@@ -10,24 +10,24 @@ export const QUERY_CATEGORIES = gql`
 `;
 
 export const QUERY_CATEGORY_PRODUCTS = gql`
-  ${PRODUCTS}
+  ${PRODUCT_PLP}
   query Category($category: String!) {
     category(input: {
       title: $category
     }) {
       name,
       products {
-        ...Products
+        ...ProductPLP
       }
     }
   }
 `
 
 export const QUERY_PRODUCT = gql`
-  ${PRODUCTS}
+  ${PRODUCT_PDP}
   query Product($id: String!) {
     product(id: $id) {
-      ...Product
+      ...ProductPDP
     }
   }
 `

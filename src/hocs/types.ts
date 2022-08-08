@@ -28,4 +28,8 @@ export type InjectedPLPProps = {
 export type OutsideClickProps = {
   children: ReactElement,
   handler: (event: MouseEvent | TouchEvent | KeyboardEvent) => void
+};
+
+export type InjectedCurrentCurrencyProps = {
+  currentCurrency: string
 }

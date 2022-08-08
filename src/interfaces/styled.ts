@@ -11,6 +11,7 @@ export interface ITheme {
     fonts: {
         primary: string,
         secondary: string,
+        tertiary: string
     }
 
     fontSizes: {
@@ -38,6 +39,7 @@ export interface ITheme {
         light: number,
         regular: number,
         medium: number,
+        semibold: number,
         bold: number,
     }
 

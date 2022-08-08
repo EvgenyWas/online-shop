@@ -24,10 +24,11 @@ class Products extends Component<any, any> {
             <ProductCard
               key={product.id}
               id={product.id}
+              brand={product.brand}
               name={product.name}
               image={product.gallery[0]}
-              price={getCurrentPrice(product.prices, currentCurrency)?.amount}
-              currencySymbol={getCurrentPrice(product.prices, currentCurrency)?.currency.symbol}
+              price={getCurrentPrice(product.prices, currentCurrency)?.amount as number}
+              currencySymbol={getCurrentPrice(product.prices, currentCurrency)?.currency.symbol as string}
               inStock={product.inStock}
             />
           )

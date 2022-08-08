@@ -2,18 +2,10 @@ import { Component } from 'react'
 import { client } from '../../graphql/client'
 import { QUERY_GALLERY_PRODUCT } from '../../graphql/queries'
 import { StyledActivePicture, StyledGalleryContainer, StyledGalleryPicture, StyledProductGallery } from './styles'
+import { TProductGalleryProps, TProductGalleryState } from './types'
 
-type Props = {
-    id: string,
-}
-
-type State = {
-    gallery: string[],
-    activePicture: string
-}
-
-export default class ProductGallery extends Component<Props, State> {
-    constructor(props: Props) {
+export default class ProductGallery extends Component<TProductGalleryProps, TProductGalleryState> {
+    constructor(props: TProductGalleryProps) {
         super(props)
         this.state = {
             gallery: [],

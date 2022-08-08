@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { QUERY_CATEGORIES } from '../../graphql/queries'
-import { injectCategoriesQuery } from '../../hocs/injectCategoriesQuery'
-import { getWordFromCapitalLetter } from '../../utils/utils'
-import { StyledCategoryName } from './styles'
+import { Component } from 'react'
+import { QUERY_CATEGORIES } from '../../../graphql/queries'
+import { injectCategoriesQuery } from '../../../hocs/injectCategoriesQuery'
+import { getWordFromCapitalLetter } from '../../../utils/utils'
+import { StyledCategoryName } from '../../Products/styles'
 
 class CategoryName extends Component<any> {
   constructor(props: any) {

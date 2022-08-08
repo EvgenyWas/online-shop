@@ -3,12 +3,9 @@ import { Link } from 'react-router-dom';
 import { currentProductVar } from '../../graphql/cache';
 import AddToCartButton from '../UI/Buttons/AddToCartButton';
 import { StyledImage, StyledImageBox, StyledName, StyledPrice, StyledProductCard } from './styles';
+import { TProductCardProps } from './types';
 
-export default class ProductCard extends Component<any> {
-    constructor(props: any) {
-        super(props)
-    };
-
+export default class ProductCard extends Component<TProductCardProps> {
     handleClick(id: string) {
         currentProductVar(id)
     }
@@ -22,7 +19,7 @@ export default class ProductCard extends Component<any> {
                         {this.props.inStock && <AddToCartButton/>}
                     </StyledImageBox>
                     <StyledName>
-                        {this.props.name}
+                        {`${this.props.brand} ${this.props.name}`}
                     </StyledName>
                     <StyledPrice>
                         {`${this.props.currencySymbol}${this.props.price}`}
