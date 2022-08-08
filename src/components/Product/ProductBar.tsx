@@ -1,14 +1,15 @@
 import { Component } from 'react'
+import { Navigate } from 'react-router-dom'
+import { cartVar } from '../../graphql/cache'
 import { client } from '../../graphql/client'
 import { QUERY_PRODUCT } from '../../graphql/queries'
 import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency'
 import { TAttribute } from '../../types/types'
-import { getCurrentPrice } from '../../utils/utils'
+import { addProductToCart, getCurrentPrice } from '../../utils/utils'
 import AttributesBar from '../UI/AttributesBar/AttributesBar'
 import { TType } from '../UI/AttributesBar/types'
-import PrimaryButton from '../UI/Buttons/PrimaryButton'
 import ProductTitle from '../UI/Titles/ProductTitle'
-import { StyledDescription, StyledPrice, StyledPriceContainer, StyledPriceName, StyledProductBar } from './styles'
+import { ProductButton, StyledDescription, StyledPrice, StyledPriceContainer, StyledPriceName, StyledProductBar } from './styles'
 import { TProductBarState } from './types'
 
 // TProductBarProps
@@ -18,9 +19,12 @@ class ProductBar extends Component<any, TProductBarState> {
     this.state = {
       product: {},
       chosenSwatch: null,
-      chosenText: null
+      chosenText: null,
+      isAddedToCart: false
     }
     this.handleChoose = this.handleChoose.bind(this)
+    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.handleAddToCart = this.handleAddToCart.bind(this)
   }
 
   componentDidMount = async () => {
@@ -45,8 +49,31 @@ class ProductBar extends Component<any, TProductBarState> {
     }
   }
 
+  handleAddToCart() {
+    if (!this.state.product.inStock) {
+      return
+    }
+
+    if(!this.state.isAddedToCart) {
+      this.setState({
+        isAddedToCart: true
+      });
+
+      const product = {
+        product: this.state.product,
+        swatch: this.state.chosenSwatch,
+        text: this.state.chosenText,
+        amount: 1
+      };
+
+      cartVar(addProductToCart(cartVar(), product));
+    } else {
+      // <Navigate to='/cart' replace />
+    }
+  }
+
   render() {
-    const { product } = this.state;
+    const { product, chosenSwatch, chosenText, isAddedToCart } = this.state;
     const { brand, name, attributes, prices, description } = product;
     const currentCurrency = this.props.currentCurrency;
 
@@ -59,8 +86,8 @@ class ProductBar extends Component<any, TProductBarState> {
         <AttributesBar 
           attributes={attributes}
           handleChoose={this.handleChoose}
-          chosenSwatch={this.state.chosenSwatch}
-          chosenText={this.state.chosenText}
+          chosenSwatch={chosenSwatch}
+          chosenText={chosenText}
         />
         <StyledPriceContainer>
           <StyledPriceName>
@@ -70,9 +97,16 @@ class ProductBar extends Component<any, TProductBarState> {
             {`${currentCurrency}${getCurrentPrice(prices, currentCurrency)?.amount as number}`}
           </StyledPrice>
         </StyledPriceContainer>
-        <PrimaryButton>
-          add to cart
-        </PrimaryButton>
+        <ProductButton 
+          onClick={this.handleAddToCart}
+          isAddedToCart={isAddedToCart}
+          inStock={product.inStock}
+        >
+          {isAddedToCart ?
+          'go to cart' :
+          'add to cart'
+          }
+        </ProductButton>
         <StyledDescription
           dangerouslySetInnerHTML={{ __html: description }}
         />

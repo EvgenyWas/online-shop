@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { attributeNameFragment, navigationItemFragment } from "../../styles/fragments";
+import styled, { css } from "styled-components";
+import { attributeNameFragment, OutOfStockFragment } from "../../styles/fragments";
+import PrimaryButton from "../UI/Buttons/PrimaryButton";
 
 export const StyledProductGallery = styled.div`
     display: flex;
@@ -21,7 +22,17 @@ export const StyledGalleryPicture = styled.img<{ active: boolean }>`
     padding: 1px;
     object-fit: cover;
     cursor: pointer;
-    ${props => props.active && (({theme}) => `border: 1px solid ${theme.colors.green}`)}
+    ${props => props.active && (({theme}) => css`border: 1px solid ${theme.colors.green};`)}
+`
+
+export const StyledActivePictureBox = styled.div<{ inStock: boolean }>`
+    position: relative;
+    ${props => !props.inStock && css`opacity: 0.5;`}
+
+    &::after {
+        ${props => props.inStock && css`display: none;`}
+        ${OutOfStockFragment}
+    }
 `
 
 export const StyledActivePicture = styled.img`
@@ -59,4 +70,18 @@ export const StyledDescription = styled.div`
     font-size: ${({theme}) => theme.fontSizes.sm};
     font-weight: ${({theme}) => theme.fontWeights.regular};
     line-height: ${({theme}) => theme.lineHeights.percentL};
+`
+
+export const ProductButton = styled(PrimaryButton)<{ isAddedToCart: boolean, inStock: boolean }>`
+    margin: -3px -3px 37px -3px;
+    border: 3px solid ${({theme}) => theme.colors.green};
+
+    ${props => !props.inStock && css`opacity: 0.4;`}
+
+    ${props => props.isAddedToCart && (({theme}) => css`
+        color: ${theme.colors.green};
+        border: 3px solid ${theme.colors.green};
+        background: ${theme.colors.background};
+    `)}
+    transition: all 300ms ease-in-out;
 `

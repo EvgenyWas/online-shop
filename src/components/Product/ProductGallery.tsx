@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { client } from '../../graphql/client'
 import { QUERY_GALLERY_PRODUCT } from '../../graphql/queries'
-import { StyledActivePicture, StyledGalleryContainer, StyledGalleryPicture, StyledProductGallery } from './styles'
+import { StyledActivePicture, StyledActivePictureBox, StyledGalleryContainer, StyledGalleryPicture, StyledProductGallery } from './styles'
 import { TProductGalleryProps, TProductGalleryState } from './types'
 
 export default class ProductGallery extends Component<TProductGalleryProps, TProductGalleryState> {
@@ -10,6 +10,7 @@ export default class ProductGallery extends Component<TProductGalleryProps, TPro
         this.state = {
             gallery: [],
             activePicture: '',
+            inStock: true
         }
     }
 
@@ -31,8 +32,7 @@ export default class ProductGallery extends Component<TProductGalleryProps, TPro
     }
             
     render() {
-        const gallery = this.state.gallery;
-        const activePicture = this.state.activePicture;
+        const { gallery, activePicture, inStock} = this.state;
 
         return (
             <StyledProductGallery>
@@ -47,7 +47,12 @@ export default class ProductGallery extends Component<TProductGalleryProps, TPro
                         />
                     )}
                 </StyledGalleryContainer>
-                <StyledActivePicture src={activePicture} alt='Picture'/>
+                <StyledActivePictureBox inStock={inStock}>
+                    <StyledActivePicture 
+                        src={activePicture} 
+                        alt='Picture'
+                    />
+                </StyledActivePictureBox>
             </StyledProductGallery>
         )
     }

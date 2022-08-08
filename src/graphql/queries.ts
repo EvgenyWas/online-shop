@@ -35,7 +35,8 @@ export const QUERY_PRODUCT = gql`
 export const QUERY_GALLERY_PRODUCT = gql`
   query GalleryProduct($id: String!) {
     product(id: $id) {
-      gallery
+      gallery,
+      inStock
     }
   }
 `

@@ -1,4 +1,4 @@
-import { MouseEvent, PureComponent } from 'react'
+import { createRef, MouseEvent, PureComponent, RefObject } from 'react'
 import styled from 'styled-components'
 
 type Props = {
@@ -8,9 +8,23 @@ type Props = {
 }
 
 export default class SwatchInput extends PureComponent<Props> {
+  inputRef: RefObject<HTMLInputElement> | undefined;
+  constructor(props: Props) {
+    super(props)
+
+    this.inputRef = createRef()
+  }
+
+  componentDidMount() {
+    if(this.props.active) {
+      this.inputRef?.current?.click();
+    }
+  }
+
   render() {
     return (
       <StyledInput
+        ref={this.inputRef}
         type='button'
         bachground={this.props.color}
         active={this.props.active}

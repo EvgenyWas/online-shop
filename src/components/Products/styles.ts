@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mediumLightFragment } from "../../styles/fragments";
+import { mediumLightFragment, OutOfStockFragment } from "../../styles/fragments";
 
 export const StyledProducts = styled.div`
     display: grid;
@@ -30,14 +30,7 @@ export const StyledImageBox = styled.div<{ inStock: boolean}>`
 
     &::after {
         ${props => props.inStock && 'display: none;'}
-        content: 'OUT OF STOCK';
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translate(50%, -100%);
-        font-size: ${({ theme }) => theme.fontSizes.lg};
-        line-height: ${({ theme }) => theme.lineHeights.percentL};
-        color: ${({ theme }) => theme.colors.grey};
+        ${OutOfStockFragment}
     }
 `
 

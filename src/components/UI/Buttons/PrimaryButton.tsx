@@ -3,13 +3,18 @@ import styled from 'styled-components';
 import { primaryButtonFragment } from '../../../styles/fragments';
 
 type Props = {
-    children: string
+    children: string,
+    onClick: () => void,
+    className?: string
 }
 
 export default class PrimaryButton extends Component<Props> {
     render() {
         return (
-            <StyledButton>
+            <StyledButton 
+                onClick={this.props.onClick}
+                className={this.props.className}
+            >
                {this.props.children.toUpperCase()} 
             </StyledButton>
         );

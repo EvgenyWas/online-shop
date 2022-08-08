@@ -10,11 +10,13 @@ export type TProductGalleryProps = {
 
 export type TProductGalleryState = {
     gallery: string[],
-    activePicture: string
+    activePicture: string,
+    inStock: boolean
 };
 
 export type TProductBarState = {
     product: any,
     chosenSwatch: TAttribute | null,
-    chosenText: TAttribute | null
+    chosenText: TAttribute | null,
+    isAddedToCart: boolean
 };

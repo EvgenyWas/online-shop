@@ -30,3 +30,14 @@ export const primaryButtonFragment = css`
     font-size: ${({theme}) => theme.fontSizes.sm};
     line-height: ${({theme}) => theme.lineHeights.percentM};
 `
+
+export const OutOfStockFragment = css`
+    content: 'OUT OF STOCK';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(50%, -100%);
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+    line-height: ${({ theme }) => theme.lineHeights.percentL};
+    color: ${({ theme }) => theme.colors.grey};
+`

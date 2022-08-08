@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { mediumLightFragment } from "../../../styles/fragments";
 
 export const StyledCurrencySwitcher = styled.div`
@@ -6,7 +6,7 @@ export const StyledCurrencySwitcher = styled.div`
 `
 
 export const StyledCurrencyOverlay = styled.ul<{ isOpen: boolean}>`
-    ${props => !props.isOpen && 'display: none !important;'}
+    ${props => !props.isOpen && css`display: none !important;`}
     position: absolute;
     bottom: 0;
     z-index: 10;
@@ -39,7 +39,7 @@ export const StyledCurrentCurrency = styled.div`
 export const StyledDropDown = styled.div<{ isOpen: boolean}>`
     align-self: center;
     ${props => props.isOpen &&
-        'transform: rotate(540deg);'
+        css`transform: rotate(540deg);`
     }
     transition: all 500ms ease-in-out;
     cursor: pointer;

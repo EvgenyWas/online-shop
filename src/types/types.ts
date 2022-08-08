@@ -11,3 +11,10 @@ export type TAttribute = {
     value: string,
     id: string
 };
+
+export type TProduct = {
+    product: any,
+    swatch: TAttribute | null,
+    text: TAttribute | null,
+    amount: number
+};
