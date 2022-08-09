@@ -19,5 +19,4 @@ export const injectPLPReactiveVars = <S extends InjectedPLPProps>(
       />
     );
   }
-
 };

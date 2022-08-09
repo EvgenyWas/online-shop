@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { TProduct } from "../types/types";
 
 export type InjectedCategoriesProps = {
   data: {
@@ -17,10 +18,7 @@ export type TVariable = {
 export type InjectedPLPProps = {
   data: {
     currentCategory: string,
-    currentCurrency: {
-      label: string,
-      symbol: string
-    },
+    currentCurrency: string,
     PLP: any
   }
 };
@@ -32,4 +30,11 @@ export type OutsideClickProps = {
 
 export type InjectedCurrentCurrencyProps = {
   currentCurrency: string
+};
+
+export type InjectedCartProps = {
+  data: {
+    currentCurrency: string
+    cart: TProduct[]
+  }
 }

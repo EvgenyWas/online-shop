@@ -20,7 +20,8 @@ class ProductBar extends Component<any, TProductBarState> {
       product: {},
       chosenSwatch: null,
       chosenText: null,
-      isAddedToCart: false
+      isAddedToCart: false,
+      isReplaceToCart: false,
     }
     this.handleChoose = this.handleChoose.bind(this)
     this.handleAddToCart = this.handleAddToCart.bind(this)
@@ -68,12 +69,14 @@ class ProductBar extends Component<any, TProductBarState> {
 
       cartVar(addProductToCart(cartVar(), product));
     } else {
-      // <Navigate to='/cart' replace />
+      this.setState({
+        isReplaceToCart: true
+      })
     }
   }
 
   render() {
-    const { product, chosenSwatch, chosenText, isAddedToCart } = this.state;
+    const { product, chosenSwatch, chosenText, isAddedToCart, isReplaceToCart } = this.state;
     const { brand, name, attributes, prices, description } = product;
     const currentCurrency = this.props.currentCurrency;
 
@@ -110,6 +113,7 @@ class ProductBar extends Component<any, TProductBarState> {
         <StyledDescription
           dangerouslySetInnerHTML={{ __html: description }}
         />
+        {isReplaceToCart && <Navigate replace to='/cart'/>}
       </StyledProductBar>
     )
   }

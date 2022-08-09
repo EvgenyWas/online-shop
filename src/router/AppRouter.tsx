@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Navigate, Route, Routes, } from "react-router-dom";
+import CartPage from '../pages/CartPage';
 import PDPPage from '../pages/PDPPage';
 import PLPPage from '../pages/PLPPage';
 
@@ -9,7 +10,7 @@ export default class AppRouter extends Component {
       <Routes>
         <Route path='/products' element={<PLPPage/>}/>
         <Route path='/products/:id' element={<PDPPage/>}/>
-        {/* <Route path='/cart' element={<CartPage/>}/> */}
+        <Route path='/cart' element={<CartPage/>}/>
         <Route path='*' element={<Navigate replace to='/products'/>}/>
       </Routes>
     )

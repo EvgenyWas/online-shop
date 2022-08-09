@@ -18,5 +18,6 @@ export type TProductBarState = {
     product: any,
     chosenSwatch: TAttribute | null,
     chosenText: TAttribute | null,
-    isAddedToCart: boolean
+    isAddedToCart: boolean,
+    isReplaceToCart: boolean
 };

@@ -50,8 +50,9 @@ export const StyledPrice = styled.p`
     font-weight: ${({ theme }) => theme.fontWeights.medium};
 `
 
-export const StyledCategoryName = styled.div`
+export const StyledCategoryName = styled.h1`
     font-size: ${({ theme }) => theme.fontSizes.xxxl};
+    font-weight: ${({theme}) => theme.fontWeights.regular};
     line-height: ${({ theme }) => theme.lineHeights.percentL};
     margin-bottom: 103px !important;
 `
