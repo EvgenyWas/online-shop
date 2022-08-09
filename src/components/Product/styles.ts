@@ -27,11 +27,14 @@ export const StyledGalleryPicture = styled.img<{ active: boolean }>`
 
 export const StyledActivePictureBox = styled.div<{ inStock: boolean }>`
     position: relative;
+    height: 511px;
     ${props => !props.inStock && css`opacity: 0.5;`}
 
     &::after {
         ${props => props.inStock && css`display: none;`}
         ${OutOfStockFragment}
+        font-size: ${({ theme }) => theme.fontSizes.xxxl};
+        transform: translate(55%, -100%);
     }
 `
 

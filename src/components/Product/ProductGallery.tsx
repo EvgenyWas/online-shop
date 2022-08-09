@@ -19,9 +19,11 @@ export default class ProductGallery extends Component<TProductGalleryProps, TPro
             query: QUERY_GALLERY_PRODUCT,
             variables: ({id: this.props.id})
         });
+        const { gallery, inStock } = response.data.product;
         this.setState({
-            gallery: response.data.product.gallery,
-            activePicture: response.data.product.gallery[0]
+            gallery: gallery,
+            activePicture: gallery[0],
+            inStock: inStock
         })
     }
 
