@@ -97,7 +97,7 @@ class ProductBar extends Component<any, TProductBarState> {
             PRICE:
           </StyledPriceName>
           <StyledPrice>
-            {`${currentCurrency}${getCurrentPrice(prices, currentCurrency)?.amount as number}`}
+            {`${currentCurrency}${getCurrentPrice(prices, currentCurrency)?.amount}`}
           </StyledPrice>
         </StyledPriceContainer>
         <ProductButton 

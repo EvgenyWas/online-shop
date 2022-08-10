@@ -5,6 +5,7 @@ export const baseTheme: ITheme = {
         green: '#5ECE7B',
         grey: '#8D8F9A',
         acceptGrey: '#EEEEEE',
+        backgroundGrey: '#E5E5E5',
         primaryText: '#1D1F22',
         background: '#FFFFFF',
         acceptBlack: '#292929',

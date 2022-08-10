@@ -18,3 +18,5 @@ export type TProduct = {
     text: TAttribute | null,
     amount: number
 };
+
+export type TManageAmountOperations = 'decrease' | 'increase';

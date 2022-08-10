@@ -29,7 +29,7 @@ export async function requestProductsQuery(category: string) {
 // Function to find the same new product in the cart
 function findSameProductInCart(cart: TProduct[], product: TProduct) {
     const sameProduct = cart.findIndex(prod => {
-        const conditionSameId = prod.product.id === product.product.id;
+        const conditionSameId = prod.product?.id === product.product?.id;
         const conditionSameSwatch = prod.swatch?.id === product.swatch?.id;
         const conditionSameText = prod.text?.id === product.text?.id;
 
@@ -55,7 +55,7 @@ export function addProductToCart(cart: TProduct[], product: TProduct) {
     const updateCart = cart;
 
     if (sameProduct || sameProduct === 0) {
-        updateCart[sameProduct].amount = cart[sameProduct].amount + 1;
+        updateCart[sameProduct].amount += 1;
     } else {
         updateCart.push(product);
     };
@@ -63,11 +63,25 @@ export function addProductToCart(cart: TProduct[], product: TProduct) {
     return updateCart;
 };
 
+// Function to decrease a product amount in the cart
+export function decreaseProductAmount(cart: TProduct[], product: TProduct) {
+    const sameProduct = findSameProductInCart(cart, product) as number;    
+    let updateCart = cart;
+
+    if (cart[sameProduct].amount === 1) {
+        updateCart = cart.filter((product, index) => index !== sameProduct);
+    } else {
+        updateCart[sameProduct].amount += 1;
+    };
+
+    return updateCart;
+};
+
 // Function for getting a tax of an amount
-export function getAmountTax(tax: number, amount: number) {
+export function getAmountTax(tax: number, amount: number | undefined): number | undefined {
     if (amount) {
         const amountTax = amount * tax / 100;
-        const roundedAmountTax = amountTax.toFixed(2);
+        const roundedAmountTax = Number(amountTax.toFixed(2));
 
         return roundedAmountTax;
     };
@@ -76,7 +90,7 @@ export function getAmountTax(tax: number, amount: number) {
 };
 
 // Function for getting an amount of the cart
-export function getAmountCart(cart: TProduct[], currentCurrency: string) {
+export function getAmountCart(cart: TProduct[], currentCurrency: string): number | undefined {
     if (cart === undefined) {
         return
     } else {
@@ -87,8 +101,9 @@ export function getAmountCart(cart: TProduct[], currentCurrency: string) {
     
             return acc += totalAmount;
         }, 0);
-    
-        return amount;
+        const roundedAmount = Number(amount.toFixed(2));
+
+        return roundedAmount;
     };
 };
 

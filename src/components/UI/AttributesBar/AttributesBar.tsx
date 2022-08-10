@@ -10,7 +10,7 @@ class AttributesBar extends Component<TAttributesBarProps> {
         const text = this.props.attributes?.find((attribute: any) => attribute?.type === 'text');
         
         return (
-            <StyledAttributesBar>
+            <StyledAttributesBar className={this.props.className}>
                 {text && 
                 <TextBar
                     name={text.name}

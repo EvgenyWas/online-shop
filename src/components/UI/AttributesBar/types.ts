@@ -25,5 +25,6 @@ export type TAttributesBarProps = {
     }>,
     handleChoose: (type: TType, attribute: TAttribute) => void,
     chosenSwatch: TAttribute | null,
-    chosenText: TAttribute | null
+    chosenText: TAttribute | null,
+    className?: string
 }

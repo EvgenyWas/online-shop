@@ -5,12 +5,13 @@ import { productTitleFragment } from '../../../styles/fragments'
 type Props = {
     brand: string,
     name: string,
+    className?: string
 }
 
 export default class ProductTitle extends Component<Props> {
   render() {
     return (
-      <StyledTitleContainer>
+      <StyledTitleContainer className={this.props.className}>
         <StyledBrand>
             {this.props.brand}
         </StyledBrand>

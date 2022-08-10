@@ -3,6 +3,7 @@ export interface ITheme {
         green: string,
         grey: string,
         acceptGrey: string,
+        backgroundGrey: string,
         primaryText: string,
         background: string,
         acceptBlack: string,

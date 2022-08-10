@@ -16,7 +16,7 @@ class CartResult extends Component<TCartResultProps> {
                         Tax {tax}%:
                     </StyledPropertyName>
                     <StyledPropertyValue>
-                        {`${currentCurrency}${getAmountTax(tax, getAmountCart(cart, currentCurrency) as number)}`}
+                        {`${currentCurrency}${getAmountTax(tax, getAmountCart(cart, currentCurrency))}`}
                     </StyledPropertyValue>
                     <StyledPropertyName>
                         Quantity:
