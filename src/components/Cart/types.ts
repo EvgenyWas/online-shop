@@ -7,12 +7,6 @@ export type TCartResultProps = {
 
 export type TCartItemProps = TProduct;
 
-export type TCartItemState = {
-    chosenSwatch: TAttribute | null,
-    chosenText: TAttribute | null,
-    update: boolean
-};
-
 export type TGalleryProps = {
     gallery: string[],
     name: string

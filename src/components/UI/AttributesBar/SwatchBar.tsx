@@ -5,18 +5,18 @@ import { TSwatchBarProps } from './types';
 
 export default class SwatchBar extends Component<TSwatchBarProps> {
   render() {
-    const swatches = this.props.swatches;
+    const { swatches, activeSwatch, name, handleChoose } = this.props;
 
     return (
       <StyledAttributeBar>
-        <StyledName>{`${this.props.name.toUpperCase()}:`}</StyledName>
+        <StyledName>{`${name.toUpperCase()}:`}</StyledName>
         <StyledSwatchContainer>
           {swatches.map(swatch => {
             return <SwatchInput 
               key={swatch.id}
               color={swatch.value}
-              active={this.props.activeSwatch === swatch.id}
-              handleChooseSwatch={() => this.props.handleChoose('swatch', swatch)}
+              active={activeSwatch === swatch.id}
+              handleChooseSwatch={() => handleChoose('swatch', swatch)}
             />
           })}
         </StyledSwatchContainer>

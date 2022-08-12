@@ -69,10 +69,12 @@ class CartGallery extends Component<TGalleryProps, TGalleryState> {
                     src={this.state.currentImageUrl} 
                     alt={`Picture of the ${this.props.name}`}
                 />
+                {this.props.gallery.length > 1 &&
                 <StyledButtonsContainer>
                     <StyledSwitchBackButton onSwitch={this.handleSwitchBack}/>
                     <SwitchArrowButton onSwitch={this.handleSwitchNext}/>
                 </StyledButtonsContainer>
+                }
             </StyledGallery>
         );
     }

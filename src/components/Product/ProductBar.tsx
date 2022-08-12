@@ -5,7 +5,7 @@ import { client } from '../../graphql/client'
 import { QUERY_PRODUCT } from '../../graphql/queries'
 import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency'
 import { TAttribute } from '../../types/types'
-import { addProductToCart, getCurrentPrice } from '../../utils/utils'
+import { addProductToCart, findAttribute, getCurrentPrice } from '../../utils/utils'
 import AttributesBar from '../UI/AttributesBar/AttributesBar'
 import { TType } from '../UI/AttributesBar/types'
 import ProductTitle from '../UI/Titles/ProductTitle'
@@ -33,8 +33,14 @@ class ProductBar extends Component<any, TProductBarState> {
       query: QUERY_PRODUCT,
       variables: ({id: this.props.id})
     });
+    const product = response.data.product;
+    const swatch = findAttribute(product, 'swatch');
+    const text = findAttribute(product, 'text');
+
     this.setState({
-      product: response.data.product
+      product: response.data.product,
+      chosenSwatch: swatch?.items[0],
+      chosenText: text?.items[0]
     })
   }
 

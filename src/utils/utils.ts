@@ -27,16 +27,18 @@ export async function requestProductsQuery(category: string) {
 };
 
 // Function to find the same new product in the cart
-function findSameProductInCart(cart: TProduct[], product: TProduct) {
-    const sameProduct = cart.findIndex(prod => {
+export function findSameProductInCart(cart: TProduct[], product: TProduct, index?: number) {
+    const sameProduct = cart.findIndex((prod, ind) => {
         const conditionSameId = prod.product?.id === product.product?.id;
         const conditionSameSwatch = prod.swatch?.id === product.swatch?.id;
         const conditionSameText = prod.text?.id === product.text?.id;
+        const conditionSameIndex = (index !== undefined) ? (ind !== index) : true;
 
         if (
             conditionSameId &&
             conditionSameSwatch &&
-            conditionSameText
+            conditionSameText &&
+            conditionSameIndex
         ) {
             return true
         }
@@ -107,13 +109,9 @@ export function getAmountCart(cart: TProduct[], currentCurrency: string): number
     };
 };
 
-// Function for getting a quantity of the product in the cart
-export function getProductQuantity(cart: TProduct[], product: TProduct) {
-    console.log('cart', cart)
-    console.log('product', product)
-    const sameProduct = findSameProductInCart(cart, product) as number;
-    console.log(sameProduct)
-    const productQuantity = cart[sameProduct].amount;
-    
-    return productQuantity;
-};
+// Function to find an attribute in the product
+export function findAttribute(product: any, attribute: 'swatch' | 'text') {
+    const findedAttribute = product.attributes?.find((attr: any) => attr?.type === attribute);
+
+    return findedAttribute;
+}

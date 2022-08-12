@@ -1,38 +1,47 @@
 import { Component, Fragment } from 'react';
 import { cartVar } from '../../graphql/cache';
 import { injectCartReactiveVars } from '../../hocs/injectCartReactiveVars';
+import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency';
 import { TAttribute, TManageAmountOperations } from '../../types/types';
-import { addProductToCart, decreaseProductAmount, getCurrentPrice, getProductQuantity } from '../../utils/utils';
-import AttributesBar from '../UI/AttributesBar/AttributesBar';
+import { addProductToCart, decreaseProductAmount, findSameProductInCart, getCurrentPrice } from '../../utils/utils';
 import { TType } from '../UI/AttributesBar/types';
 import Line from '../UI/Molecules/Line';
 import CartGallery from './CartGallery';
 import ManageAmount from './ManageAmount';
 import { StyledAttributesBar, StyledCartItem, StyledCartPrice, StyledTitle } from './styles';
-import { TCartItemState } from './types';
 
 // TCartItemProps
-class CartItem extends Component<any, TCartItemState> {
+class CartItem extends Component<any> {
     constructor(props: any) {
         super(props)
-        this.state = {
-            chosenSwatch: this.props.swatch,
-            chosenText: this.props.text,
-            update: true
-        }
         this.handleChoose = this.handleChoose.bind(this)
         this.handleChangeAmount = this.handleChangeAmount.bind(this)
     }
 
     handleChoose(type: TType, attribute: TAttribute) {
-        if(type === 'swatch') {
-          this.setState({
-            chosenSwatch: {...attribute},
-          })
-        } else if(type === 'text') {
-          this.setState({
-            chosenText: {...attribute},
-          })    
+        const cart = cartVar().order;
+        const product = this.props.product;
+        const productNumber = findSameProductInCart(cart, product) as number;
+
+        type === 'swatch' ? 
+        cart[productNumber].swatch = attribute
+        : cart[productNumber].text = attribute;
+
+        const updatedProductNumber = findSameProductInCart(cart, cart[productNumber], productNumber) as number;
+
+        if (updatedProductNumber || updatedProductNumber === 0) {
+            cart[productNumber].amount += cart[updatedProductNumber].amount;
+            const filteredCart = cart.filter((product, index) => index !== updatedProductNumber);
+
+            cartVar({
+                ...cartVar(),
+                order: filteredCart
+            })
+        } else {
+            cartVar({
+                ...cartVar(),
+                order: cart
+            })
         }
     }
 
@@ -46,22 +55,19 @@ class CartItem extends Component<any, TCartItemState> {
                 amount: cart.amount -= 1,
                 order: decreaseProductAmount(cart.order, product)
             });
-            console.log(cartVar());
         } else {
             cartVar({
                 ...cartVar(),
                 amount: cart.amount += 1,
                 order: addProductToCart(cart.order, product)
             });
-            console.log(cartVar());
         }
     }
 
     render() {
         const { product, swatch, text, amount } = this.props.product;
         const { brand, name, prices, attributes, gallery } = product;
-        const { currentCurrency, cart } = this.props.data
-        const { chosenSwatch, chosenText } = this.state;
+        const currentCurrency = this.props.currentCurrency;
 
         return (
             <Fragment>
@@ -77,12 +83,12 @@ class CartItem extends Component<any, TCartItemState> {
                         <StyledAttributesBar
                             attributes={attributes}
                             handleChoose={this.handleChoose}
-                            chosenSwatch={chosenSwatch}
-                            chosenText={chosenText}
+                            chosenSwatch={swatch}
+                            chosenText={text}
                         />
                     </div>
                     <ManageAmount 
-                        amount={getProductQuantity(cart.order, this.props.product)}
+                        amount={amount}
                         handleChangeAmount={this.handleChangeAmount}
                     />
                     <CartGallery 
@@ -96,4 +102,4 @@ class CartItem extends Component<any, TCartItemState> {
     }
 }
 
-export default injectCartReactiveVars(CartItem);
+export default injectCurrentCurrency(CartItem);
