@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import iconCart from '../../../assets/icons/nav/icon-cart.svg';
-import CartOverlay from '../CartOverlay/CartOverlay';
+import CartOverlay from '../../CartOverlay/CartOverlay';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
-import { StyledActions } from './styles';
+import AmountCart from './AmountCart';
+import { StyledActions, StyledCart, StyledCartContainer } from './styles';
 
 type State = {
   isOpen: boolean
@@ -26,7 +27,10 @@ export default class Actions extends Component<{}, State> {
     return (
       <StyledActions>
         <CurrencySwitcher/>
-        <img src={iconCart} alt="Cart" onClick={this.handleClick}/>
+        <StyledCartContainer>
+          <StyledCart src={iconCart} alt="Cart" onClick={this.handleClick}/>
+          <AmountCart/>
+        </StyledCartContainer>
         <CartOverlay/>
       </StyledActions>
     )

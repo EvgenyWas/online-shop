@@ -1,6 +1,5 @@
 import { Component, Fragment } from 'react';
 import { cartVar } from '../../graphql/cache';
-import { injectCartReactiveVars } from '../../hocs/injectCartReactiveVars';
 import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency';
 import { TAttribute, TManageAmountOperations } from '../../types/types';
 import { addProductToCart, decreaseProductAmount, findSameProductInCart, getCurrentPrice } from '../../utils/utils';
