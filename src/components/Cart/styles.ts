@@ -39,18 +39,30 @@ export const StyledCartPrice = styled(StyledPrice)`
 `
 
 export const StyledAttributesBar = styled(AttributesBar)`
-    margin-bottom: 30px !important;
+    margin-bottom: 24px !important;
+`
+
+export const StyledManageAmountContainer = styled.div`
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
 `
 
 export const StyledManageAmount = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    align-items: center;
+    margin-bottom: 24px;
 `
 
 export const StyledAmount = styled.p`
+    align-self: center;
     font-weight: ${({ theme }) => theme.fontWeights.medium};
     font-size: ${({ theme }) => theme.fontSizes.lg};
     line-height: ${({ theme }) => theme.lineHeights.percentL};
+`
+
+export const StyledCartItem = styled.div`
+    display: flex;
 `

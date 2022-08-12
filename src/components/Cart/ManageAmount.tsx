@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { TManageAmountOperations } from '../../types/types';
 import ChangeAmountButton from '../UI/Buttons/ChangeAmountButton';
-import { StyledAmount, StyledManageAmount } from './styles';
+import { StyledAmount, StyledManageAmount, StyledManageAmountContainer } from './styles';
 
 type Props = {
     amount: number,
@@ -11,19 +11,21 @@ type Props = {
 class ManageAmount extends Component<Props> {
     render() {
         return (
-            <StyledManageAmount>
-                <ChangeAmountButton 
-                    operation='increase' 
-                    onClick={() => this.props.handleChangeAmount('increase')}
-                />
+            <StyledManageAmountContainer>
+                <StyledManageAmount>
+                    <ChangeAmountButton 
+                        operation='increase' 
+                        onClick={() => this.props.handleChangeAmount('increase')}
+                    />
                     <StyledAmount>
                         {this.props.amount}
                     </StyledAmount>
-                <ChangeAmountButton 
-                    operation='decrease'
-                    onClick={() => this.props.handleChangeAmount('decrease')}
-                />
-            </StyledManageAmount>
+                    <ChangeAmountButton 
+                        operation='decrease'
+                        onClick={() => this.props.handleChangeAmount('decrease')}
+                    />
+                </StyledManageAmount>
+            </StyledManageAmountContainer>
         );
     }
 }

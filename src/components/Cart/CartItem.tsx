@@ -7,7 +7,7 @@ import AttributesBar from '../UI/AttributesBar/AttributesBar';
 import { TType } from '../UI/AttributesBar/types';
 import Line from '../UI/Molecules/Line';
 import ManageAmount from './ManageAmount';
-import { StyledCartPrice, StyledTitle } from './styles';
+import { StyledAttributesBar, StyledCartItem, StyledCartPrice, StyledTitle } from './styles';
 import { TCartItemState } from './types';
 
 // TCartItemProps
@@ -64,25 +64,27 @@ class CartItem extends Component<any, TCartItemState> {
 
         return (
             <Fragment>
-                <div>
-                    <StyledTitle
-                        brand={brand}
-                        name={name}
-                    />
-                    <StyledCartPrice>
-                        {`${currentCurrency}${getCurrentPrice(prices, currentCurrency)?.amount as number}`}
-                    </StyledCartPrice>
-                    <AttributesBar
-                        attributes={attributes}
-                        handleChoose={this.handleChoose}
-                        chosenSwatch={chosenSwatch}
-                        chosenText={chosenText}
-                    />
+                <StyledCartItem>
+                    <div>
+                        <StyledTitle
+                            brand={brand}
+                            name={name}
+                        />
+                        <StyledCartPrice>
+                            {`${currentCurrency}${getCurrentPrice(prices, currentCurrency)?.amount as number}`}
+                        </StyledCartPrice>
+                        <StyledAttributesBar
+                            attributes={attributes}
+                            handleChoose={this.handleChoose}
+                            chosenSwatch={chosenSwatch}
+                            chosenText={chosenText}
+                        />
+                    </div>
                     <ManageAmount 
                         amount={getProductQuantity(cart.order, this.props.product)}
                         handleChangeAmount={this.handleChangeAmount}
                     />
-                </div>
+                </StyledCartItem>
                 <Line/>
             </Fragment>
         );
