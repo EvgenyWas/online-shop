@@ -71,7 +71,7 @@ export function decreaseProductAmount(cart: TProduct[], product: TProduct) {
     if (cart[sameProduct].amount === 1) {
         updateCart = cart.filter((product, index) => index !== sameProduct);
     } else {
-        updateCart[sameProduct].amount += 1;
+        updateCart[sameProduct].amount -= 1;
     };
 
     return updateCart;
@@ -91,7 +91,7 @@ export function getAmountTax(tax: number, amount: number | undefined): number | 
 
 // Function for getting an amount of the cart
 export function getAmountCart(cart: TProduct[], currentCurrency: string): number | undefined {
-    if (cart === undefined) {
+    if (!cart.length) {
         return
     } else {
         const amount = cart.reduce((acc, product) => {
@@ -107,13 +107,13 @@ export function getAmountCart(cart: TProduct[], currentCurrency: string): number
     };
 };
 
-// Function for getting a quantity of products in the cart
-export function getProductsQuantity(cart: TProduct[]) {
-    if (cart === undefined) {
-        return
-    } else {
-        const quantity = cart.reduce((acc, product) => acc += product.amount, 0);
-
-        return quantity;
-    };
+// Function for getting a quantity of the product in the cart
+export function getProductQuantity(cart: TProduct[], product: TProduct) {
+    console.log('cart', cart)
+    console.log('product', product)
+    const sameProduct = findSameProductInCart(cart, product) as number;
+    console.log(sameProduct)
+    const productQuantity = cart[sameProduct].amount;
+    
+    return productQuantity;
 };

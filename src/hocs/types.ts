@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { TProduct } from "../types/types";
+import { TCart, TProduct } from "../types/types";
 
 export type InjectedCategoriesProps = {
   data: {
@@ -35,6 +35,6 @@ export type InjectedCurrentCurrencyProps = {
 export type InjectedCartProps = {
   data: {
     currentCurrency: string
-    cart: TProduct[]
+    cart: TCart
   }
 }

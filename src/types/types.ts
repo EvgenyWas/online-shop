@@ -19,4 +19,9 @@ export type TProduct = {
     amount: number
 };
 
+export type TCart = {
+    amount: number,
+    order: TProduct[]
+}
+
 export type TManageAmountOperations = 'decrease' | 'increase';

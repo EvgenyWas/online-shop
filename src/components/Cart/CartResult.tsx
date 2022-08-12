@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { getAmountCart, getAmountTax, getProductsQuantity } from '../../utils/utils';
+import { getAmountCart, getAmountTax } from '../../utils/utils';
 import PrimaryButton from '../UI/Buttons/PrimaryButton';
 import { StyledCartResult, StyledProperties, StyledPropertyName, StyledPropertyValue } from './styles';
 import { TCartResultProps } from './types';
@@ -16,19 +16,19 @@ class CartResult extends Component<TCartResultProps> {
                         Tax {tax}%:
                     </StyledPropertyName>
                     <StyledPropertyValue>
-                        {`${currentCurrency}${getAmountTax(tax, getAmountCart(cart, currentCurrency))}`}
+                        {`${currentCurrency}${getAmountTax(tax, getAmountCart(cart.order, currentCurrency))}`}
                     </StyledPropertyValue>
                     <StyledPropertyName>
                         Quantity:
                     </StyledPropertyName>
                     <StyledPropertyValue>
-                        {getProductsQuantity(cart)}
+                        {cart.amount}
                     </StyledPropertyValue>
                     <StyledPropertyName total>
                         Total:
                     </StyledPropertyName>
                     <StyledPropertyValue>
-                        {`${currentCurrency}${getAmountCart(cart, currentCurrency)}`}
+                        {`${currentCurrency}${getAmountCart(cart.order, currentCurrency)}`}
                     </StyledPropertyValue>
                 </StyledProperties>
                 <PrimaryButton onClick={() => console.log('HI!')}>

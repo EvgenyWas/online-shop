@@ -67,7 +67,11 @@ class ProductBar extends Component<any, TProductBarState> {
         amount: 1
       };
 
-      cartVar(addProductToCart(cartVar(), product));
+      cartVar({
+        ...cartVar(),
+        amount: cartVar().amount += 1,
+        order: addProductToCart(cartVar().order, product)
+      });
     } else {
       this.setState({
         isReplaceToCart: true

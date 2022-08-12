@@ -12,7 +12,7 @@ class CartPage extends Component<any> {
         return (
             <section className='container'>
                 <CartTitle/>
-                {cart.map((product: TProduct, index: number) => {
+                {cart.order.map((product: TProduct, index: number) => {
                     return <CartItem
                         key={index}
                         product={product}

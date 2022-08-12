@@ -1,8 +1,8 @@
 import { Component, Fragment } from 'react';
 import { cartVar } from '../../graphql/cache';
-import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency';
+import { injectCartReactiveVars } from '../../hocs/injectCartReactiveVars';
 import { TAttribute, TManageAmountOperations } from '../../types/types';
-import { addProductToCart, decreaseProductAmount, getCurrentPrice } from '../../utils/utils';
+import { addProductToCart, decreaseProductAmount, getCurrentPrice, getProductQuantity } from '../../utils/utils';
 import AttributesBar from '../UI/AttributesBar/AttributesBar';
 import { TType } from '../UI/AttributesBar/types';
 import Line from '../UI/Molecules/Line';
@@ -17,8 +17,10 @@ class CartItem extends Component<any, TCartItemState> {
         this.state = {
             chosenSwatch: this.props.swatch,
             chosenText: this.props.text,
+            update: true
         }
         this.handleChoose = this.handleChoose.bind(this)
+        this.handleChangeAmount = this.handleChangeAmount.bind(this)
     }
 
     handleChoose(type: TType, attribute: TAttribute) {
@@ -38,16 +40,26 @@ class CartItem extends Component<any, TCartItemState> {
         const product = this.props.product;
 
         if (operation === 'decrease') {
-            cartVar(decreaseProductAmount(cart, product));
+            cartVar({
+                ...cartVar(),
+                amount: cart.amount -= 1,
+                order: decreaseProductAmount(cart.order, product)
+            });
+            console.log(cartVar());
         } else {
-            cartVar(addProductToCart(cart, product))
+            cartVar({
+                ...cartVar(),
+                amount: cart.amount += 1,
+                order: addProductToCart(cart.order, product)
+            });
+            console.log(cartVar());
         }
     }
 
     render() {
         const { product, swatch, text, amount } = this.props.product;
         const { brand, name, prices, attributes } = product;
-        const currentCurrency = this.props.currentCurrency
+        const { currentCurrency, cart } = this.props.data
         const { chosenSwatch, chosenText } = this.state;
 
         return (
@@ -67,7 +79,7 @@ class CartItem extends Component<any, TCartItemState> {
                         chosenText={chosenText}
                     />
                     <ManageAmount 
-                        amount={amount}
+                        amount={getProductQuantity(cart.order, this.props.product)}
                         handleChangeAmount={this.handleChangeAmount}
                     />
                 </div>
@@ -77,4 +89,4 @@ class CartItem extends Component<any, TCartItemState> {
     }
 }
 
-export default injectCurrentCurrency(CartItem);
+export default injectCartReactiveVars(CartItem);
