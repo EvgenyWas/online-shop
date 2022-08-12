@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ProductTitle from "../UI/Titles/ProductTitle";
 import { StyledPrice } from '../Product/styles';
 import AttributesBar from "../UI/AttributesBar/AttributesBar";
+import SwitchArrowButton from "../UI/Buttons/SwitchArrowButton";
 
 export const StyledCartResult = styled.div`
     display: flex;
@@ -39,7 +40,7 @@ export const StyledCartPrice = styled(StyledPrice)`
 `
 
 export const StyledAttributesBar = styled(AttributesBar)`
-    margin-bottom: 24px !important;
+    margin-bottom: 0px !important;
 `
 
 export const StyledManageAmountContainer = styled.div`
@@ -53,7 +54,7 @@ export const StyledManageAmount = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-right: 24px;
 `
 
 export const StyledAmount = styled.p`
@@ -65,4 +66,29 @@ export const StyledAmount = styled.p`
 
 export const StyledCartItem = styled.div`
     display: flex;
+    margin-bottom: 24px;
+`
+
+export const StyledGallery = styled.div`
+    position: relative;
+    width: 200px;
+    min-height: 100%;
+`
+
+export const StyledGalleryImage = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+`
+
+export const StyledButtonsContainer = styled.div`
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+`
+
+export const StyledSwitchBackButton = styled(SwitchArrowButton)`
+    transform: scaleX(-1);
 `

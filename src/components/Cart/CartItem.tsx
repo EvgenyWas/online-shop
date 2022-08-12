@@ -6,6 +6,7 @@ import { addProductToCart, decreaseProductAmount, getCurrentPrice, getProductQua
 import AttributesBar from '../UI/AttributesBar/AttributesBar';
 import { TType } from '../UI/AttributesBar/types';
 import Line from '../UI/Molecules/Line';
+import CartGallery from './CartGallery';
 import ManageAmount from './ManageAmount';
 import { StyledAttributesBar, StyledCartItem, StyledCartPrice, StyledTitle } from './styles';
 import { TCartItemState } from './types';
@@ -58,7 +59,7 @@ class CartItem extends Component<any, TCartItemState> {
 
     render() {
         const { product, swatch, text, amount } = this.props.product;
-        const { brand, name, prices, attributes } = product;
+        const { brand, name, prices, attributes, gallery } = product;
         const { currentCurrency, cart } = this.props.data
         const { chosenSwatch, chosenText } = this.state;
 
@@ -83,6 +84,10 @@ class CartItem extends Component<any, TCartItemState> {
                     <ManageAmount 
                         amount={getProductQuantity(cart.order, this.props.product)}
                         handleChangeAmount={this.handleChangeAmount}
+                    />
+                    <CartGallery 
+                        gallery={gallery}
+                        name={name}
                     />
                 </StyledCartItem>
                 <Line/>

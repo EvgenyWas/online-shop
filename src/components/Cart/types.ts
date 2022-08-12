@@ -12,3 +12,13 @@ export type TCartItemState = {
     chosenText: TAttribute | null,
     update: boolean
 };
+
+export type TGalleryProps = {
+    gallery: string[],
+    name: string
+};
+
+export type TGalleryState = {
+    currentImageUrl: string,
+    currentImageNumber: number
+};
