@@ -1,11 +1,18 @@
-import { Component } from 'react'
-import styled from 'styled-components'
-import iconSircleCart from '../../../assets/icons/card/icon-sircle-cart.svg'
+import { Component, MouseEvent } from 'react';
+import styled from 'styled-components';
+import iconSircleCart from '../../../assets/icons/card/icon-sircle-cart.svg';
 
-export default class AddToCartButton extends Component {
+type Props = {
+  handleClick: (event: MouseEvent<HTMLButtonElement>) => void
+}
+
+export default class AddToCartButton extends Component<Props> {
   render() {
     return (
-      <StyledButton className='add-to-cart-button'>
+      <StyledButton 
+        onClick={this.props.handleClick}
+        className='add-to-cart-button'
+      >
         <img src={iconSircleCart} alt="Cart" />
       </StyledButton>
     )
@@ -23,5 +30,9 @@ const StyledButton = styled.button`
 
   &:hover {
     transform: scale(1.2);
+  }
+
+  &:active {
+    transform: scale(0.5);
   }
 `
