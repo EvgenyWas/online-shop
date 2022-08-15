@@ -26,7 +26,7 @@ export default class ChangeAmountButton extends Component<Props> {
     }
 }
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
     width: 45px;
     height: 45px;
 `

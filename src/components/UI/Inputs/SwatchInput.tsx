@@ -22,7 +22,7 @@ export default class SwatchInput extends PureComponent<Props> {
   }
 }
 
-const StyledInput = styled.input<{ bachground: string, active: boolean }>`
+export const StyledInput = styled.input<{ bachground: string, active: boolean }>`
   width: 32px;
   height: 32px;
   outline: 1px solid ${({theme}) => theme.colors.background};

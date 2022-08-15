@@ -3,20 +3,22 @@ import styled from 'styled-components'
 import { productTitleFragment } from '../../../styles/fragments'
 
 type Props = {
-    brand: string,
-    name: string,
-    className?: string
+  brand: string,
+  name: string,
+  className?: string
 }
 
 export default class ProductTitle extends Component<Props> {
   render() {
+    const { brand, name, className } = this.props;
+
     return (
-      <StyledTitleContainer className={this.props.className}>
+      <StyledTitleContainer className={className}>
         <StyledBrand>
-            {this.props.brand}
+          {brand}
         </StyledBrand>
         <StyledName>
-            {this.props.name}
+          {name}
         </StyledName>
       </StyledTitleContainer>
     )
@@ -24,16 +26,16 @@ export default class ProductTitle extends Component<Props> {
 }
 
 const StyledTitleContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 43px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 43px;
 `
 
-const StyledBrand = styled.h2`
-    ${productTitleFragment}
-    font-weight: ${({theme}) => theme.fontWeights.semibold};
+export const StyledBrand = styled.h2`
+  ${productTitleFragment}
+  font-weight: ${({theme}) => theme.fontWeights.semibold};
 `
-const StyledName = styled.h2`
-    ${productTitleFragment}
+export const StyledName = styled.h2`
+  ${productTitleFragment}
 `

@@ -70,7 +70,7 @@ class CartItem extends Component<any> {
 
         return (
             <Fragment>
-                <StyledCartItem>
+                <StyledCartItem className={this.props.className}>
                     <div>
                         <StyledTitle
                             brand={brand}
@@ -84,6 +84,7 @@ class CartItem extends Component<any> {
                             handleChoose={this.handleChoose}
                             chosenSwatch={swatch}
                             chosenText={text}
+                            className={this.props.className}
                         />
                     </div>
                     <ManageAmount 

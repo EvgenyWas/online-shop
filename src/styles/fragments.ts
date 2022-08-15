@@ -41,3 +41,9 @@ export const OutOfStockFragment = css`
     line-height: ${({ theme }) => theme.lineHeights.percentL};
     color: ${({ theme }) => theme.colors.grey};
 `
+
+export const boldSmallHighGragment = css`
+    font-weight: ${({theme}) => theme.fontWeights.bold};
+    font-size: ${({theme}) => theme.fontSizes.sm};
+    line-height: ${({theme}) => theme.lineHeights.percentL};
+`

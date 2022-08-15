@@ -36,7 +36,10 @@ export default class OutsideClick extends Component<OutsideClickProps> {
 
     render() {
         return (
-            <div ref={this.wrapperRef}>
+            <div 
+                ref={this.wrapperRef}
+                className={this.props.className}
+            >
                 {this.props.children}
             </div>
         )

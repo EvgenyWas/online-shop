@@ -31,15 +31,16 @@ export const StyledPropertyValue = styled.span`
 `
 
 export const StyledTitle = styled(ProductTitle)`
-    margin-bottom: 20px !important;
+    margin-bottom: 20px;
 `
 
 export const StyledCartPrice = styled(StyledPrice)`
-    margin-bottom: 20px !important;
+    margin-bottom: 20px;
     line-height: ${({theme}) => theme.lineHeights.md};
 `
 
 export const StyledAttributesBar = styled(AttributesBar)`
+    gap: 16px;
     margin-bottom: 0px !important;
 `
 

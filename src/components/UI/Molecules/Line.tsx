@@ -9,7 +9,7 @@ export default class Line extends PureComponent {
     }
 }
 
-const StyledLine = styled.div`
+export const StyledLine = styled.div`
     width: 100%;
     height: 1px;
     margin-bottom: 24px;

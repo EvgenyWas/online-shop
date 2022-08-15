@@ -21,9 +21,7 @@ class CartPage extends Component<any> {
                         key={index}
                         product={product}
                     />
-                })
-                }
-                {}
+                })}
                 <CartResult
                     currentCurrency={currentCurrency}
                     cart={cart}

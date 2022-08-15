@@ -14,6 +14,7 @@ export const StyledCartContainer = styled.div`
 
 export const StyledCart = styled.img`
     z-index: 10;
+    cursor: pointer;
 `
 
 export const StyledAmountCart = styled.div`
@@ -34,4 +35,15 @@ export const StyledAmountCart = styled.div`
         color: ${({theme}) => theme.colors.background};
         text-align: center;
     }
+`
+
+export const StyledBackgroundCover = styled.div`
+    position: absolute;
+    z-index: 50;
+    top: -80px;
+    bottom: -80px;
+    left: 0;
+    min-width: 100%;
+    /* height: 100%; */
+    background: rgba(57, 55, 72, 0.22);
 `

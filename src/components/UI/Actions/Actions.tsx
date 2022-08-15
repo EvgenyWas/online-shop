@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import iconCart from '../../../assets/icons/nav/icon-cart.svg';
+import OutsideClick from '../../../hocs/OutsideClick';
 import CartOverlay from '../../CartOverlay/CartOverlay';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
 import AmountCart from './AmountCart';
@@ -15,6 +16,7 @@ export default class Actions extends Component<{}, State> {
     this.state = {
       isOpen: false,
     };
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   };
 
   handleClick = () => {
@@ -22,6 +24,12 @@ export default class Actions extends Component<{}, State> {
       isOpen: !isOpen
     }));
   };
+
+  handleOutsideClick() {
+    this.setState({
+      isOpen: false
+    })
+  }
 
   render() {
     return (
@@ -31,7 +39,9 @@ export default class Actions extends Component<{}, State> {
           <StyledCart src={iconCart} alt="Cart" onClick={this.handleClick}/>
           <AmountCart/>
         </StyledCartContainer>
-        <CartOverlay/>
+        {this.state.isOpen &&
+        <CartOverlay onClick={this.handleOutsideClick} />
+        }
       </StyledActions>
     )
   }

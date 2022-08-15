@@ -130,6 +130,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
+        min-height: 100%;
         padding-top: 24px;
         font-family: ${({ theme }) => theme.fonts.primary};
         font-style: normal;

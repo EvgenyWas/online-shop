@@ -22,7 +22,7 @@ export default class TextInput extends PureComponent<Props> {
   }
 }
 
-const StyledInput = styled.input<{ active: boolean }>`
+export const StyledInput = styled.input<{ active: boolean }>`
   width: 63px;
   height: 45px;
   font-family: ${({theme}) => theme.fonts.tertiary};
