@@ -1,10 +1,9 @@
-import { Component } from 'react'
-import { injectCartReactiveVars } from '../../hocs/injectCartReactiveVars'
-import OutsideClick from '../../hocs/OutsideClick';
+import { Component } from 'react';
+import { injectCartReactiveVars } from '../../hocs/injectCartReactiveVars';
 import { TProduct } from '../../types/types';
-import CartOverlayTitle from '../UI/Titles/CartOverlayTitle'
+import CartOverlayTitle from '../UI/Titles/CartOverlayTitle';
 import CartOverlayTotal from './CartOverlayTotal';
-import { StyledCartOverlay, StyledCartOverlayItem, StyledOutsideClick } from './styles'
+import { StyledCartOverlay, StyledCartOverlayItem, StyledOutsideClick } from './styles';
 
 class CartOverlay extends Component<any> {
   render() {

@@ -1,34 +1,29 @@
 import { Component } from 'react';
-import CartItem from '../components/Cart/CartItem';
-import CartResult from '../components/Cart/CartResult';
-import CartEmpty from '../components/UI/Titles/CartEmpty';
-import CartTitle from '../components/UI/Titles/CartTitle';
-import { injectCartReactiveVars } from '../hocs/injectCartReactiveVars';
-import { TProduct } from '../types/types';
+import styled from 'styled-components';
+import Cart from '../components/Cart/Cart';
+import { StyledBackgroundCover } from '../components/UI/Actions/styles';
+import { CartOverlayContext, TCartOverlayContext } from '../context/CartOverlayContext';
 
-class CartPage extends Component<any> {
+class CartPage extends Component {
     render() {
-        const { currentCurrency, cart } = this.props.data;
-        const isCartEmpty = !cart.order.length;
+        const { isCartOverlayOpen } = this.context as TCartOverlayContext;
 
         return (
-            <section className='container'>
-                <CartTitle/>
-                {isCartEmpty ?
-                <CartEmpty/>
-                : cart.order.map((product: TProduct, index: number) => {
-                    return <CartItem
-                        key={index}
-                        product={product}
-                    />
-                })}
-                <CartResult
-                    currentCurrency={currentCurrency}
-                    cart={cart}
-                />
-            </section>
+            <StyledCartPage>
+                <Cart/>
+                {isCartOverlayOpen &&
+                <StyledBackgroundCover/>
+                }
+            </StyledCartPage>
         );
     }
 }
 
-export default injectCartReactiveVars(CartPage);
+CartPage.contextType = CartOverlayContext;
+
+const StyledCartPage = styled.section`
+    position: relative;
+    margin-bottom: 167px;
+`
+
+export default CartPage;

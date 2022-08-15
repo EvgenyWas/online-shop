@@ -1,23 +1,33 @@
 import { Component } from 'react'
 import styled from 'styled-components'
+import Product from '../components/Product/Product'
 import ProductBar from '../components/Product/ProductBar'
 import ProductGallery from '../components/Product/ProductGallery'
+import { StyledBackgroundCover } from '../components/UI/Actions/styles'
+import { CartOverlayContext, TCartOverlayContext } from '../context/CartOverlayContext'
 import { currentProductVar } from '../graphql/cache'
 
-export default class PDPPage extends Component {
+class PDPPage extends Component {
   render() {
-    const productId = currentProductVar();
+    const { isCartOverlayOpen } = this.context as TCartOverlayContext;
 
     return (
-      <StyledPDPPage className='container'>
-        <ProductGallery id={productId} />
-        <ProductBar id={productId} />
+      <StyledPDPPage>
+        <Product/>
+        {isCartOverlayOpen &&
+        <StyledBackgroundCover/>
+        }
       </StyledPDPPage>
     )
   }
 };
 
+PDPPage.contextType = CartOverlayContext;
+
 const StyledPDPPage = styled.section`
-  display: flex;
-  gap: 100px;
+  position: relative;
 `
+
+const StyledContainer = styled.div
+
+export default PDPPage;

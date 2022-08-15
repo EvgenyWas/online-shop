@@ -1,48 +1,39 @@
 import { Component } from 'react';
 import iconCart from '../../../assets/icons/nav/icon-cart.svg';
-import OutsideClick from '../../../hocs/OutsideClick';
+import { CartOverlayContext, TCartOverlayContext } from '../../../context/CartOverlayContext';
 import CartOverlay from '../../CartOverlay/CartOverlay';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
 import AmountCart from './AmountCart';
 import { StyledActions, StyledCart, StyledCartContainer } from './styles';
 
-type State = {
-  isOpen: boolean
-};
-
-export default class Actions extends Component<{}, State> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      isOpen: false,
-    };
-    this.handleOutsideClick = this.handleOutsideClick.bind(this);
-  };
-
-  handleClick = () => {
-    this.setState(({ isOpen }) => ({
-      isOpen: !isOpen
-    }));
-  };
-
-  handleOutsideClick() {
-    this.setState({
-      isOpen: false
-    })
-  }
-
+class Actions extends Component {
   render() {
+    const { 
+      isCartOverlayOpen, handleChangeStateCartOverlay, handleCloseCartOverlay
+    } = this.context as TCartOverlayContext;
+
     return (
       <StyledActions>
         <CurrencySwitcher/>
-        <StyledCartContainer>
-          <StyledCart src={iconCart} alt="Cart" onClick={this.handleClick}/>
+        <StyledCartContainer 
+          onClick={handleChangeStateCartOverlay}
+        >
+          <StyledCart 
+            src={iconCart} 
+            alt="Cart"
+          />
           <AmountCart/>
         </StyledCartContainer>
-        {this.state.isOpen &&
-        <CartOverlay onClick={this.handleOutsideClick} />
+        {isCartOverlayOpen &&
+        <CartOverlay 
+          onClick={handleCloseCartOverlay} 
+        />
         }
       </StyledActions>
     )
   }
 }
+
+Actions.contextType = CartOverlayContext;
+
+export default Actions;
