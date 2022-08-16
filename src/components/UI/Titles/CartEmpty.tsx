@@ -2,11 +2,15 @@ import { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import Line from '../Molecules/Line';
 
-class CartEmpty extends Component {
+type Props = {
+    className?: string,
+}
+
+class CartEmpty extends Component<Props> {
     render() {
         return (
             <Fragment>
-                <StyledTitle>
+                <StyledTitle className={this.props.className}>
                     THE CART IS EMPTY
                 </StyledTitle>
                 <Line/>

@@ -93,3 +93,5 @@ export const StyledButtonsContainer = styled.div`
 export const StyledSwitchBackButton = styled(SwitchArrowButton)`
     transform: scaleX(-1);
 `
+
+export const StyledBox = styled.div``;

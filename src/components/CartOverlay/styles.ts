@@ -2,12 +2,14 @@ import styled from "styled-components";
 import OutsideClick from "../../hocs/OutsideClick";
 import { attributeNameFragment, boldSmallHighGragment, mediumLightFragment } from "../../styles/fragments";
 import CartItem from "../Cart/CartItem";
-import { StyledAttributesBar, StyledButtonsContainer, StyledCartPrice, StyledGallery, StyledManageAmountContainer, StyledTitle } from "../Cart/styles";
+import { StyledAttributesBar, StyledBox, StyledButtonsContainer, StyledCartPrice, StyledGallery, StyledManageAmountContainer, StyledTitle } from "../Cart/styles";
 import { StyledName as StyledTextBar, StyledTextContainer } from '../UI/AttributesBar/styles';
 import { StyledButton } from "../UI/Buttons/ChangeAmountButton";
+import PrimaryButton from "../UI/Buttons/PrimaryButton";
 import { StyledInput as StyledSwatchInput } from "../UI/Inputs/SwatchInput";
 import { StyledInput } from "../UI/Inputs/TextInput";
 import { StyledLine } from "../UI/Molecules/Line";
+import CartEmpty from "../UI/Titles/CartEmpty";
 
 export const StyledCartOverlay = styled.div`
     position: absolute;
@@ -45,6 +47,10 @@ export const StyledItemPrice = styled.h4`
 export const StyledCartOverlayItem = styled(CartItem)`
     margin-bottom: 0px;
     gap: 8px;
+
+    ${StyledBox} {
+        width: 136px;
+    }
     
     ${StyledTitle} {
         gap: 0px;
@@ -123,4 +129,40 @@ export const StyledCartOverlayItem = styled(CartItem)`
 
 export const StyledOutsideClick = styled(OutsideClick)`
     position: absolute;
+`
+
+export const StyledItems = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-height: 420px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar { width: 0 !important }
+`
+
+export const StyledButtons = styled.div`
+    display: flex;
+    gap: 12px;
+`
+
+export const StyledViewBagButton = styled(PrimaryButton)`
+    padding: 10px;
+    margin: 0;
+    background: ${({theme}) => theme.colors.background};
+    border: 1px solid ${({theme}) => theme.colors.primaryText};
+    color: ${({theme}) => theme.colors.primaryText};
+`
+
+export const StyledCheckOutButton = styled(PrimaryButton)`
+    padding: 10px;
+    margin: 0;
+`
+
+export const StyledCartEmpty = styled(CartEmpty)`
+    margin: 0;
+    font-size: ${({theme}) => theme.fontSizes.lg};
+
+    & ~ div:nth-of-type(1) {
+        display: none;
+    }
 `

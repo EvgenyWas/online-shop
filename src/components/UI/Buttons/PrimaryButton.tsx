@@ -28,4 +28,8 @@ const StyledButton = styled.button`
     ${primaryButtonFragment}
     color: ${({theme}) => theme.colors.background};
     background: ${({theme}) => theme.colors.green};
+
+    &:active {
+        box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
+    }
 `

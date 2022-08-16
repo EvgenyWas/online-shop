@@ -7,7 +7,7 @@ import { TType } from '../UI/AttributesBar/types';
 import Line from '../UI/Molecules/Line';
 import CartGallery from './CartGallery';
 import ManageAmount from './ManageAmount';
-import { StyledAttributesBar, StyledCartItem, StyledCartPrice, StyledTitle } from './styles';
+import { StyledAttributesBar, StyledBox, StyledCartItem, StyledCartPrice, StyledTitle } from './styles';
 
 // TCartItemProps
 class CartItem extends Component<any> {
@@ -71,7 +71,7 @@ class CartItem extends Component<any> {
         return (
             <Fragment>
                 <StyledCartItem className={this.props.className}>
-                    <div>
+                    <StyledBox>
                         <StyledTitle
                             brand={brand}
                             name={name}
@@ -86,7 +86,7 @@ class CartItem extends Component<any> {
                             chosenText={text}
                             className={this.props.className}
                         />
-                    </div>
+                    </StyledBox>
                     <ManageAmount 
                         amount={amount}
                         handleChangeAmount={this.handleChangeAmount}
