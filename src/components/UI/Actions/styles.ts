@@ -41,7 +41,7 @@ export const StyledBackgroundCover = styled.div`
     position: absolute;
     z-index: 50;
     top: -80px;
-    bottom: -247px;
+    bottom: 0;
     left: 0;
     min-width: 100%;
     background: rgba(57, 55, 72, 0.22);

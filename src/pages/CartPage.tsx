@@ -23,7 +23,6 @@ CartPage.contextType = CartOverlayContext;
 
 const StyledCartPage = styled.section`
     position: relative;
-    margin-bottom: 167px;
 `
 
 export default CartPage;

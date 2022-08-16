@@ -1,11 +1,8 @@
 import { Component } from 'react'
 import styled from 'styled-components'
 import Product from '../components/Product/Product'
-import ProductBar from '../components/Product/ProductBar'
-import ProductGallery from '../components/Product/ProductGallery'
 import { StyledBackgroundCover } from '../components/UI/Actions/styles'
 import { CartOverlayContext, TCartOverlayContext } from '../context/CartOverlayContext'
-import { currentProductVar } from '../graphql/cache'
 
 class PDPPage extends Component {
   render() {
@@ -26,8 +23,7 @@ PDPPage.contextType = CartOverlayContext;
 
 const StyledPDPPage = styled.section`
   position: relative;
+  padding-bottom: 88px;
 `
-
-const StyledContainer = styled.div
 
 export default PDPPage;

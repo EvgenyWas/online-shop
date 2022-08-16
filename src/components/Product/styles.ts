@@ -69,10 +69,14 @@ export const StyledPrice = styled.h4`
 `
 
 export const StyledDescription = styled.div`
+    max-height: 100px;
+    height: 100%;
     font-family: ${({theme}) => theme.fonts.secondary};
     font-size: ${({theme}) => theme.fontSizes.sm};
     font-weight: ${({theme}) => theme.fontWeights.regular};
     line-height: ${({theme}) => theme.lineHeights.percentL};
+    overflow-y: auto;
+    
 `
 
 export const ProductButton = styled(PrimaryButton)<{ isAddedToCart: boolean, inStock: boolean }>`

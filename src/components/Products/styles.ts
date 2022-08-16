@@ -6,7 +6,7 @@ export const StyledProducts = styled.div`
     grid-template-columns: repeat(3, 1fr);
     column-gap: 40px;
     row-gap: 103px;
-    margin-bottom: 167px !important;
+    padding-bottom: 167px !important;
 `
 
 export const StyledProductCard = styled.article<{ inStock: boolean }>`
