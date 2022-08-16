@@ -20,10 +20,10 @@ class CartOverlay extends Component<any, State> {
     this.handleRedirectToCart = this.handleRedirectToCart.bind(this);
   }
 
-  handleRedirectToCart() {
+  handleRedirectToCart = async () => {
     const { handleCloseCartOverlay } = this.context as TCartOverlayContext;
 
-    this.setState({
+    await this.setState({
       isRedirectToCart: true
     });
     handleCloseCartOverlay();
