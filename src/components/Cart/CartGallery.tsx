@@ -15,9 +15,9 @@ class CartGallery extends Component<TGalleryProps, TGalleryState> {
     }
 
     componentDidMount() {
-        this.setState({
-            currentImageUrl: this.props.gallery[this.state.currentImageNumber]
-        })
+        this.setState((state, props) => ({
+            currentImageUrl: props.gallery[state.currentImageNumber]
+        }))
     }
 
     handleSwitchNext() {
@@ -65,7 +65,7 @@ class CartGallery extends Component<TGalleryProps, TGalleryState> {
     render() {
         return (
             <StyledGallery>
-                <StyledGalleryImage 
+                <StyledGalleryImage
                     src={this.state.currentImageUrl} 
                     alt={`Picture of the ${this.props.name}`}
                 />

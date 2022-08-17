@@ -95,7 +95,8 @@ class CartItem extends Component<any> {
                         amount={amount}
                         handleChangeAmount={this.handleChangeAmount}
                     />
-                    <CartGallery 
+                    <CartGallery
+                        key={product.id}
                         gallery={gallery}
                         name={name}
                     />

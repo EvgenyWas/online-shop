@@ -33,6 +33,6 @@ const StyledButton = styled.button`
   }
 
   &:active {
-    transform: scale(0.5);
+    transform: scale(0.7);
   }
 `
