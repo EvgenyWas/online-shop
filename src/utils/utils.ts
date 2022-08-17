@@ -1,7 +1,8 @@
-import { productsVar } from "../graphql/cache";
+import { initialValueOfUserStorage, localStorageKeys } from "../config";
+import { cartVar, productsVar } from "../graphql/cache";
 import { client } from "../graphql/client";
 import { QUERY_CATEGORY_PRODUCTS } from "../graphql/queries";
-import { TPrice, TProduct } from "../types/types";
+import { TCart, TPrice, TProduct, TStorage } from "../types/types";
 
 // Function for getting a word from capital letter
 export function getWordFromCapitalLetter(word: string) {
@@ -114,4 +115,36 @@ export function findAttribute(product: any, attribute: 'swatch' | 'text') {
     const findedAttribute = product.attributes?.find((attr: any) => attr?.type === attribute);
 
     return findedAttribute;
-}
+};
+
+// Function to get a value from local storage with a key
+export function getLocalStorageValue(key: string) {
+    try {
+        const value = localStorage.getItem(key) as string;
+        return JSON.parse(value);
+    } catch (error) {
+        return initialValueOfUserStorage;
+    };
+};
+
+// Function to set a value to local storage with a key
+export function setValueLocalStorage(key: string, item: TStorage) {
+    try {
+        const valueStorage = JSON.stringify(item);
+        localStorage.setItem(key, valueStorage);
+    } catch (error) {
+        const valueStorage = JSON.stringify(initialValueOfUserStorage);
+        localStorage.setItem(key, valueStorage);
+    };
+};
+
+// Function for updating the cart in local storage
+export function updateLocalStorageCart(cart: TCart) {
+    const key = localStorageKeys.user;
+    const value = getLocalStorageValue(key);
+    const newValue = {
+      ...value,
+      cart: cart
+    };
+    setValueLocalStorage(key, newValue);
+};

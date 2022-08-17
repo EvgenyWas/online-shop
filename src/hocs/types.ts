@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { TCart, TProduct } from "../types/types";
+import { TCart } from "../types/types";
 
 export type InjectedCategoriesProps = {
   data: {

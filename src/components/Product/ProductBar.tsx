@@ -5,7 +5,7 @@ import { client } from '../../graphql/client'
 import { QUERY_PRODUCT } from '../../graphql/queries'
 import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency'
 import { TAttribute } from '../../types/types'
-import { addProductToCart, findAttribute, getCurrentPrice } from '../../utils/utils'
+import { addProductToCart, findAttribute, getCurrentPrice, updateLocalStorageCart } from '../../utils/utils'
 import AttributesBar from '../UI/AttributesBar/AttributesBar'
 import { TType } from '../UI/AttributesBar/types'
 import ProductTitle from '../UI/Titles/ProductTitle'
@@ -78,6 +78,8 @@ class ProductBar extends Component<any, TProductBarState> {
         amount: cartVar().amount += 1,
         order: addProductToCart(cartVar().order, product)
       });
+
+      updateLocalStorageCart(cartVar());
     } else {
       this.setState({
         isReplaceToCart: true

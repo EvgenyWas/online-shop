@@ -15,6 +15,7 @@ export default class ProductGallery extends Component<TProductGalleryProps, TPro
     }
 
     componentDidMount = async () => {
+        // console.log('this.props.id', this.props.id)
         const response = await client.query({
             query: QUERY_GALLERY_PRODUCT,
             variables: ({id: this.props.id})

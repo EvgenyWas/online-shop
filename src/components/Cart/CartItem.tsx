@@ -2,7 +2,7 @@ import { Component, Fragment } from 'react';
 import { cartVar } from '../../graphql/cache';
 import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency';
 import { TAttribute, TManageAmountOperations } from '../../types/types';
-import { addProductToCart, decreaseProductAmount, findSameProductInCart, getCurrentPrice } from '../../utils/utils';
+import { addProductToCart, decreaseProductAmount, findSameProductInCart, getCurrentPrice, updateLocalStorageCart } from '../../utils/utils';
 import { TType } from '../UI/AttributesBar/types';
 import Line from '../UI/Molecules/Line';
 import CartGallery from './CartGallery';
@@ -35,12 +35,14 @@ class CartItem extends Component<any> {
             cartVar({
                 ...cartVar(),
                 order: filteredCart
-            })
+            });
+            updateLocalStorageCart(cartVar());
         } else {
             cartVar({
                 ...cartVar(),
                 order: cart
-            })
+            });
+            updateLocalStorageCart(cartVar());
         }
     }
 
@@ -54,12 +56,14 @@ class CartItem extends Component<any> {
                 amount: cart.amount -= 1,
                 order: decreaseProductAmount(cart.order, product)
             });
+            updateLocalStorageCart(cartVar());
         } else {
             cartVar({
                 ...cartVar(),
                 amount: cart.amount += 1,
                 order: addProductToCart(cart.order, product)
             });
+            updateLocalStorageCart(cartVar());
         }
     }
 

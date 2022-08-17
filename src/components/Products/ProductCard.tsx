@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { cartVar, currentProductVar } from '../../graphql/cache';
 import { client } from '../../graphql/client';
 import { QUERY_PRODUCT } from '../../graphql/queries';
-import { addProductToCart, findAttribute } from '../../utils/utils';
+import { addProductToCart, findAttribute, updateLocalStorageCart } from '../../utils/utils';
 import AddToCartButton from '../UI/Buttons/AddToCartButton';
 import { StyledImage, StyledImageBox, StyledName, StyledPrice, StyledProductCard } from './styles';
 import { TProductCardProps } from './types';
@@ -32,6 +32,8 @@ export default class ProductCard extends Component<TProductCardProps> {
             amount: cartVar().amount += 1,
             order: addProductToCart(cartVar().order, newProduct)
         });
+
+        updateLocalStorageCart(cartVar());
     }
 
     render() {
