@@ -47,3 +47,31 @@ export const boldSmallHighGragment = css`
     font-size: ${({theme}) => theme.fontSizes.sm};
     line-height: ${({theme}) => theme.lineHeights.percentL};
 `
+
+export const scrollBarFragment = css`
+    z-index: 90;
+    overflow-y: hidden;
+
+    &:hover {
+        overflow-y: overlay;
+    }
+
+    &::-webkit-scrollbar {
+        left: 20px;
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 2px ${({theme}) => theme.colors.grey}; 
+        border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: ${({theme}) => theme.colors.grey}; 
+        border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: ${({theme}) => theme.colors.acceptBlack}; 
+    }
+`

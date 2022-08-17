@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import OutsideClick from "../../hocs/OutsideClick";
-import { attributeNameFragment, boldSmallHighGragment, mediumLightFragment } from "../../styles/fragments";
+import { attributeNameFragment, boldSmallHighGragment, mediumLightFragment, scrollBarFragment } from "../../styles/fragments";
 import CartItem from "../Cart/CartItem";
 import { StyledAttributesBar, StyledBox, StyledButtonsContainer, StyledCartPrice, StyledGallery, StyledManageAmountContainer, StyledTitle } from "../Cart/styles";
 import { StyledName as StyledTextBar, StyledTextContainer } from '../UI/AttributesBar/styles';
@@ -45,8 +45,10 @@ export const StyledItemPrice = styled.h4`
 `
 
 export const StyledCartOverlayItem = styled(CartItem)`
-    margin-bottom: 0px;
     gap: 8px;
+    margin-bottom: 0px;
+    /* padding-bottom: 5px; */
+    
 
     ${StyledBox} {
         width: 136px;
@@ -136,8 +138,9 @@ export const StyledItems = styled.div`
     flex-direction: column;
     gap: 40px;
     max-height: 420px;
-    overflow-y: scroll;
-    &::-webkit-scrollbar { width: 0 !important }
+    padding-bottom: 5px;
+    
+    ${scrollBarFragment}
 `
 
 export const StyledButtons = styled.div`

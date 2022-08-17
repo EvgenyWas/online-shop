@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { attributeNameFragment, OutOfStockFragment } from "../../styles/fragments";
+import { attributeNameFragment, OutOfStockFragment, scrollBarFragment } from "../../styles/fragments";
 import PrimaryButton from "../UI/Buttons/PrimaryButton";
 
 export const StyledProductGallery = styled.div`
@@ -75,8 +75,8 @@ export const StyledDescription = styled.div`
     font-size: ${({theme}) => theme.fontSizes.sm};
     font-weight: ${({theme}) => theme.fontWeights.regular};
     line-height: ${({theme}) => theme.lineHeights.percentL};
-    overflow-y: auto;
     
+    ${scrollBarFragment}
 `
 
 export const ProductButton = styled(PrimaryButton)<{ isAddedToCart: boolean, inStock: boolean }>`
