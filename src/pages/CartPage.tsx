@@ -10,7 +10,13 @@ class CartPage extends Component {
 
         return (
             <StyledCartPage>
-                <Cart/>
+                <Cart data={{
+                    cart: {
+                        amount: 0,
+                        order: []
+                    },
+                    currentCurrency: ''
+                }}/>
                 {isCartOverlayOpen &&
                 <StyledBackgroundCover/>
                 }

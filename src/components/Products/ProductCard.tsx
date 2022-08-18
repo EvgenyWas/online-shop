@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { cartVar, currentProductVar } from '../../graphql/cache';
 import { client } from '../../graphql/client';
 import { QUERY_PRODUCT } from '../../graphql/queries';
+import { TAttribute } from '../../types/types';
 import { addProductToCart, findAttribute, updateLocalStorageCart } from '../../utils/utils';
 import AddToCartButton from '../UI/Buttons/AddToCartButton';
 import { StyledImage, StyledImageBox, StyledName, StyledPrice, StyledProductCard } from './styles';
@@ -23,8 +24,8 @@ export default class ProductCard extends Component<TProductCardProps> {
         const text = findAttribute(product, 'text');
         const newProduct = {
             product: product,
-            swatch: swatch?.items[0],
-            text: text?.items[0],
+            swatch: swatch?.items![0] as TAttribute,
+            text: text?.items![0] as TAttribute,
             amount: 1
         };
     

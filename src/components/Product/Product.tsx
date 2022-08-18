@@ -26,7 +26,10 @@ class Product extends Component {
         return (
             <StyledProduct className='container'>
                 <ProductGallery id={id} />
-                <ProductBar id={id} />
+                <ProductBar 
+                    id={id} 
+                    currentCurrency={''} 
+                />
             </StyledProduct>
         );
     }

@@ -1,11 +1,10 @@
 import { ReactElement } from "react";
+import { CategoriesQuery, CategoryQuery, CurrenciesQuery } from "../types/generated";
 import { TCart } from "../types/types";
 
 export type InjectedCategoriesProps = {
   data: {
-    loading: boolean,
-    error: Error | null,
-    data: any,
+    data: CategoriesQuery | undefined,
     currentCategory: string,
   }
 };
@@ -19,7 +18,7 @@ export type InjectedPLPProps = {
   data: {
     currentCategory: string,
     currentCurrency: string,
-    PLP: any
+    products: CategoryQuery
   }
 };
 
@@ -35,7 +34,14 @@ export type InjectedCurrentCurrencyProps = {
 
 export type InjectedCartProps = {
   data: {
+    cart: TCart,
     currentCurrency: string
-    cart: TCart
   }
-}
+};
+
+export type TCurrencySwitcherInjectedProps = {
+  data: {
+    data: CurrenciesQuery,
+    currentCurrency: string
+  }
+};

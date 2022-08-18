@@ -1,0 +1,6 @@
+query Currencies {
+  currencies {
+    label,
+    symbol
+  }
+}

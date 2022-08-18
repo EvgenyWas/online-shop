@@ -1,28 +1,21 @@
-import { DocumentNode, useQuery, useReactiveVar } from "@apollo/client";
+import { useQuery, useReactiveVar } from "@apollo/client";
 import { ComponentType, ReactElement } from "react";
+import { CategoriesDocument, CategoriesQuery } from "../types/generated";
 import { currentCategoryVar } from "../graphql/cache";
-import { InjectedCategoriesProps, TVariable } from "./types";
+import { InjectedCategoriesProps } from "./types";
 
 export const injectCategoriesQuery = <S extends InjectedCategoriesProps>(
     Component: ComponentType<S>, 
-    query: DocumentNode, 
-    queryVariable?: TVariable
-  ) => {
-  const variablesCondition = queryVariable ? {[queryVariable?.key]: queryVariable?.value} : {};
-
-  const InjectedQuery = (props: S): ReactElement => {
-    const { loading, error, data } = useQuery(query, {
-      variables: variablesCondition,
-    });
+  ): ComponentType<S> => {
+  return (props: Omit<S, keyof InjectedCategoriesProps>): ReactElement => {
+    const { data } = useQuery<CategoriesQuery>(CategoriesDocument);
     const currentCategory = useReactiveVar(currentCategoryVar);
 
     return (
       <Component
         {...props as S}
-        data={{loading, error, data, currentCategory}} 
+        data={{ data, currentCategory }} 
       />
     )
   };
-
-  return InjectedQuery;
 };

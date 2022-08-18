@@ -10,11 +10,10 @@ import AttributesBar from '../UI/AttributesBar/AttributesBar'
 import { TType } from '../UI/AttributesBar/types'
 import ProductTitle from '../UI/Titles/ProductTitle'
 import { ProductButton, StyledDescription, StyledPrice, StyledPriceContainer, StyledPriceName, StyledProductBar } from './styles'
-import { TProductBarState } from './types'
+import { TProductBarProps, TProductBarState } from './types'
 
-// TProductBarProps
-class ProductBar extends Component<any, TProductBarState> {
-  constructor(props: any) {
+class ProductBar extends Component<TProductBarProps, TProductBarState> {
+  constructor(props: TProductBarProps) {
     super(props)
     this.state = {
       product: {},
@@ -39,8 +38,8 @@ class ProductBar extends Component<any, TProductBarState> {
 
     this.setState({
       product: response.data.product,
-      chosenSwatch: swatch?.items[0],
-      chosenText: text?.items[0]
+      chosenSwatch: swatch?.items![0] as TAttribute,
+      chosenText: text?.items![0] as TAttribute
     })
   }
 
@@ -57,26 +56,28 @@ class ProductBar extends Component<any, TProductBarState> {
   }
 
   handleAddToCart() {
-    if (!this.state.product.inStock) {
+    const { product, isAddedToCart, chosenSwatch, chosenText } = this.state;
+
+    if (!product.inStock) {
       return
     }
 
-    if(!this.state.isAddedToCart) {
+    if(!isAddedToCart) {
       this.setState({
         isAddedToCart: true
       });
 
-      const product = {
-        product: this.state.product,
-        swatch: this.state.chosenSwatch,
-        text: this.state.chosenText,
+      const newProduct = {
+        product: product,
+        swatch: chosenSwatch,
+        text: chosenText,
         amount: 1
       };
 
       cartVar({
         ...cartVar(),
         amount: cartVar().amount += 1,
-        order: addProductToCart(cartVar().order, product)
+        order: addProductToCart(cartVar().order, newProduct)
       });
 
       updateLocalStorageCart(cartVar());

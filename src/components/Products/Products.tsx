@@ -1,10 +1,12 @@
 import { Component } from 'react'
 import { injectPLPReactiveVars } from '../../hocs/injectPLPReactiveVars'
+import { InjectedPLPProps } from '../../hocs/types'
+import { ProductPlpFragment } from '../../types/generated'
 import { getCurrentPrice, requestProductsQuery } from '../../utils/utils'
 import ProductCard from './ProductCard'
 import { StyledProducts } from './styles'
 
-class Products extends Component<any, any> {
+class Products extends Component<InjectedPLPProps> {
   componentDidMount() {
     requestProductsQuery(this.props.data.currentCategory);
   }
@@ -14,25 +16,29 @@ class Products extends Component<any, any> {
   }
 
   render() {
-    const products = this.props.data.products.category?.products;
+    const products = this.props.data.products.category?.products as ProductPlpFragment[];
     const currentCurrency = this.props.data.currentCurrency;
 
     return (
       <StyledProducts className='container'>
-        {products?.map((product: any) => {          
+        {products?.map(({ id, brand, name, gallery, prices, inStock }) => {
+          const price = getCurrentPrice(prices, currentCurrency)?.amount as number;
+          const currencySymbol = getCurrentPrice(prices, currentCurrency)?.currency.symbol as string;
+
           return (
             <ProductCard
-              key={product.id}
-              id={product.id}
-              brand={product.brand}
-              name={product.name}
-              image={product.gallery[0]}
-              price={getCurrentPrice(product.prices, currentCurrency)?.amount as number}
-              currencySymbol={getCurrentPrice(product.prices, currentCurrency)?.currency.symbol as string}
-              inStock={product.inStock}
+              key={id}
+              id={id}
+              brand={brand}
+              name={name}
+              image={gallery![0] as string}
+              price={price}
+              currencySymbol={currencySymbol}
+              inStock={inStock as boolean}
             />
           )
-        })}
+        }
+        )}
       </StyledProducts>
     )
   }

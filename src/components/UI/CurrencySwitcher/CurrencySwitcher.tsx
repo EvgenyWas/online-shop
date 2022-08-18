@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import iconDropDownArrow from '../../../assets/icons/nav/icon-drop-down-arrow.svg';
 import { currentCurrencyVar } from '../../../graphql/cache';
-import { QUERY_CURRENCIES } from '../../../graphql/queries';
-import { injectQuery } from '../../../hocs/injectQuery';
+import { currencySwitcherWithData } from '../../../hocs/currencySwitcherWithData';
 import OutsideClick from '../../../hocs/OutsideClick';
+import { TCurrencySwitcherInjectedProps } from '../../../hocs/types';
 import CurrencySwitcherItem from './CurrencySwitcherItem';
 import { StyledCurrencyOverlay, StyledCurrencySwitcher, StyledCurrentCurrency, StyledDropDown } from './styles';
 
@@ -12,8 +12,8 @@ type State = {
     symbol: string
 };
 
-class CurrencySwitcher extends Component<any, State> {
-    constructor(props: any) {
+class CurrencySwitcher extends Component<TCurrencySwitcherInjectedProps, State> {
+    constructor(props: TCurrencySwitcherInjectedProps) {
         super(props);
         this.state = {
           isOpen: false,
@@ -43,14 +43,15 @@ class CurrencySwitcher extends Component<any, State> {
 
     render() {
         const currencies = this.props.data.data?.currencies;
+        const { isOpen, symbol } = this.state
 
         return (
             <OutsideClick handler={this.handleOutsideClick} >
                 <StyledCurrencySwitcher>
                     <StyledCurrentCurrency  onClick={this.handleSwitcherClick} >
-                        {this.state.symbol}
+                        {symbol}
                     </StyledCurrentCurrency>
-                    <StyledCurrencyOverlay isOpen={this.state.isOpen} >
+                    <StyledCurrencyOverlay isOpen={isOpen} >
                         {currencies?.map((currency: any) => {
                             return (
                                 <CurrencySwitcherItem
@@ -62,7 +63,7 @@ class CurrencySwitcher extends Component<any, State> {
                             )
                         })}
                     </StyledCurrencyOverlay>
-                    <StyledDropDown isOpen={this.state.isOpen}>
+                    <StyledDropDown isOpen={isOpen}>
                         <img src={iconDropDownArrow} alt="Drop down arrow" onClick={this.handleSwitcherClick} />
                     </StyledDropDown>
                 </StyledCurrencySwitcher>
@@ -71,4 +72,4 @@ class CurrencySwitcher extends Component<any, State> {
     }
 }
 
-export default injectQuery(CurrencySwitcher, QUERY_CURRENCIES);
+export default currencySwitcherWithData(CurrencySwitcher);

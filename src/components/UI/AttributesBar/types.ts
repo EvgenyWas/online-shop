@@ -16,13 +16,15 @@ export type TTextBarProps = {
 
 export type TType = 'swatch' | 'text';
 
+export type TAttributes = Array<{
+    id: string,
+    name: string,
+    type: string,
+    items: TAttribute[]
+}>
+
 export type TAttributesBarProps = {
-    attributes: Array<{
-        id: string,
-        name: string,
-        type: string,
-        items: TAttribute[]
-    }>,
+    attributes: TAttributes,
     handleChoose: (type: TType, attribute: TAttribute) => void,
     chosenSwatch: TAttribute | null,
     chosenText: TAttribute | null,

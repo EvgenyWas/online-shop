@@ -11,8 +11,18 @@ class CategoriesPage extends Component {
 
     return (
       <StyledSection>
-        <CategoryName/>
-        <Products/>
+        <CategoryName data={{
+          data: undefined,
+          currentCategory: ''
+        }} />
+        <Products data={{
+          currentCategory: '',
+          currentCurrency: '',
+          products: {
+            __typename: undefined,
+            category: undefined
+          }
+        }}/>
         {isCartOverlayOpen &&
         <StyledBackgroundCover/>
         }

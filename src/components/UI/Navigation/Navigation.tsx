@@ -1,14 +1,11 @@
 import { Component } from 'react';
 import { currentCategoryVar } from '../../../graphql/cache';
-import { QUERY_CATEGORIES } from '../../../graphql/queries';
 import { injectCategoriesQuery } from '../../../hocs/injectCategoriesQuery';
+import { InjectedCategoriesProps } from '../../../hocs/types';
 import NavigationItem from './NavigationItem';
 import { StyledNavigation, StyledNavigationList } from './styles';
 
-class Navigation extends Component<any> {
-  constructor(props: any) {
-    super(props);
-  }
+class Navigation extends Component<InjectedCategoriesProps> {
 
   handleClick = (category: string) => currentCategoryVar(category)
 
@@ -35,4 +32,4 @@ class Navigation extends Component<any> {
   }
 }
 
-export default injectCategoriesQuery(Navigation, QUERY_CATEGORIES);
+export default injectCategoriesQuery(Navigation);

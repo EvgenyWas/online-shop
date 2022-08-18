@@ -1,0 +1,26 @@
+fragment ProductPDP on Product {
+  id,
+  name,
+  inStock,
+  gallery,
+  description,
+  category,
+  attributes {
+    id,
+    name,
+    type,
+    items {
+      displayValue,
+      value,
+      id
+    }
+  },
+  brand,
+  prices {
+    amount,
+    currency {
+      label,
+      symbol
+    }
+  }
+}

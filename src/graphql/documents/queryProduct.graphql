@@ -1,0 +1,7 @@
+#import "./fragments/fragmentProductPDP.graphql"
+
+query Product($id: String!) {
+  product(id: $id) {
+    ...ProductPDP
+  }
+}

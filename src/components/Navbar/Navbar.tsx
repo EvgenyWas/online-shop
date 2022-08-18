@@ -8,7 +8,10 @@ class Navbar extends Component {
     render() {
         return (
             <StyledNavbar className='container'>
-                <Navigation/>
+                <Navigation data={{
+                    data: undefined,
+                    currentCategory: ''
+                }}/>
                 <img src={iconLogo} alt="Logotype" className='navbar__logo'/>
                 <Actions />
             </StyledNavbar>

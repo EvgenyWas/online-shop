@@ -2,17 +2,22 @@ import { Component } from 'react';
 import { Navigate } from 'react-router-dom';
 import { CartOverlayContext, TCartOverlayContext } from '../../context/CartOverlayContext';
 import { injectCartReactiveVars } from '../../hocs/injectCartReactiveVars';
+import { InjectedCartProps } from '../../hocs/types';
 import { TProduct } from '../../types/types';
 import CartOverlayTitle from '../UI/Titles/CartOverlayTitle';
 import CartOverlayTotal from './CartOverlayTotal';
 import { StyledButtons, StyledCartEmpty, StyledCartOverlay, StyledCartOverlayItem, StyledCheckOutButton, StyledItems, StyledOutsideClick, StyledViewBagButton } from './styles';
 
+type Props = InjectedCartProps & {
+  onClick: () => void
+}
+
 type State = {
   isRedirectToCart: boolean
 }
 
-class CartOverlay extends Component<any, State> {
-  constructor(props: any) {
+class CartOverlay extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       isRedirectToCart: false
@@ -46,6 +51,7 @@ class CartOverlay extends Component<any, State> {
               return <StyledCartOverlayItem
                 key={index}
                 product={product}
+                currentCurrency=''
               />
             })}
           </StyledItems>}

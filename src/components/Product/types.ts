@@ -1,6 +1,7 @@
+import { InjectedCurrentCurrencyProps } from "../../hocs/types";
 import { TAttribute } from "../../types/types";
 
-export type TProductBarProps = {
+export type TProductBarProps = InjectedCurrentCurrencyProps & {
     id: string,
 };
 

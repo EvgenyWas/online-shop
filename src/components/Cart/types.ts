@@ -1,11 +1,15 @@
-import { TAttribute, TCart, TProduct } from "../../types/types"
+import { InjectedCurrentCurrencyProps } from "../../hocs/types";
+import { TCart, TProduct } from "../../types/types";
 
 export type TCartResultProps = {
     currentCurrency: string,
     cart: TCart
 };
 
-export type TCartItemProps = TProduct;
+export type TCartItemProps = InjectedCurrentCurrencyProps & {
+    product: TProduct,
+    className?: string
+};
 
 export type TGalleryProps = {
     gallery: string[],

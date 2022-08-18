@@ -1,0 +1,14 @@
+fragment ProductPLP on Product {
+    id,
+    name,
+    inStock,
+    gallery,
+    brand,
+    prices {
+      amount,
+      currency {
+        label,
+        symbol
+      }
+    }
+}

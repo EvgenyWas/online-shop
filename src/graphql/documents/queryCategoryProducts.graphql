@@ -1,0 +1,12 @@
+#import "./fragments/fragmentProductPLP.graphql"
+
+query Category($category: String!) {
+  category(input: {
+    title: $category
+  }) {
+    name,
+    products {
+      ...ProductPLP
+    }
+  }
+}

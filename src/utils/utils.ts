@@ -1,7 +1,8 @@
 import { initialValueOfUserStorage, localStorageKeys } from "../config";
-import { cartVar, productsVar } from "../graphql/cache";
+import { productsVar } from "../graphql/cache";
 import { client } from "../graphql/client";
 import { QUERY_CATEGORY_PRODUCTS } from "../graphql/queries";
+import { Price, ProductPdpFragment } from "../types/generated";
 import { TCart, TPrice, TProduct, TStorage } from "../types/types";
 
 // Function for getting a word from capital letter
@@ -43,6 +44,8 @@ export function findSameProductInCart(cart: TProduct[], product: TProduct, index
         ) {
             return true
         }
+        
+        return false
     });
 
     if (sameProduct === -1) {
@@ -99,10 +102,13 @@ export function getAmountCart(cart: TProduct[], currentCurrency: string): number
     } else {
         const amount = cart.reduce((acc, product) => {
             const prices = product.product.prices;
-            const currentPrice = prices.find((price: any) => price.currency.symbol === currentCurrency);
-            const totalAmount = currentPrice.amount * product.amount;
-    
-            return acc += totalAmount;
+            const currentPrice = prices.find((price: Price) => price.currency.symbol === currentCurrency);
+            if (currentPrice) {
+                const totalAmount = currentPrice.amount * product.amount;
+                return acc += totalAmount;
+            };
+              
+            return 0;
         }, 0);
         const roundedAmount = Number(amount.toFixed(2));
 
@@ -111,8 +117,8 @@ export function getAmountCart(cart: TProduct[], currentCurrency: string): number
 };
 
 // Function to find an attribute in the product
-export function findAttribute(product: any, attribute: 'swatch' | 'text') {
-    const findedAttribute = product.attributes?.find((attr: any) => attr?.type === attribute);
+export function findAttribute(product: ProductPdpFragment, attribute: 'swatch' | 'text') {
+    const findedAttribute = product.attributes?.find(attr => attr?.type === attribute);
 
     return findedAttribute;
 };

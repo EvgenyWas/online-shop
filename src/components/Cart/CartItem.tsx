@@ -3,15 +3,15 @@ import { cartVar } from '../../graphql/cache';
 import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency';
 import { TAttribute, TManageAmountOperations } from '../../types/types';
 import { addProductToCart, decreaseProductAmount, findSameProductInCart, getCurrentPrice, updateLocalStorageCart } from '../../utils/utils';
-import { TType } from '../UI/AttributesBar/types';
+import { TAttributes, TType } from '../UI/AttributesBar/types';
 import Line from '../UI/Molecules/Line';
 import CartGallery from './CartGallery';
 import ManageAmount from './ManageAmount';
 import { StyledAttributesBar, StyledBox, StyledCartItem, StyledCartPrice, StyledTitle } from './styles';
+import { TCartItemProps } from './types';
 
-// TCartItemProps
-class CartItem extends Component<any> {
-    constructor(props: any) {
+class CartItem extends Component<TCartItemProps> {
+    constructor(props: TCartItemProps) {
         super(props)
         this.handleChoose = this.handleChoose.bind(this)
         this.handleChangeAmount = this.handleChangeAmount.bind(this)
@@ -84,7 +84,7 @@ class CartItem extends Component<any> {
                             {`${currentCurrency}${getCurrentPrice(prices, currentCurrency)?.amount as number}`}
                         </StyledCartPrice>
                         <StyledAttributesBar
-                            attributes={attributes}
+                            attributes={attributes as TAttributes}
                             handleChoose={this.handleChoose}
                             chosenSwatch={swatch}
                             chosenText={text}
@@ -97,7 +97,7 @@ class CartItem extends Component<any> {
                     />
                     <CartGallery
                         key={product.id}
-                        gallery={gallery}
+                        gallery={gallery as string[]}
                         name={name}
                     />
                 </StyledCartItem>

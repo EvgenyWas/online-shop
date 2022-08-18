@@ -1,13 +1,10 @@
 import { Component } from 'react'
-import { QUERY_CATEGORIES } from '../../../graphql/queries'
 import { injectCategoriesQuery } from '../../../hocs/injectCategoriesQuery'
+import { InjectedCategoriesProps } from '../../../hocs/types';
 import { getWordFromCapitalLetter } from '../../../utils/utils'
 import { StyledCategoryName } from '../../Products/styles'
 
-class CategoryName extends Component<any> {
-  constructor(props: any) {
-    super(props)
-  }
+class CategoryName extends Component<InjectedCategoriesProps> {
 
   render() {
     const currentCategory = this.props.data.currentCategory;
@@ -20,4 +17,4 @@ class CategoryName extends Component<any> {
   }
 };
 
-export default injectCategoriesQuery(CategoryName, QUERY_CATEGORIES)
+export default injectCategoriesQuery(CategoryName)

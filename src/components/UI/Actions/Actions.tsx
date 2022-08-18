@@ -14,7 +14,13 @@ class Actions extends Component {
 
     return (
       <StyledActions>
-        <CurrencySwitcher/>
+        <CurrencySwitcher data={{
+          data: {
+            __typename: undefined,
+            currencies: undefined
+          },
+          currentCurrency: ''
+        }}/>
         <StyledCartContainer 
           onClick={handleChangeStateCartOverlay}
         >
@@ -27,6 +33,13 @@ class Actions extends Component {
         {isCartOverlayOpen &&
         <CartOverlay 
           onClick={handleCloseCartOverlay} 
+          data={{
+            cart: {
+              amount: 0,
+              order: []
+            },
+            currentCurrency: ''
+          }}
         />
         }
       </StyledActions>

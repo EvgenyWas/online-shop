@@ -1,3 +1,5 @@
+import { ProductPdpFragment } from "./generated";
+
 export type TPrice = {
     amount: number,
     currency: {
@@ -13,7 +15,7 @@ export type TAttribute = {
 };
 
 export type TProduct = {
-    product: any,
+    product: ProductPdpFragment,
     swatch: TAttribute | null,
     text: TAttribute | null,
     amount: number
