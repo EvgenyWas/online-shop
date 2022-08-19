@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import { injectPLPReactiveVars } from '../../hocs/injectPLPReactiveVars'
 import { InjectedPLPProps } from '../../hocs/types'
-import { ProductPlpFragment } from '../../types/generated'
 import { getCurrentPrice, requestProductsQuery } from '../../utils/utils'
 import ProductCard from './ProductCard'
 import { StyledProducts } from './styles'
@@ -16,7 +15,7 @@ class Products extends Component<InjectedPLPProps> {
   }
 
   render() {
-    const products = this.props.data.products.category?.products as ProductPlpFragment[];
+    const products = this.props.data.products;
     const currentCurrency = this.props.data.currentCurrency;
 
     return (

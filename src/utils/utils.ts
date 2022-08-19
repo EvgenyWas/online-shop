@@ -1,8 +1,7 @@
 import { initialValueOfUserStorage, localStorageKeys } from "../config";
 import { productsVar } from "../graphql/cache";
 import { client } from "../graphql/client";
-import { QUERY_CATEGORY_PRODUCTS } from "../graphql/queries";
-import { Price, ProductPdpFragment } from "../types/generated";
+import { CategoryDocument, GalleryProductDocument, Price, ProductDocument, ProductPdpFragment, ProductPlpFragment } from "../types/generated";
 import { TCart, TPrice, TProduct, TStorage } from "../types/types";
 
 // Function for getting a word from capital letter
@@ -22,11 +21,35 @@ export function getCurrentPrice(prices: TPrice[] | undefined, currentCurrency: s
 // Request products query with current category
 export async function requestProductsQuery(category: string) {
     const response = await client.query({
-        query: QUERY_CATEGORY_PRODUCTS,
+        query: CategoryDocument,
         variables: {category: category}
     });
-    productsVar(response.data);
+    const products = response.data.category?.products as ProductPlpFragment[];
+    productsVar(products);
 };
+
+// Function to get product gallery and inStock value
+export async function getProductGallery(id: string) {
+    const response = await client.query({
+        query: GalleryProductDocument,
+        variables: ({id: id})
+    });
+    const gallery = response.data.product?.gallery;
+    const inStock = response.data.product?.inStock
+
+    return { gallery, inStock };
+};
+
+// Function to get product pdp
+export async function getProductPDP(id: string) {
+    const response = await client.query({
+        query: ProductDocument,
+        variables: ({id: id})
+    });
+    const product = response.data.product as ProductPdpFragment;
+
+    return product;
+}
 
 // Function to find the same new product in the cart
 export function findSameProductInCart(cart: TProduct[], product: TProduct, index?: number) {

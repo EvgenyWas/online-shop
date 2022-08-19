@@ -1,10 +1,8 @@
 import { Component, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { cartVar, currentProductVar } from '../../graphql/cache';
-import { client } from '../../graphql/client';
-import { QUERY_PRODUCT } from '../../graphql/queries';
 import { TAttribute } from '../../types/types';
-import { addProductToCart, findAttribute, updateLocalStorageCart } from '../../utils/utils';
+import { addProductToCart, findAttribute, getProductPDP, updateLocalStorageCart } from '../../utils/utils';
 import AddToCartButton from '../UI/Buttons/AddToCartButton';
 import { StyledImage, StyledImageBox, StyledName, StyledPrice, StyledProductCard } from './styles';
 import { TProductCardProps } from './types';
@@ -15,11 +13,7 @@ export default class ProductCard extends Component<TProductCardProps> {
     handleAddToCart = async (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
-        const response = await client.query({
-            query: QUERY_PRODUCT,
-            variables: ({id: this.props.id})
-        });
-        const product = response.data.product;
+        const product = await getProductPDP(this.props.id);
         const swatch = findAttribute(product, 'swatch');
         const text = findAttribute(product, 'text');
         const newProduct = {

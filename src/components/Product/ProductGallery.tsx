@@ -1,6 +1,5 @@
 import { Component } from 'react'
-import { client } from '../../graphql/client'
-import { QUERY_GALLERY_PRODUCT } from '../../graphql/queries'
+import { getProductGallery } from '../../utils/utils'
 import { StyledActivePicture, StyledActivePictureBox, StyledGalleryContainer, StyledGalleryPicture, StyledProductGallery } from './styles'
 import { TProductGalleryProps, TProductGalleryState } from './types'
 
@@ -15,15 +14,11 @@ export default class ProductGallery extends Component<TProductGalleryProps, TPro
     }
 
     componentDidMount = async () => {
-        const response = await client.query({
-            query: QUERY_GALLERY_PRODUCT,
-            variables: ({id: this.props.id})
-        });
-        const { gallery, inStock } = response.data.product;
+        const { gallery, inStock } = await getProductGallery(this.props.id);
         this.setState({
-            gallery: gallery,
-            activePicture: gallery[0],
-            inStock: inStock
+            gallery: gallery as string[],
+            activePicture: gallery![0] as string,
+            inStock: inStock as boolean
         })
     }
 

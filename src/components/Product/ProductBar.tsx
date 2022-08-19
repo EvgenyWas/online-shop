@@ -1,11 +1,9 @@
 import { Component } from 'react'
 import { Navigate } from 'react-router-dom'
 import { cartVar } from '../../graphql/cache'
-import { client } from '../../graphql/client'
-import { QUERY_PRODUCT } from '../../graphql/queries'
 import { injectCurrentCurrency } from '../../hocs/injectCurrentCurrency'
 import { TAttribute } from '../../types/types'
-import { addProductToCart, findAttribute, getCurrentPrice, updateLocalStorageCart } from '../../utils/utils'
+import { addProductToCart, findAttribute, getCurrentPrice, getProductPDP, updateLocalStorageCart } from '../../utils/utils'
 import AttributesBar from '../UI/AttributesBar/AttributesBar'
 import { TType } from '../UI/AttributesBar/types'
 import ProductTitle from '../UI/Titles/ProductTitle'
@@ -28,16 +26,12 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   }
 
   componentDidMount = async () => {
-    const response = await client.query({
-      query: QUERY_PRODUCT,
-      variables: ({id: this.props.id})
-    });
-    const product = response.data.product;
+    const product = await getProductPDP(this.props.id);
     const swatch = findAttribute(product, 'swatch');
     const text = findAttribute(product, 'text');
 
     this.setState({
-      product: response.data.product,
+      product: product,
       chosenSwatch: swatch?.items![0] as TAttribute,
       chosenText: text?.items![0] as TAttribute
     })

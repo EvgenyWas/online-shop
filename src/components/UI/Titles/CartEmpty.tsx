@@ -4,14 +4,18 @@ import Line from '../Molecules/Line';
 
 type Props = {
     className?: string,
+    title: string
 }
 
 class CartEmpty extends Component<Props> {
     render() {
+        const { className, title } = this.props;
+        const upperTitle = title.toUpperCase();
+
         return (
             <Fragment>
-                <StyledTitle className={this.props.className}>
-                    THE CART IS EMPTY
+                <StyledTitle className={className}>
+                    {upperTitle}
                 </StyledTitle>
                 <Line/>
             </Fragment>

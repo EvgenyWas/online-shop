@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { CategoriesQuery, CategoryQuery, CurrenciesQuery } from "../types/generated";
+import { CategoriesQuery, CurrenciesQuery, ProductPlpFragment } from "../types/generated";
 import { TCart } from "../types/types";
 
 export type InjectedCategoriesProps = {
@@ -18,7 +18,7 @@ export type InjectedPLPProps = {
   data: {
     currentCategory: string,
     currentCurrency: string,
-    products: CategoryQuery
+    products: ProductPlpFragment[]
   }
 };
 

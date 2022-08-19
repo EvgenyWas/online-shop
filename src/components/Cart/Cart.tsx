@@ -16,7 +16,9 @@ class Cart extends Component<InjectedCartProps> {
             <div className='container'>
                 <CartTitle/>
                 {isCartEmpty ?
-                <CartEmpty/>
+                <CartEmpty
+                    title='the cart is empty'
+                />
                 : cart.order.map((product: TProduct, index: number) => {
                     return <CartItem
                         key={index}

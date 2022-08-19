@@ -45,7 +45,9 @@ class CartOverlay extends Component<Props, State> {
             amount={cart.amount}
           />
           {isCartEmpty ?
-          <StyledCartEmpty/>
+          <StyledCartEmpty
+            title='the bag is empty'
+          />
           : <StyledItems>
             {cart.order.map((product: TProduct, index: number) => {
               return <StyledCartOverlayItem

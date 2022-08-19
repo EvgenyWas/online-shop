@@ -18,10 +18,7 @@ class CategoriesPage extends Component {
         <Products data={{
           currentCategory: '',
           currentCurrency: '',
-          products: {
-            __typename: undefined,
-            category: undefined
-          }
+          products: []
         }}/>
         {isCartOverlayOpen &&
         <StyledBackgroundCover/>

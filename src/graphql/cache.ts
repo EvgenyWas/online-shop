@@ -7,7 +7,7 @@ const initialCart = {
     order: []
 }
 
-export const productsVar = makeVar<ProductPlpFragment | []>([]);
+export const productsVar = makeVar<ProductPlpFragment[] | []>([]);
 export const currentProductVar = makeVar<string>('');
 export const currentCurrencyVar = makeVar<string>('$');
 export const currentCategoryVar = makeVar<string>('all');
