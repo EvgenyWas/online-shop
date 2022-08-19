@@ -20,13 +20,7 @@ class CategoriesPage extends Component {
             currentCategory: "",
           }}
         />
-        <Products
-          data={{
-            currentCategory: "",
-            currentCurrency: "",
-            products: [],
-          }}
-        />
+        <Products />
         {isCartOverlayOpen && <StyledBackgroundCover />}
       </StyledSection>
     );

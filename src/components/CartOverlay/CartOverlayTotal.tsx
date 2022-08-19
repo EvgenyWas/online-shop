@@ -10,15 +10,15 @@ type Props = {
 
 class CartOverlayTotal extends Component<Props> {
   render() {
-    const { currentCurrency, cart } = this.props;
-    const isCartEmpty = !cart.order.length;
+    const { currentCurrency, cart: { order } } = this.props;
+    const isCartEmpty = !order.length;
 
     return (
       <StyledCartOverlayTotal>
         <StyledTotal>Total:</StyledTotal>
         <StyledAmount>
           {`${currentCurrency}${
-            isCartEmpty ? "0" : getAmountCart(cart.order, currentCurrency)
+            isCartEmpty ? "0" : getAmountCart(order, currentCurrency)
           }`}
         </StyledAmount>
       </StyledCartOverlayTotal>

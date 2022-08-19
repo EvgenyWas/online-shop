@@ -1,4 +1,4 @@
-import { Component, MouseEvent } from "react";
+import { MouseEvent, PureComponent } from "react";
 import styled from "styled-components";
 import iconSircleCart from "../../../assets/icons/card/icon-sircle-cart.svg";
 
@@ -6,7 +6,7 @@ type Props = {
   handleClick: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-export default class AddToCartButton extends Component<Props> {
+export default class AddToCartButton extends PureComponent<Props> {
   render() {
     return (
       <StyledButton

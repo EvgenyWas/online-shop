@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import { StyledCurrencySwitcherItem } from "./styles";
 
 type Props = {
@@ -7,11 +7,13 @@ type Props = {
   onClick: () => void;
 };
 
-export default class CurrencySwitcherItem extends Component<Props> {
+export default class CurrencySwitcherItem extends PureComponent<Props> {
   render() {
+    const { label, symbol, onClick } = this.props;
+
     return (
-      <StyledCurrencySwitcherItem onClick={this.props.onClick}>
-        {`${this.props.symbol} ${this.props.label}`}
+      <StyledCurrencySwitcherItem onClick={onClick}>
+        {`${symbol} ${label}`}
       </StyledCurrencySwitcherItem>
     );
   }

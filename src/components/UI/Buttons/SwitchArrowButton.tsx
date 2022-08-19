@@ -1,4 +1,4 @@
-import { Component, MouseEvent } from "react";
+import { MouseEvent, PureComponent } from "react";
 import iconSwitchArrow from "../../../assets/icons/cart/icon-switch-arrow.svg";
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   className?: string;
 };
 
-export default class SwitchArrowButton extends Component<Props> {
+export default class SwitchArrowButton extends PureComponent<Props> {
   render() {
     const { onSwitch, className } = this.props;
 

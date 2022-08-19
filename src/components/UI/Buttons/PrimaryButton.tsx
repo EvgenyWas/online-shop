@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import styled from "styled-components";
 import { primaryButtonFragment } from "../../../styles/fragments";
 
@@ -8,14 +8,16 @@ type Props = {
   className?: string;
 };
 
-export default class PrimaryButton extends Component<Props> {
+export default class PrimaryButton extends PureComponent<Props> {
   render() {
+    const { children, onClick, className } = this.props;
+
     return (
       <StyledButton
-        onClick={this.props.onClick}
-        className={this.props.className}
+        onClick={onClick}
+        className={className}
       >
-        {this.props.children.toUpperCase()}
+        {children.toUpperCase()}
       </StyledButton>
     );
   }

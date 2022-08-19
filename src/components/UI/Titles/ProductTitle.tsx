@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import styled from "styled-components";
 import { productTitleFragment } from "../../../styles/fragments";
 
@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-export default class ProductTitle extends Component<Props> {
+export default class ProductTitle extends PureComponent<Props> {
   render() {
     const { brand, name, className } = this.props;
 

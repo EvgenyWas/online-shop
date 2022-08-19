@@ -12,8 +12,8 @@ import { TCartResultProps } from "./types";
 class CartResult extends Component<TCartResultProps> {
   render() {
     const tax = 21;
-    const { currentCurrency, cart } = this.props;
-    const isCartEmpty = !cart.order.length;
+    const { currentCurrency, cart: { amount, order } } = this.props;
+    const isCartEmpty = !order.length;
 
     return (
       <StyledCartResult>
@@ -23,19 +23,19 @@ class CartResult extends Component<TCartResultProps> {
             {`${currentCurrency}${
               isCartEmpty
                 ? "0"
-                : getAmountTax(tax, getAmountCart(cart.order, currentCurrency))
+                : getAmountTax(tax, getAmountCart(order, currentCurrency))
             }`}
           </StyledPropertyValue>
           <StyledPropertyName>Quantity:</StyledPropertyName>
-          <StyledPropertyValue>{cart.amount}</StyledPropertyValue>
+          <StyledPropertyValue>{amount}</StyledPropertyValue>
           <StyledPropertyName total>Total:</StyledPropertyName>
           <StyledPropertyValue>
             {`${currentCurrency}${
-              isCartEmpty ? "0" : getAmountCart(cart.order, currentCurrency)
+              isCartEmpty ? "0" : getAmountCart(order, currentCurrency)
             }`}
           </StyledPropertyValue>
         </StyledProperties>
-        <PrimaryButton onClick={() => console.log("HI!")}>ORDER</PrimaryButton>
+        <PrimaryButton onClick={() => console.log('Hi Scandiweb!')}>ORDER</PrimaryButton>
       </StyledCartResult>
     );
   }

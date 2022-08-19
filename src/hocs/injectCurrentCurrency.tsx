@@ -6,8 +6,8 @@ import { InjectedCurrentCurrencyProps } from "./types";
 export const injectCurrentCurrency = <S extends InjectedCurrentCurrencyProps>(
   WrappedComponent: ComponentType<S>
 ) => {
-  return (props: S) => {
-    const currentCurrency = useReactiveVar(currentCurrencyVar);
+  return (props: Omit<S, keyof InjectedCurrentCurrencyProps>) => {
+    const currentCurrency = useReactiveVar<string>(currentCurrencyVar);
 
     return (
       <WrappedComponent {...(props as S)} currentCurrency={currentCurrency} />

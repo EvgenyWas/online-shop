@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { PureComponent } from "react";
 import styled from "styled-components";
 import { boldSmallHighGragment } from "../../../styles/fragments";
 
@@ -6,7 +6,7 @@ type Props = {
   amount: number;
 };
 
-class CartOverlayTitle extends Component<Props> {
+class CartOverlayTitle extends PureComponent<Props> {
   render() {
     const { amount } = this.props;
     const conditionAmount = amount === 1;

@@ -1,24 +1,26 @@
-import { Component, MouseEvent } from "react";
+import { MouseEvent, PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { cartVar, currentProductVar } from "../../graphql/cache";
 import { TAttribute } from "../../types/types";
-import {
-  addProductToCart,
-  findAttribute,
-  getProductPDP,
-  updateLocalStorageCart,
-} from "../../utils/utils";
+import
+  {
+    addProductToCart,
+    findAttribute,
+    getProductPDP,
+    updateLocalStorageCart
+  } from "../../utils/utils";
 import AddToCartButton from "../UI/Buttons/AddToCartButton";
-import {
-  StyledImage,
-  StyledImageBox,
-  StyledName,
-  StyledPrice,
-  StyledProductCard,
-} from "./styles";
+import
+  {
+    StyledImage,
+    StyledImageBox,
+    StyledName,
+    StyledPrice,
+    StyledProductCard
+  } from "./styles";
 import { TProductCardProps } from "./types";
 
-export default class ProductCard extends Component<TProductCardProps> {
+export default class ProductCard extends PureComponent<TProductCardProps> {
   handleClick = (id: string) => currentProductVar(id);
 
   handleAddToCart = async (event: MouseEvent<HTMLButtonElement>) => {

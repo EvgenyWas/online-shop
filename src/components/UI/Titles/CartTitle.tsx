@@ -1,8 +1,8 @@
-import { Component, Fragment } from "react";
+import { Fragment, PureComponent } from "react";
 import styled from "styled-components";
 import Line from "../Molecules/Line";
 
-export default class CartTitle extends Component {
+export default class CartTitle extends PureComponent {
   render() {
     return (
       <Fragment>

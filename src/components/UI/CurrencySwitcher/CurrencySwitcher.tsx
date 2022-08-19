@@ -5,12 +5,13 @@ import { currencySwitcherWithData } from "../../../hocs/currencySwitcherWithData
 import OutsideClick from "../../../hocs/OutsideClick";
 import { TCurrencySwitcherInjectedProps } from "../../../hocs/types";
 import CurrencySwitcherItem from "./CurrencySwitcherItem";
-import {
-  StyledCurrencyOverlay,
-  StyledCurrencySwitcher,
-  StyledCurrentCurrency,
-  StyledDropDown,
-} from "./styles";
+import
+  {
+    StyledCurrencyOverlay,
+    StyledCurrencySwitcher,
+    StyledCurrentCurrency,
+    StyledDropDown
+  } from "./styles";
 
 type State = {
   isOpen: boolean;
@@ -60,13 +61,13 @@ class CurrencySwitcher extends Component<
             {symbol}
           </StyledCurrentCurrency>
           <StyledCurrencyOverlay isOpen={isOpen}>
-            {currencies?.map((currency: any) => {
+            {currencies?.map(({ symbol, label }: any) => {
               return (
                 <CurrencySwitcherItem
-                  key={currency.symbol}
-                  label={currency.label}
-                  symbol={currency.symbol}
-                  onClick={() => this.handleChoiceClick(currency.symbol)}
+                  key={symbol}
+                  label={label}
+                  symbol={symbol}
+                  onClick={() => this.handleChoiceClick(symbol)}
                 />
               );
             })}

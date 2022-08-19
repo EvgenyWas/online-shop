@@ -120,3 +120,8 @@ export const ProductButton = styled(PrimaryButton)<{
     `)}
     transition: all 300ms ease-in-out;
 `;
+
+export const StyledProduct = styled.div`
+  display: flex;
+  gap: 100px;
+`;

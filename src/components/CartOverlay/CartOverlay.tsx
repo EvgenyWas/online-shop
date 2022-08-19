@@ -63,7 +63,6 @@ class CartOverlay extends Component<Props, State> {
                   <StyledCartOverlayItem
                     key={index}
                     product={product}
-                    currentCurrency=""
                   />
                 );
               })}
@@ -74,7 +73,7 @@ class CartOverlay extends Component<Props, State> {
             <StyledViewBagButton onClick={this.handleRedirectToCart}>
               VIEW BAG
             </StyledViewBagButton>
-            <StyledCheckOutButton onClick={() => console.log("check out")}>
+            <StyledCheckOutButton onClick={() => console.log('Hi Scandiweb!')}>
               CHECK OUT
             </StyledCheckOutButton>
           </StyledButtons>

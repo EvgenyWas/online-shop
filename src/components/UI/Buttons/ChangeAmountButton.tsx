@@ -1,4 +1,4 @@
-import { Component, MouseEvent } from "react";
+import { MouseEvent, PureComponent } from "react";
 import styled from "styled-components";
 import decreaseIcon from "../../../assets/icons/cart/icon-minus-square.svg";
 import increaseIcon from "../../../assets/icons/cart/icon-plus-square.svg";
@@ -9,15 +9,17 @@ type Props = {
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-export default class ChangeAmountButton extends Component<Props> {
+export default class ChangeAmountButton extends PureComponent<Props> {
   render() {
+    const { operation, onClick } = this.props;
+
     return (
-      <StyledButton onClick={this.props.onClick}>
+      <StyledButton onClick={onClick}>
         <img
           src={
-            this.props.operation === "decrease" ? decreaseIcon : increaseIcon
+            operation === "decrease" ? decreaseIcon : increaseIcon
           }
-          alt={this.props.operation}
+          alt={operation}
         />
       </StyledButton>
     );

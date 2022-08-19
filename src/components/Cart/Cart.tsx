@@ -20,7 +20,7 @@ class Cart extends Component<InjectedCartProps> {
         ) : (
           cart.order.map((product: TProduct, index: number) => {
             return (
-              <CartItem key={index} product={product} currentCurrency="" />
+              <CartItem key={index} product={product} />
             );
           })
         )}

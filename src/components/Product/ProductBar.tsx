@@ -55,7 +55,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
       this.setState({
         chosenSwatch: { ...attribute },
       });
-    } else if (type === "text") {
+    } else {
       this.setState({
         chosenText: { ...attribute },
       });
@@ -82,7 +82,6 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
       };
 
       cartVar({
-        ...cartVar(),
         amount: (cartVar().amount += 1),
         order: addProductToCart(cartVar().order, newProduct),
       });
@@ -105,6 +104,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
     } = this.state;
     const { brand, name, attributes, prices, description } = product;
     const currentCurrency = this.props.currentCurrency;
+    const price = currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount;
 
     return (
       <StyledProductBar>
@@ -118,9 +118,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
         <StyledPriceContainer>
           <StyledPriceName>PRICE:</StyledPriceName>
           <StyledPrice>
-            {`${currentCurrency}${
-              getCurrentPrice(prices, currentCurrency)?.amount
-            }`}
+            {price}
           </StyledPrice>
         </StyledPriceContainer>
         <ProductButton

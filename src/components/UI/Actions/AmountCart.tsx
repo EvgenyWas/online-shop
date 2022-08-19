@@ -2,10 +2,11 @@ import { Component } from "react";
 import { localStorageKeys } from "../../../config";
 import { cartVar } from "../../../graphql/cache";
 import { injectCartReactiveVars } from "../../../hocs/injectCartReactiveVars";
+import { InjectedCartProps } from "../../../hocs/types";
 import { getLocalStorageValue } from "../../../utils/utils";
 import { StyledAmountCart } from "./styles";
 
-class AmountCart extends Component<any> {
+class AmountCart extends Component<InjectedCartProps> {
   componentDidMount() {
     const { amount } = this.props.data.cart;
     const value = getLocalStorageValue(localStorageKeys.user);

@@ -5,12 +5,12 @@ import { currentCategoryVar } from "../graphql/cache";
 import { InjectedCategoriesProps } from "./types";
 
 export const injectCategoriesQuery = <S extends InjectedCategoriesProps>(
-  Component: ComponentType<S>
+  WrappedComponent: ComponentType<S>
 ): ComponentType<S> => {
   return (props: Omit<S, keyof InjectedCategoriesProps>): ReactElement => {
     const { data } = useQuery<CategoriesQuery>(CategoriesDocument);
-    const currentCategory = useReactiveVar(currentCategoryVar);
+    const currentCategory = useReactiveVar<string>(currentCategoryVar);
 
-    return <Component {...(props as S)} data={{ data, currentCategory }} />;
+    return <WrappedComponent {...(props as S)} data={{ data, currentCategory }} />;
   };
 };

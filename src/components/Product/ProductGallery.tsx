@@ -1,15 +1,16 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import { getProductGallery } from "../../utils/utils";
-import {
-  StyledActivePicture,
-  StyledActivePictureBox,
-  StyledGalleryContainer,
-  StyledGalleryPicture,
-  StyledProductGallery,
-} from "./styles";
+import
+  {
+    StyledActivePicture,
+    StyledActivePictureBox,
+    StyledGalleryContainer,
+    StyledGalleryPicture,
+    StyledProductGallery
+  } from "./styles";
 import { TProductGalleryProps, TProductGalleryState } from "./types";
 
-export default class ProductGallery extends Component<
+export default class ProductGallery extends PureComponent<
   TProductGalleryProps,
   TProductGalleryState
 > {

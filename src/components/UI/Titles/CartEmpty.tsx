@@ -1,4 +1,4 @@
-import { Component, Fragment } from "react";
+import { Fragment, PureComponent } from "react";
 import styled from "styled-components";
 import Line from "../Molecules/Line";
 
@@ -7,7 +7,7 @@ type Props = {
   title: string;
 };
 
-class CartEmpty extends Component<Props> {
+class CartEmpty extends PureComponent<Props> {
   render() {
     const { className, title } = this.props;
     const upperTitle = title.toUpperCase();

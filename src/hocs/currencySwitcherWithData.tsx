@@ -1,5 +1,5 @@
 import { useQuery, useReactiveVar } from "@apollo/client";
-import { ComponentType, ReactElement } from "react";
+import { ComponentType } from "react";
 import { currentCurrencyVar } from "../graphql/cache";
 import { CurrenciesDocument, CurrenciesQuery } from "../types/generated";
 import { TCurrencySwitcherInjectedProps } from "./types";
@@ -7,12 +7,12 @@ import { TCurrencySwitcherInjectedProps } from "./types";
 export const currencySwitcherWithData = <
   S extends TCurrencySwitcherInjectedProps
 >(
-  Component: ComponentType<S>
+  WrappedComponent: ComponentType<S>
 ) => {
-  return (props: S): ReactElement => {
+  return (props: Omit<S, keyof TCurrencySwitcherInjectedProps>) => {
     const { data } = useQuery<CurrenciesQuery>(CurrenciesDocument);
-    const currentCurrency = useReactiveVar(currentCurrencyVar);
+    const currentCurrency = useReactiveVar<string>(currentCurrencyVar);
 
-    return <Component {...(props as S)} data={{ data, currentCurrency }} />;
+    return <WrappedComponent {...(props as S)} data={{ data, currentCurrency }} />;
   };
 };

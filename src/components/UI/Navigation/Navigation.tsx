@@ -15,12 +15,12 @@ class Navigation extends Component<InjectedCategoriesProps> {
     return (
       <StyledNavigation>
         <StyledNavigationList>
-          {categories?.map((category: any) => {
+          {categories?.map(({ name }: any) => {
             return (
               <NavigationItem
-                key={category.name}
-                category={category.name}
-                active={category.name === currentCategory}
+                key={name}
+                category={name}
+                active={name === currentCategory}
                 handleClick={this.handleClick}
               />
             );

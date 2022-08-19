@@ -1,18 +1,19 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import { TManageAmountOperations } from "../../types/types";
 import ChangeAmountButton from "../UI/Buttons/ChangeAmountButton";
-import {
-  StyledAmount,
-  StyledManageAmount,
-  StyledManageAmountContainer,
-} from "./styles";
+import
+  {
+    StyledAmount,
+    StyledManageAmount,
+    StyledManageAmountContainer
+  } from "./styles";
 
 type Props = {
   amount: number;
   handleChangeAmount: (operation: TManageAmountOperations) => void;
 };
 
-class ManageAmount extends Component<Props> {
+class ManageAmount extends PureComponent<Props> {
   render() {
     return (
       <StyledManageAmountContainer>

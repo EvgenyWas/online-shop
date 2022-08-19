@@ -1,14 +1,15 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import SwitchArrowButton from "../UI/Buttons/SwitchArrowButton";
-import {
-  StyledButtonsContainer,
-  StyledGallery,
-  StyledGalleryImage,
-  StyledSwitchBackButton,
-} from "./styles";
+import
+  {
+    StyledButtonsContainer,
+    StyledGallery,
+    StyledGalleryImage,
+    StyledSwitchBackButton
+  } from "./styles";
 import { TGalleryProps, TGalleryState } from "./types";
 
-class CartGallery extends Component<TGalleryProps, TGalleryState> {
+class CartGallery extends PureComponent<TGalleryProps, TGalleryState> {
   constructor(props: TGalleryProps) {
     super(props);
     this.state = {
@@ -26,11 +27,12 @@ class CartGallery extends Component<TGalleryProps, TGalleryState> {
   }
 
   handleSwitchNext() {
-    const galleryLength = this.props.gallery.length;
+    const { gallery } = this.props;
+    const galleryLength = gallery.length;
 
     if (this.state.currentImageNumber === galleryLength - 1) {
       this.setState({
-        currentImageUrl: this.props.gallery[0],
+        currentImageUrl: gallery[0],
         currentImageNumber: 0,
       });
     } else {
@@ -38,7 +40,7 @@ class CartGallery extends Component<TGalleryProps, TGalleryState> {
         const nextImageNumber = prevState.currentImageNumber + 1;
 
         return {
-          currentImageUrl: this.props.gallery[nextImageNumber],
+          currentImageUrl: gallery[nextImageNumber],
           currentImageNumber: nextImageNumber,
         };
       });
@@ -46,13 +48,14 @@ class CartGallery extends Component<TGalleryProps, TGalleryState> {
   }
 
   handleSwitchBack() {
-    const galleryLength = this.props.gallery.length;
+    const { gallery } = this.props;
+    const galleryLength = gallery.length;
 
     if (this.state.currentImageNumber === 0) {
       const lastImageNumber = galleryLength - 1;
 
       this.setState({
-        currentImageUrl: this.props.gallery[lastImageNumber],
+        currentImageUrl: gallery[lastImageNumber],
         currentImageNumber: lastImageNumber,
       });
     } else {
@@ -60,7 +63,7 @@ class CartGallery extends Component<TGalleryProps, TGalleryState> {
         const previousImageNumber = prevState.currentImageNumber - 1;
 
         return {
-          currentImageUrl: this.props.gallery[previousImageNumber],
+          currentImageUrl: gallery[previousImageNumber],
           currentImageNumber: previousImageNumber,
         };
       });
@@ -68,13 +71,15 @@ class CartGallery extends Component<TGalleryProps, TGalleryState> {
   }
 
   render() {
+    const { name, gallery } = this.props;
+
     return (
       <StyledGallery>
         <StyledGalleryImage
           src={this.state.currentImageUrl}
-          alt={`Picture of the ${this.props.name}`}
+          alt={`Picture of the ${name}`}
         />
-        {this.props.gallery.length > 1 && (
+        {gallery.length > 1 && (
           <StyledButtonsContainer>
             <StyledSwitchBackButton onSwitch={this.handleSwitchBack} />
             <SwitchArrowButton onSwitch={this.handleSwitchNext} />

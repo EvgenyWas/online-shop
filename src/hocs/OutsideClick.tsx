@@ -5,7 +5,6 @@ export default class OutsideClick extends Component<OutsideClickProps> {
   wrapperRef: RefObject<HTMLDivElement> | undefined;
   constructor(props: OutsideClickProps) {
     super(props);
-
     this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
@@ -35,9 +34,11 @@ export default class OutsideClick extends Component<OutsideClickProps> {
   }
 
   render() {
+    const { children, className } = this.props;
+
     return (
-      <div ref={this.wrapperRef} className={this.props.className}>
-        {this.props.children}
+      <div ref={this.wrapperRef} className={className}>
+        {children}
       </div>
     );
   }
