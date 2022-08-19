@@ -52,6 +52,7 @@ class CurrencySwitcher extends Component<
 
   render() {
     const currencies = this.props.data.data?.currencies;
+    const currentCurrency = this.props.data.currentCurrency;
     const { isOpen, symbol } = this.state;
 
     return (
@@ -68,6 +69,7 @@ class CurrencySwitcher extends Component<
                   label={label}
                   symbol={symbol}
                   onClick={() => this.handleChoiceClick(symbol)}
+                  active={currentCurrency === symbol}
                 />
               );
             })}

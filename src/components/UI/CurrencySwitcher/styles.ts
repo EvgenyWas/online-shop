@@ -23,12 +23,13 @@ export const StyledCurrencyOverlay = styled.ul<{ isOpen: boolean }>`
   transform: translate(-20%, 100%);
 `;
 
-export const StyledCurrencySwitcherItem = styled.li`
+export const StyledCurrencySwitcherItem = styled.li<{ active: boolean }>`
   padding: 8px 38px 8px 20px;
   ${mediumLightFragment}
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   white-space: nowrap;
   cursor: pointer;
+  ${props => props.active && css`background: ${({ theme }) => theme.colors.acceptGrey};`}
 
   &:hover {
     background: ${({ theme }) => theme.colors.acceptGrey};
