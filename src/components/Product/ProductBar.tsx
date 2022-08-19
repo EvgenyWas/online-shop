@@ -128,7 +128,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
         >
           {isAddedToCart ? "go to cart" : "add to cart"}
         </ProductButton>
-        <StyledDescription dangerouslySetInnerHTML={{ __html: description }} />
+        <StyledDescription content={description} />
         {isReplaceToCart && <Navigate replace to="/cart" />}
       </StyledProductBar>
     );

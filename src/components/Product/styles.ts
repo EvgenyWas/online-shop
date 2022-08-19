@@ -1,3 +1,4 @@
+import { Markup } from "interweave";
 import styled, { css } from "styled-components";
 import {
   attributeNameFragment,
@@ -87,7 +88,7 @@ export const StyledPrice = styled.h4`
   line-height: ${({ theme }) => theme.lineHeights.sm};
 `;
 
-export const StyledDescription = styled.div`
+export const StyledDescription = styled(Markup)`
   max-height: 100px;
   height: 100%;
   font-family: ${({ theme }) => theme.fonts.secondary};
