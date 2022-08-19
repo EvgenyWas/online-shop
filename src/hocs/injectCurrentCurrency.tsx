@@ -4,18 +4,13 @@ import { currentCurrencyVar } from "../graphql/cache";
 import { InjectedCurrentCurrencyProps } from "./types";
 
 export const injectCurrentCurrency = <S extends InjectedCurrentCurrencyProps>(
-    WrappedComponent: ComponentType<S>
-  ) => {
-
+  WrappedComponent: ComponentType<S>
+) => {
   return (props: S) => {
     const currentCurrency = useReactiveVar(currentCurrencyVar);
-    
-    return (
-      <WrappedComponent
-        {...props as S}
-        currentCurrency={currentCurrency}
-      />
-    );
-  }
 
+    return (
+      <WrappedComponent {...(props as S)} currentCurrency={currentCurrency} />
+    );
+  };
 };

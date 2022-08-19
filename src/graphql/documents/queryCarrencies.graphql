@@ -1,6 +1,6 @@
 query Currencies {
   currencies {
-    label,
+    label
     symbol
   }
 }

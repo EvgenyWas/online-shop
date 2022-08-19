@@ -1,9 +1,12 @@
-import { Component } from 'react'
-import CategoryName from '../components/UI/Titles/CategoryName'
-import Products from '../components/Products/Products'
-import { StyledBackgroundCover } from '../components/UI/Actions/styles'
-import styled from 'styled-components'
-import { CartOverlayContext, TCartOverlayContext } from '../context/CartOverlayContext'
+import { Component } from "react";
+import CategoryName from "../components/UI/Titles/CategoryName";
+import Products from "../components/Products/Products";
+import { StyledBackgroundCover } from "../components/UI/Actions/styles";
+import styled from "styled-components";
+import {
+  CartOverlayContext,
+  TCartOverlayContext,
+} from "../context/CartOverlayContext";
 
 class CategoriesPage extends Component {
   render() {
@@ -11,20 +14,22 @@ class CategoriesPage extends Component {
 
     return (
       <StyledSection>
-        <CategoryName data={{
-          data: undefined,
-          currentCategory: ''
-        }} />
-        <Products data={{
-          currentCategory: '',
-          currentCurrency: '',
-          products: []
-        }}/>
-        {isCartOverlayOpen &&
-        <StyledBackgroundCover/>
-        }
+        <CategoryName
+          data={{
+            data: undefined,
+            currentCategory: "",
+          }}
+        />
+        <Products
+          data={{
+            currentCategory: "",
+            currentCurrency: "",
+            products: [],
+          }}
+        />
+        {isCartOverlayOpen && <StyledBackgroundCover />}
       </StyledSection>
-    )
+    );
   }
 }
 
@@ -32,6 +37,6 @@ CategoriesPage.contextType = CartOverlayContext;
 
 const StyledSection = styled.section`
   position: relative;
-`
+`;
 
 export default CategoriesPage;

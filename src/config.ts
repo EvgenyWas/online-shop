@@ -1,11 +1,11 @@
 export const localStorageKeys = {
-    user: 'user',
+  user: "user",
 };
 
 export const initialValueOfUserStorage = {
-    cart: {
-        amount: 0,
-        order: []
-    },
-    currentProductId: ''
+  cart: {
+    amount: 0,
+    order: [],
+  },
+  currentProductId: "",
 };

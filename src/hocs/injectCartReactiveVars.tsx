@@ -4,18 +4,14 @@ import { cartVar, currentCurrencyVar } from "../graphql/cache";
 import { InjectedCartProps } from "./types";
 
 export const injectCartReactiveVars = <S extends InjectedCartProps>(
-    WrappedComponent: ComponentType<S>
-  ) => {
-
+  WrappedComponent: ComponentType<S>
+) => {
   return (props: S) => {
     const currentCurrency = useReactiveVar(currentCurrencyVar);
     const cart = useReactiveVar(cartVar);
-    
+
     return (
-      <WrappedComponent
-        {...props as S}
-        data={{ currentCurrency, cart }}
-      />
+      <WrappedComponent {...(props as S)} data={{ currentCurrency, cart }} />
     );
-  }
+  };
 };

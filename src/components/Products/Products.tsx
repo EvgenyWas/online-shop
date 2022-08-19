@@ -1,16 +1,16 @@
-import { Component } from 'react'
-import { injectPLPReactiveVars } from '../../hocs/injectPLPReactiveVars'
-import { InjectedPLPProps } from '../../hocs/types'
-import { getCurrentPrice, requestProductsQuery } from '../../utils/utils'
-import ProductCard from './ProductCard'
-import { StyledProducts } from './styles'
+import { Component } from "react";
+import { injectPLPReactiveVars } from "../../hocs/injectPLPReactiveVars";
+import { InjectedPLPProps } from "../../hocs/types";
+import { getCurrentPrice, requestProductsQuery } from "../../utils/utils";
+import ProductCard from "./ProductCard";
+import { StyledProducts } from "./styles";
 
 class Products extends Component<InjectedPLPProps> {
   componentDidMount() {
     requestProductsQuery(this.props.data.currentCategory);
   }
 
-  componentDidUpdate() {    
+  componentDidUpdate() {
     requestProductsQuery(this.props.data.currentCategory);
   }
 
@@ -19,10 +19,12 @@ class Products extends Component<InjectedPLPProps> {
     const currentCurrency = this.props.data.currentCurrency;
 
     return (
-      <StyledProducts className='container'>
+      <StyledProducts className="container">
         {products?.map(({ id, brand, name, gallery, prices, inStock }) => {
-          const price = getCurrentPrice(prices, currentCurrency)?.amount as number;
-          const currencySymbol = getCurrentPrice(prices, currentCurrency)?.currency.symbol as string;
+          const price = getCurrentPrice(prices, currentCurrency)
+            ?.amount as number;
+          const currencySymbol = getCurrentPrice(prices, currentCurrency)
+            ?.currency.symbol as string;
 
           return (
             <ProductCard
@@ -35,12 +37,11 @@ class Products extends Component<InjectedPLPProps> {
               currencySymbol={currencySymbol}
               inStock={inStock as boolean}
             />
-          )
-        }
-        )}
+          );
+        })}
       </StyledProducts>
-    )
+    );
   }
-};
+}
 
 export default injectPLPReactiveVars(Products);

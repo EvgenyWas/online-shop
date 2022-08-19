@@ -1,34 +1,34 @@
 import { ProductPdpFragment } from "./generated";
 
 export type TPrice = {
-    amount: number,
-    currency: {
-        label: string,
-        symbol: string
-    }
-}
+  amount: number;
+  currency: {
+    label: string;
+    symbol: string;
+  };
+};
 
 export type TAttribute = {
-    displayValue: string
-    value: string,
-    id: string
+  displayValue: string;
+  value: string;
+  id: string;
 };
 
 export type TProduct = {
-    product: ProductPdpFragment,
-    swatch: TAttribute | null,
-    text: TAttribute | null,
-    amount: number
+  product: ProductPdpFragment;
+  swatch: TAttribute | null;
+  text: TAttribute | null;
+  amount: number;
 };
 
 export type TCart = {
-    amount: number,
-    order: TProduct[]
-}
+  amount: number;
+  order: TProduct[];
+};
 
-export type TManageAmountOperations = 'decrease' | 'increase';
+export type TManageAmountOperations = "decrease" | "increase";
 
 export type TStorage = {
-    cart: TCart,
-    currentProductId: string
-}
+  cart: TCart;
+  currentProductId: string;
+};

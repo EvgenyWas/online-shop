@@ -1,13 +1,12 @@
-import { Component } from 'react';
-import { currentCategoryVar } from '../../../graphql/cache';
-import { injectCategoriesQuery } from '../../../hocs/injectCategoriesQuery';
-import { InjectedCategoriesProps } from '../../../hocs/types';
-import NavigationItem from './NavigationItem';
-import { StyledNavigation, StyledNavigationList } from './styles';
+import { Component } from "react";
+import { currentCategoryVar } from "../../../graphql/cache";
+import { injectCategoriesQuery } from "../../../hocs/injectCategoriesQuery";
+import { InjectedCategoriesProps } from "../../../hocs/types";
+import NavigationItem from "./NavigationItem";
+import { StyledNavigation, StyledNavigationList } from "./styles";
 
 class Navigation extends Component<InjectedCategoriesProps> {
-
-  handleClick = (category: string) => currentCategoryVar(category)
+  handleClick = (category: string) => currentCategoryVar(category);
 
   render() {
     const categories = this.props.data.data?.categories;
@@ -24,11 +23,11 @@ class Navigation extends Component<InjectedCategoriesProps> {
                 active={category.name === currentCategory}
                 handleClick={this.handleClick}
               />
-            )
+            );
           })}
         </StyledNavigationList>
       </StyledNavigation>
-    )
+    );
   }
 }
 

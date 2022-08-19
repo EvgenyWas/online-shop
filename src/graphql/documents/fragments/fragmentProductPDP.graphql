@@ -1,25 +1,25 @@
 fragment ProductPDP on Product {
-  id,
-  name,
-  inStock,
-  gallery,
-  description,
-  category,
+  id
+  name
+  inStock
+  gallery
+  description
+  category
   attributes {
-    id,
-    name,
-    type,
+    id
+    name
+    type
     items {
-      displayValue,
-      value,
+      displayValue
+      value
       id
     }
-  },
-  brand,
+  }
+  brand
   prices {
-    amount,
+    amount
     currency {
-      label,
+      label
       symbol
     }
   }
