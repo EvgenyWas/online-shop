@@ -21,9 +21,10 @@ class AmountCart extends Component<InjectedCartProps> {
     const localStorageAmount = getLocalStorageValue(localStorageKeys.user)?.cart
       ?.amount;
     const definedAmount = amount || localStorageAmount || 0;
+    const isActiveAmountCart = definedAmount === 0;
 
     return (
-      <StyledAmountCart>
+      <StyledAmountCart active={isActiveAmountCart}>
         <p>{definedAmount}</p>
       </StyledAmountCart>
     );

@@ -17,7 +17,8 @@ export const StyledCart = styled.img`
   cursor: pointer;
 `;
 
-export const StyledAmountCart = styled.div`
+export const StyledAmountCart = styled.div<{ active: boolean }>`
+  ${props => props.active && 'display: none;'}
   position: absolute;
   z-index: 5;
   bottom: 8px;
