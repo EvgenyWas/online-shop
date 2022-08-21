@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Online shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The application is created on React with using TypeScript. I used [Apollo Client](https://github.com/apollographql/apollo-client), as GraphQL client, due to the wide settings, Reactive variables (modifying a reactive variable triggers an update of every active query that depends on that variable) and more widespread. Therefore, this makes it possible to create the application without the other state manager like Redux. So using Apollo Client gives opportunity For typing I generated types based on a GraphQL schema with help of [GraphQL-code-generator](https://github.com/dotansimha/graphql-code-generator).
+It's styled using [Styled-Components](https://github.com/styled-components/styled-components) because of automatic critical CSS, easier deletion of CSS and simple dynamic styling.
 
-In the project directory, you can run:
+*Data fetches from the GraphQL endpoint and to provide an interface to view and interact with this data. You can find the endpoint [here](https://github.com/scandiweb/junior-react-endpoint), along with instructions on how to launch it.*
 
-### `npm start`
+## Presentation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Requirments
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Required:
 
-### `npm run build`
+- Only React;
+- Class components;
+- Create-react-app to scaffold the application.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Allowed:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- State management libraries (e.g. Redux, Recoil);
+- CSS-in-JS approach allowers (e.g. styled-components).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prohibited:
 
-### `npm run eject`
+- UI libraries (e.g. Tailwind, Material UI, Ant Design);
+- Functional components.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## App launch
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `preparing`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Clone the repository with the GraphQL endpoint from the link above and follow the steps there.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `running`
 
-## Learn More
+Clone this repository and after the preparing run the app with help of **npm start**. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Summary
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+It was my first meeting with GraphQL and Apollo Client. To complete this assignment I read various documentation, articles and best practiсes. I haven't only met with new tools, but also I've improved my work with React and TypeScript. The most difficult was running of global state without a third-party state manager like Redux because I wanted to use only Apollo Client.
+I'm glad I took part in this challenge because I enjoyed the time doing it. And hopefully I showed my skill level well.
