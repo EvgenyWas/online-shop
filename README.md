@@ -5,7 +5,7 @@
 The application is created on React with using TypeScript. I used [Apollo Client](https://github.com/apollographql/apollo-client), as GraphQL client, due to the wide settings, Reactive variables (modifying a reactive variable triggers an update of every active query that depends on that variable) and more widespread. Therefore, this makes it possible to create the application without the other state manager like Redux. So using Apollo Client gives opportunity For typing I generated types based on a GraphQL schema with help of [GraphQL-code-generator](https://github.com/dotansimha/graphql-code-generator).
 It's styled using [Styled-Components](https://github.com/styled-components/styled-components) because of automatic critical CSS, easier deletion of CSS and simple dynamic styling.
 
-*Data fetches from the GraphQL endpoint and to provide an interface to view and interact with this data. You can find the endpoint [here](https://github.com/scandiweb/junior-react-endpoint), along with instructions on how to launch it.*
+_Data fetches from the GraphQL endpoint and to provide an interface to view and interact with this data. You can find the endpoint [here](https://github.com/scandiweb/junior-react-endpoint), along with instructions on how to launch it._
 
 ## Presentation
 
@@ -39,7 +39,7 @@ Clone the repository with the GraphQL endpoint from the link above and follow th
 
 ### `running`
 
-Clone this repository and after the preparing run the app with help of **npm start**. 
+Clone this repository and after the preparing run the app with help of **npm start**.
 
 ## Summary
 

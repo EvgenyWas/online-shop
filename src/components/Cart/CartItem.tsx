@@ -47,7 +47,7 @@ class CartItem extends Component<TCartItemProps> {
       cart[productNumber],
       productNumber
     ) as number;
-    
+
     if (updatedProductNumber || updatedProductNumber === 0) {
       // If cart has the same product then connect their amount and update cart
       cart[productNumber].amount += cart[updatedProductNumber].amount;
@@ -102,7 +102,11 @@ class CartItem extends Component<TCartItemProps> {
       <Fragment>
         <StyledCartItem className={this.props.className}>
           <StyledBox>
-            <Link to={`/products/${id}`} key={id} onClick={() => this.handleClick(id)}>
+            <Link
+              to={`/products/${id}`}
+              key={id}
+              onClick={() => this.handleClick(id)}
+            >
               <StyledTitle brand={brand} name={name} />
             </Link>
             <StyledCartPrice>

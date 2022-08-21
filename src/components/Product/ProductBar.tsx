@@ -105,7 +105,8 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
     } = this.state;
     const { brand, name, attributes, prices, description } = product;
     const currentCurrency = this.props.currentCurrency;
-    const price = currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount;
+    const price =
+      currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount;
 
     return (
       <StyledProductBar>
@@ -118,9 +119,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
         />
         <StyledPriceContainer>
           <StyledPriceName>PRICE:</StyledPriceName>
-          <StyledPrice>
-            {price}
-          </StyledPrice>
+          <StyledPrice>{price}</StyledPrice>
         </StyledPriceContainer>
         <ProductButton
           onClick={this.handleAddToCart}

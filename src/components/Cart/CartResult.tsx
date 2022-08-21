@@ -12,7 +12,10 @@ import { TCartResultProps } from "./types";
 class CartResult extends Component<TCartResultProps> {
   render() {
     const tax = 21;
-    const { currentCurrency, cart: { amount, order } } = this.props;
+    const {
+      currentCurrency,
+      cart: { amount, order },
+    } = this.props;
     const isCartEmpty = !order.length;
 
     return (
@@ -35,7 +38,9 @@ class CartResult extends Component<TCartResultProps> {
             }`}
           </StyledPropertyValue>
         </StyledProperties>
-        <PrimaryButton onClick={() => console.log('Hi Scandiweb!')}>ORDER</PrimaryButton>
+        <PrimaryButton onClick={() => console.log("Hi Scandiweb!")}>
+          ORDER
+        </PrimaryButton>
       </StyledCartResult>
     );
   }

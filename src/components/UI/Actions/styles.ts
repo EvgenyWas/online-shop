@@ -18,7 +18,7 @@ export const StyledCart = styled.img`
 `;
 
 export const StyledAmountCart = styled.div<{ active: boolean }>`
-  ${props => props.active && 'display: none;'}
+  ${(props) => props.active && "display: none;"}
   position: absolute;
   z-index: 5;
   bottom: 8px;

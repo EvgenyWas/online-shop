@@ -10,7 +10,10 @@ type Props = {
 
 class CartOverlayTotal extends Component<Props> {
   render() {
-    const { currentCurrency, cart: { order } } = this.props;
+    const {
+      currentCurrency,
+      cart: { order },
+    } = this.props;
     const isCartEmpty = !order.length;
 
     return (

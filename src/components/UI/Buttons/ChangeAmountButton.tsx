@@ -16,9 +16,7 @@ export default class ChangeAmountButton extends PureComponent<Props> {
     return (
       <StyledButton onClick={onClick}>
         <img
-          src={
-            operation === "decrease" ? decreaseIcon : increaseIcon
-          }
+          src={operation === "decrease" ? decreaseIcon : increaseIcon}
           alt={operation}
         />
       </StyledButton>

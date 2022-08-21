@@ -5,7 +5,7 @@ type Props = {
   label: string;
   symbol: string;
   onClick: () => void;
-  active: boolean
+  active: boolean;
 };
 
 export default class CurrencySwitcherItem extends PureComponent<Props> {

@@ -59,12 +59,7 @@ class CartOverlay extends Component<Props, State> {
           ) : (
             <StyledItems>
               {cart.order.map((product: TProduct, index: number) => {
-                return (
-                  <StyledCartOverlayItem
-                    key={index}
-                    product={product}
-                  />
-                );
+                return <StyledCartOverlayItem key={index} product={product} />;
               })}
             </StyledItems>
           )}
@@ -73,7 +68,7 @@ class CartOverlay extends Component<Props, State> {
             <StyledViewBagButton onClick={this.handleRedirectToCart}>
               VIEW BAG
             </StyledViewBagButton>
-            <StyledCheckOutButton onClick={() => console.log('Hi Scandiweb!')}>
+            <StyledCheckOutButton onClick={() => console.log("Hi Scandiweb!")}>
               CHECK OUT
             </StyledCheckOutButton>
           </StyledButtons>

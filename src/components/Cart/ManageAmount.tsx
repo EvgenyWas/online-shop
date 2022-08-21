@@ -1,12 +1,11 @@
 import { PureComponent } from "react";
 import { TManageAmountOperations } from "../../types/types";
 import ChangeAmountButton from "../UI/Buttons/ChangeAmountButton";
-import
-  {
-    StyledAmount,
-    StyledManageAmount,
-    StyledManageAmountContainer
-  } from "./styles";
+import {
+  StyledAmount,
+  StyledManageAmount,
+  StyledManageAmountContainer,
+} from "./styles";
 
 type Props = {
   amount: number;

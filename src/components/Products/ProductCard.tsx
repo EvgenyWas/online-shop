@@ -2,22 +2,20 @@ import { MouseEvent, PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { cartVar, currentProductVar } from "../../graphql/cache";
 import { TAttribute } from "../../types/types";
-import
-  {
-    addProductToCart,
-    findAttribute,
-    getProductPDP,
-    updateLocalStorageCart
-  } from "../../utils/utils";
+import {
+  addProductToCart,
+  findAttribute,
+  getProductPDP,
+  updateLocalStorageCart,
+} from "../../utils/utils";
 import AddToCartButton from "../UI/Buttons/AddToCartButton";
-import
-  {
-    StyledImage,
-    StyledImageBox,
-    StyledName,
-    StyledPrice,
-    StyledProductCard
-  } from "./styles";
+import {
+  StyledImage,
+  StyledImageBox,
+  StyledName,
+  StyledPrice,
+  StyledProductCard,
+} from "./styles";
 import { TProductCardProps } from "./types";
 
 export default class ProductCard extends PureComponent<TProductCardProps> {
@@ -25,7 +23,7 @@ export default class ProductCard extends PureComponent<TProductCardProps> {
 
   handleAddToCart = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    
+
     // Request product by id and define default attributes
     const product = await getProductPDP(this.props.id);
     const swatch = findAttribute(product, "swatch");

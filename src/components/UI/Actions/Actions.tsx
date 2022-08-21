@@ -24,11 +24,7 @@ class Actions extends Component {
           <StyledCart src={iconCart} alt="Cart" />
           <AmountCart />
         </StyledCartContainer>
-        {isCartOverlayOpen && (
-          <CartOverlay
-            onClick={handleCloseCartOverlay}
-          />
-        )}
+        {isCartOverlayOpen && <CartOverlay onClick={handleCloseCartOverlay} />}
       </StyledActions>
     );
   }

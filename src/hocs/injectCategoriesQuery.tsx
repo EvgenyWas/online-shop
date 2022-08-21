@@ -11,6 +11,8 @@ export const injectCategoriesQuery = <S extends InjectedCategoriesProps>(
     const { data } = useQuery<CategoriesQuery>(CategoriesDocument);
     const currentCategory = useReactiveVar<string>(currentCategoryVar);
 
-    return <WrappedComponent {...(props as S)} data={{ data, currentCategory }} />;
+    return (
+      <WrappedComponent {...(props as S)} data={{ data, currentCategory }} />
+    );
   };
 };

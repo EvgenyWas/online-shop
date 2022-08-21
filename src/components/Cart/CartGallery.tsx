@@ -1,12 +1,11 @@
 import { PureComponent } from "react";
 import SwitchArrowButton from "../UI/Buttons/SwitchArrowButton";
-import
-  {
-    StyledButtonsContainer,
-    StyledGallery,
-    StyledGalleryImage,
-    StyledSwitchBackButton
-  } from "./styles";
+import {
+  StyledButtonsContainer,
+  StyledGallery,
+  StyledGalleryImage,
+  StyledSwitchBackButton,
+} from "./styles";
 import { TGalleryProps, TGalleryState } from "./types";
 
 class CartGallery extends PureComponent<TGalleryProps, TGalleryState> {

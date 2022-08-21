@@ -5,13 +5,12 @@ import { currencySwitcherWithData } from "../../../hocs/currencySwitcherWithData
 import OutsideClick from "../../../hocs/OutsideClick";
 import { TCurrencySwitcherInjectedProps } from "../../../hocs/types";
 import CurrencySwitcherItem from "./CurrencySwitcherItem";
-import
-  {
-    StyledCurrencyOverlay,
-    StyledCurrencySwitcher,
-    StyledCurrentCurrency,
-    StyledDropDown
-  } from "./styles";
+import {
+  StyledCurrencyOverlay,
+  StyledCurrencySwitcher,
+  StyledCurrentCurrency,
+  StyledDropDown,
+} from "./styles";
 
 type State = {
   isOpen: boolean;

@@ -13,10 +13,7 @@ export default class PrimaryButton extends PureComponent<Props> {
     const { children, onClick, className } = this.props;
 
     return (
-      <StyledButton
-        onClick={onClick}
-        className={className}
-      >
+      <StyledButton onClick={onClick} className={className}>
         {children.toUpperCase()}
       </StyledButton>
     );

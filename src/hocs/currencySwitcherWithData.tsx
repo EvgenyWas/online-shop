@@ -13,6 +13,8 @@ export const currencySwitcherWithData = <
     const { data } = useQuery<CurrenciesQuery>(CurrenciesDocument);
     const currentCurrency = useReactiveVar<string>(currentCurrencyVar);
 
-    return <WrappedComponent {...(props as S)} data={{ data, currentCurrency }} />;
+    return (
+      <WrappedComponent {...(props as S)} data={{ data, currentCurrency }} />
+    );
   };
 };

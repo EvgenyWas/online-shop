@@ -29,7 +29,11 @@ export const StyledCurrencySwitcherItem = styled.li<{ active: boolean }>`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   white-space: nowrap;
   cursor: pointer;
-  ${props => props.active && css`background: ${({ theme }) => theme.colors.acceptGrey};`}
+  ${(props) =>
+    props.active &&
+    css`
+      background: ${({ theme }) => theme.colors.acceptGrey};
+    `}
 
   &:hover {
     background: ${({ theme }) => theme.colors.acceptGrey};
