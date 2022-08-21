@@ -39,6 +39,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   }
 
   componentDidMount = async () => {
+    // Request product by id and define default attributes
     const product = await getProductPDP(this.props.id);
     const swatch = findAttribute(product, "swatch");
     const text = findAttribute(product, "text");

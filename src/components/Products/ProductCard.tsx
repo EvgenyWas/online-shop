@@ -25,7 +25,8 @@ export default class ProductCard extends PureComponent<TProductCardProps> {
 
   handleAddToCart = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
+    
+    // Request product by id and define default attributes
     const product = await getProductPDP(this.props.id);
     const swatch = findAttribute(product, "swatch");
     const text = findAttribute(product, "text");

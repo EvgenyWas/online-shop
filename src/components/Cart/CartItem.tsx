@@ -31,21 +31,25 @@ class CartItem extends Component<TCartItemProps> {
   }
 
   handleChoose(type: TType, attribute: TAttribute) {
+    // Data of current cart and product
     const cart = cartVar().order;
     const product = this.props.product;
     const productNumber = findSameProductInCart(cart, product) as number;
 
+    // Update attribute current product in cart
     type === "swatch"
       ? (cart[productNumber].swatch = attribute)
       : (cart[productNumber].text = attribute);
 
+    // After update attribute check does cart have the same
     const updatedProductNumber = findSameProductInCart(
       cart,
       cart[productNumber],
       productNumber
     ) as number;
-
+    
     if (updatedProductNumber || updatedProductNumber === 0) {
+      // If cart has the same product then connect their amount and update cart
       cart[productNumber].amount += cart[updatedProductNumber].amount;
       const filteredCart = cart.filter(
         (product, index) => index !== updatedProductNumber
@@ -57,6 +61,7 @@ class CartItem extends Component<TCartItemProps> {
       });
       updateLocalStorageCart(cartVar());
     } else {
+      // If not then just update cart
       cartVar({
         ...cartVar(),
         order: cart,

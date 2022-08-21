@@ -60,10 +60,10 @@ export const StyledItemPrice = styled.h4`
   line-height: ${({ theme }) => theme.lineHeights.percentL};
 `;
 
+// Override Cart styles for using in Cart Overlay
 export const StyledCartOverlayItem = styled(CartItem)`
   gap: 8px;
   margin-bottom: 0px;
-  /* padding-bottom: 5px; */
 
   ${StyledBox} {
     width: 136px;

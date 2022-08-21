@@ -72,11 +72,12 @@ class CartGallery extends PureComponent<TGalleryProps, TGalleryState> {
 
   render() {
     const { name, gallery } = this.props;
+    const { currentImageUrl } = this.state;
 
     return (
       <StyledGallery>
         <StyledGalleryImage
-          src={this.state.currentImageUrl}
+          src={currentImageUrl}
           alt={`Picture of the ${name}`}
         />
         {gallery.length > 1 && (
