@@ -1,5 +1,6 @@
 import { Component, Fragment } from "react";
-import { cartVar } from "../../graphql/cache";
+import { Link } from "react-router-dom";
+import { cartVar, currentProductVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
 import { TAttribute, TManageAmountOperations } from "../../types/types";
 import {
@@ -85,16 +86,20 @@ class CartItem extends Component<TCartItemProps> {
     }
   };
 
+  handleClick = (id: string) => currentProductVar(id);
+
   render() {
     const { product, swatch, text, amount } = this.props.product;
-    const { brand, name, prices, attributes, gallery } = product;
+    const { brand, name, prices, attributes, gallery, id } = product;
     const currentCurrency = this.props.currentCurrency;
 
     return (
       <Fragment>
         <StyledCartItem className={this.props.className}>
           <StyledBox>
-            <StyledTitle brand={brand} name={name} />
+            <Link to={`/products/${id}`} key={id} onClick={() => this.handleClick(id)}>
+              <StyledTitle brand={brand} name={name} />
+            </Link>
             <StyledCartPrice>
               {`${currentCurrency}${
                 getCurrentPrice(prices, currentCurrency)?.amount as number
