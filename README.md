@@ -9,7 +9,9 @@ It's styled using [Styled-Components](https://github.com/styled-components/style
 
 ## Presentation
 
+Click and watch ▶️
 
+[![Online shop presentation](video-preview.jpg)](https://youtu.be/jeZjcEePn70)
 
 ## Requirments
 
