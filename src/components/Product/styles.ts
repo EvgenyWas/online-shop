@@ -96,6 +96,15 @@ export const StyledDescription = styled(Markup)`
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   line-height: ${({ theme }) => theme.lineHeights.percentL};
 
+  & ul, ul[role="list"] {
+    display: block;
+    list-style: inside;
+
+    & li::marker {
+      color: ${({theme}) => theme.colors.acceptBlack};
+    }
+  }
+
   ${scrollBarFragment}
 `;
 
