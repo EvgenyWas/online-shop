@@ -27,7 +27,7 @@ export const StyledGalleryPicture = styled.img<{ active: boolean }>`
   width: 80px;
   height: 80px;
   padding: 1px;
-  object-fit: cover;
+  object-fit: scale-down;
   cursor: pointer;
   ${(props) =>
     props.active &&
@@ -61,7 +61,7 @@ export const StyledActivePictureBox = styled.div<{ inStock: boolean }>`
 export const StyledActivePicture = styled.img`
   width: 610px;
   height: 511px;
-  object-fit: cover;
+  object-fit: scale-down;
 `;
 
 export const StyledProductBar = styled.div`

@@ -82,7 +82,7 @@ export const StyledGallery = styled.div`
 export const StyledGalleryImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: scale-down;
 `;
 
 export const StyledButtonsContainer = styled.div`

@@ -42,7 +42,7 @@ export const StyledImage = styled.img`
   width: 354px;
   height: 330px;
   margin-bottom: 24px;
-  object-fit: cover;
+  object-fit: scale-down;
 `;
 
 export const StyledName = styled.h4`
