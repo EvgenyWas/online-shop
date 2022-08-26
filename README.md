@@ -45,3 +45,5 @@ Clone this repository and after the preparing run the app with help of **npm sta
 
 It was my first meeting with GraphQL and Apollo Client. To complete this assignment I read various documentation, articles and best practiсes. I haven't only met with new tools, but also I've improved my work with React and TypeScript. The most difficult was running of global state without a third-party state manager like Redux because I wanted to use only Apollo Client.
 I'm glad I took part in this challenge because I enjoyed the time doing it. And hopefully I showed my skill level well.
+
+I wanted to use experimental technology as typescript decorators to send a component necessary data through props personally. I couldn't figure out how to implement them to a component with typing but I think it could improve and simplify my code.
