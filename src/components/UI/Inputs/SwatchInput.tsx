@@ -5,11 +5,12 @@ type Props = {
   color: string;
   active: boolean;
   handleChooseSwatch: (event: MouseEvent<HTMLInputElement>) => void;
+  inStock: boolean
 };
 
 export default class SwatchInput extends PureComponent<Props> {
   render() {
-    const { color, active, handleChooseSwatch } = this.props;
+    const { color, active, handleChooseSwatch, inStock } = this.props;
 
     return (
       <StyledInput
@@ -17,6 +18,7 @@ export default class SwatchInput extends PureComponent<Props> {
         bachground={color}
         active={active}
         onClick={handleChooseSwatch}
+        inStock={inStock}
       />
     );
   }
@@ -25,6 +27,7 @@ export default class SwatchInput extends PureComponent<Props> {
 export const StyledInput = styled.input<{
   bachground: string;
   active: boolean;
+  inStock?: boolean
 }>`
   width: 32px;
   height: 32px;
@@ -34,6 +37,7 @@ export const StyledInput = styled.input<{
   cursor: pointer;
 
   ${(props) =>
+    props.inStock &&
     props.active &&
     (({ theme }) => `outline: 1px solid ${theme.colors.green} !important;`)}
 `;

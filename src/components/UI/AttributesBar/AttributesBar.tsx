@@ -6,7 +6,7 @@ import { TAttributesBarProps } from "./types";
 
 class AttributesBar extends Component<TAttributesBarProps> {
   render() {
-    const { attributes, chosenText, chosenSwatch, handleChoose, className } =
+    const { attributes, chosenText, chosenSwatch, handleChoose, className, inStock } =
       this.props;
     const swatch = attributes?.find(
       (attribute: any) => attribute?.type === "swatch"
@@ -23,6 +23,7 @@ class AttributesBar extends Component<TAttributesBarProps> {
             activeText={chosenText?.id ?? text.items[0].id}
             texts={text.items}
             handleChoose={handleChoose}
+            inStock={inStock}
           />
         )}
         {swatch && (
@@ -31,6 +32,7 @@ class AttributesBar extends Component<TAttributesBarProps> {
             activeSwatch={chosenSwatch?.id ?? swatch.items[0].id}
             swatches={swatch.items}
             handleChoose={handleChoose}
+            inStock={inStock}
           />
         )}
       </StyledAttributesBar>

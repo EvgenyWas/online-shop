@@ -120,6 +120,7 @@ class CartItem extends Component<TCartItemProps> {
               chosenSwatch={swatch}
               chosenText={text}
               className={this.props.className}
+              inStock={true}
             />
           </StyledBox>
           <ManageAmount

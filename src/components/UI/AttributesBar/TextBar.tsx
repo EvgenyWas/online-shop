@@ -5,7 +5,7 @@ import { TTextBarProps } from "./types";
 
 export default class TextBar extends Component<TTextBarProps> {
   render() {
-    const { texts, name, activeText, handleChoose } = this.props;
+    const { texts, name, activeText, handleChoose, inStock } = this.props;
 
     return (
       <StyledAttributeBar>
@@ -18,6 +18,7 @@ export default class TextBar extends Component<TTextBarProps> {
                 text={text.value}
                 active={activeText === text.id}
                 handleChooseText={() => handleChoose("text", text)}
+                inStock={inStock}
               />
             );
           })}

@@ -9,7 +9,7 @@ import { TSwatchBarProps } from "./types";
 
 export default class SwatchBar extends Component<TSwatchBarProps> {
   render() {
-    const { swatches, activeSwatch, name, handleChoose } = this.props;
+    const { swatches, activeSwatch, name, handleChoose, inStock } = this.props;
 
     return (
       <StyledAttributeBar>
@@ -22,6 +22,7 @@ export default class SwatchBar extends Component<TSwatchBarProps> {
                 color={swatch.value}
                 active={activeSwatch === swatch.id}
                 handleChooseSwatch={() => handleChoose("swatch", swatch)}
+                inStock={inStock}
               />
             );
           })}

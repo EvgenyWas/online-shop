@@ -5,11 +5,12 @@ type Props = {
   text: string;
   active: boolean;
   handleChooseText: (event: MouseEvent<HTMLInputElement>) => void;
+  inStock: boolean
 };
 
 export default class TextInput extends PureComponent<Props> {
   render() {
-    const { text, active, handleChooseText } = this.props;
+    const { text, active, handleChooseText, inStock } = this.props;
 
     return (
       <StyledInput
@@ -17,12 +18,13 @@ export default class TextInput extends PureComponent<Props> {
         value={text}
         active={active}
         onClick={handleChooseText}
+        inStock={inStock}
       />
     );
   }
 }
 
-export const StyledInput = styled.input<{ active: boolean }>`
+export const StyledInput = styled.input<{ active: boolean, inStock?: boolean }>`
   width: 63px;
   height: 45px;
   font-family: ${({ theme }) => theme.fonts.tertiary};
@@ -34,6 +36,7 @@ export const StyledInput = styled.input<{ active: boolean }>`
   cursor: pointer;
 
   ${(props) =>
+    props.inStock &&
     props.active &&
     (({ theme }) => `
     color: ${theme.colors.background};

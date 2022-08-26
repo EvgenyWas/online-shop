@@ -5,6 +5,7 @@ export type TSwatchBarProps = {
   activeSwatch: string;
   swatches: TAttribute[];
   handleChoose: (type: "swatch", attribute: TAttribute) => void;
+  inStock: boolean
 };
 
 export type TTextBarProps = {
@@ -12,6 +13,7 @@ export type TTextBarProps = {
   activeText: string;
   texts: TAttribute[];
   handleChoose: (type: "text", attribute: TAttribute) => void;
+  inStock: boolean
 };
 
 export type TType = "swatch" | "text";
@@ -29,4 +31,5 @@ export type TAttributesBarProps = {
   chosenSwatch: TAttribute | null;
   chosenText: TAttribute | null;
   className?: string;
+  inStock: boolean
 };

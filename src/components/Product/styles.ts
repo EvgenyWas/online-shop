@@ -100,7 +100,6 @@ export const StyledDescription = styled(Markup)`
 `;
 
 export const ProductButton = styled(PrimaryButton)<{
-  isAddedToCart: boolean;
   inStock: boolean;
 }>`
   margin: -3px -3px 37px -3px;
@@ -110,16 +109,11 @@ export const ProductButton = styled(PrimaryButton)<{
     !props.inStock &&
     css`
       opacity: 0.4;
+      cursor: default;
+      &:active {
+        box-shadow: none;
+      }
     `}
-
-  ${(props) =>
-    props.isAddedToCart &&
-    (({ theme }) => css`
-      color: ${theme.colors.green};
-      border: 3px solid ${theme.colors.green};
-      background: ${theme.colors.background};
-    `)}
-    transition: all 300ms ease-in-out;
 `;
 
 export const StyledProduct = styled.div`

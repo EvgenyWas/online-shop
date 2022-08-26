@@ -1,26 +1,27 @@
 import { Component } from "react";
-import { Navigate } from "react-router-dom";
 import { cartVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
 import { TAttribute } from "../../types/types";
-import {
-  addProductToCart,
-  findAttribute,
-  getCurrentPrice,
-  getProductPDP,
-  updateLocalStorageCart,
-} from "../../utils/utils";
+import
+  {
+    addProductToCart,
+    findAttribute,
+    getCurrentPrice,
+    getProductPDP,
+    updateLocalStorageCart
+  } from "../../utils/utils";
 import AttributesBar from "../UI/AttributesBar/AttributesBar";
 import { TType } from "../UI/AttributesBar/types";
 import ProductTitle from "../UI/Titles/ProductTitle";
-import {
-  ProductButton,
-  StyledDescription,
-  StyledPrice,
-  StyledPriceContainer,
-  StyledPriceName,
-  StyledProductBar,
-} from "./styles";
+import
+  {
+    ProductButton,
+    StyledDescription,
+    StyledPrice,
+    StyledPriceContainer,
+    StyledPriceName,
+    StyledProductBar
+  } from "./styles";
 import { TProductBarProps, TProductBarState } from "./types";
 
 class ProductBar extends Component<TProductBarProps, TProductBarState> {
@@ -30,8 +31,6 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
       product: {},
       chosenSwatch: null,
       chosenText: null,
-      isAddedToCart: false,
-      isReplaceToCart: false,
     };
     this.handleChoose = this.handleChoose.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -52,6 +51,12 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   };
 
   handleChoose(type: TType, attribute: TAttribute) {
+    const { inStock } = this.state.product;
+
+    if (!inStock) {
+      return;
+    };
+
     if (type === "swatch") {
       this.setState({
         chosenSwatch: { ...attribute },
@@ -64,35 +69,25 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   }
 
   handleAddToCart() {
-    const { product, isAddedToCart, chosenSwatch, chosenText } = this.state;
+    const { product, chosenSwatch, chosenText } = this.state;
 
     if (!product.inStock) {
       return;
-    }
+    };
 
-    if (!isAddedToCart) {
-      this.setState({
-        isAddedToCart: true,
-      });
+    const newProduct = {
+      product: product,
+      swatch: chosenSwatch,
+      text: chosenText,
+      amount: 1,
+    };
 
-      const newProduct = {
-        product: product,
-        swatch: chosenSwatch,
-        text: chosenText,
-        amount: 1,
-      };
+    cartVar({
+      amount: (cartVar().amount += 1),
+      order: addProductToCart(cartVar().order, newProduct),
+    });
 
-      cartVar({
-        amount: (cartVar().amount += 1),
-        order: addProductToCart(cartVar().order, newProduct),
-      });
-
-      updateLocalStorageCart(cartVar());
-    } else {
-      this.setState({
-        isReplaceToCart: true,
-      });
-    }
+    updateLocalStorageCart(cartVar());
   }
 
   render() {
@@ -100,10 +95,8 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
       product,
       chosenSwatch,
       chosenText,
-      isAddedToCart,
-      isReplaceToCart,
     } = this.state;
-    const { brand, name, attributes, prices, description } = product;
+    const { brand, name, attributes, prices, description, inStock } = product;
     const currentCurrency = this.props.currentCurrency;
     const price =
       currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount;
@@ -116,6 +109,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
           handleChoose={this.handleChoose}
           chosenSwatch={chosenSwatch}
           chosenText={chosenText}
+          inStock={inStock}
         />
         <StyledPriceContainer>
           <StyledPriceName>PRICE:</StyledPriceName>
@@ -123,13 +117,11 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
         </StyledPriceContainer>
         <ProductButton
           onClick={this.handleAddToCart}
-          isAddedToCart={isAddedToCart}
-          inStock={product.inStock}
+          inStock={inStock}
         >
-          {isAddedToCart ? "go to cart" : "add to cart"}
+          add to cart
         </ProductButton>
         <StyledDescription content={description} />
-        {isReplaceToCart && <Navigate replace to="/cart" />}
       </StyledProductBar>
     );
   }
