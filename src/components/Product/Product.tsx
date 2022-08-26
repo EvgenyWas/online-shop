@@ -22,7 +22,7 @@ class Product extends PureComponent {
     const idFromReactiveVar = currentProductVar();
     const idFromLocalStorage = getLocalStorageValue(
       localStorageKeys.user
-    ).currentProductId;
+    )?.currentProductId;
     const id = idFromReactiveVar || idFromLocalStorage;
 
     return (

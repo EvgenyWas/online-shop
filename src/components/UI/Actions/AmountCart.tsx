@@ -9,10 +9,10 @@ import { StyledAmountCart } from "./styles";
 class AmountCart extends Component<InjectedCartProps> {
   componentDidMount() {
     const { amount } = this.props.data.cart;
-    const value = getLocalStorageValue(localStorageKeys.user);
+    const cart = getLocalStorageValue(localStorageKeys.user)?.cart;
 
-    if (!amount && value) {
-      cartVar(value.cart);
+    if (!amount && cart) {
+      cartVar(cart);
     }
   }
 

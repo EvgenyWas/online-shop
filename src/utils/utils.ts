@@ -1,4 +1,4 @@
-import { initialValueOfUserStorage, localStorageKeys } from "../config";
+import { userStorageInitialValue, localStorageKeys } from "../config";
 import { productsVar } from "../graphql/cache";
 import { client } from "../graphql/client";
 import {
@@ -181,7 +181,7 @@ export function getLocalStorageValue(key: string) {
     const value = localStorage.getItem(key) as string;
     return JSON.parse(value);
   } catch (error) {
-    return initialValueOfUserStorage;
+    return userStorageInitialValue;
   }
 }
 
@@ -191,7 +191,7 @@ export function setValueLocalStorage(key: string, item: TStorage) {
     const valueStorage = JSON.stringify(item);
     localStorage.setItem(key, valueStorage);
   } catch (error) {
-    const valueStorage = JSON.stringify(initialValueOfUserStorage);
+    const valueStorage = JSON.stringify(userStorageInitialValue);
     localStorage.setItem(key, valueStorage);
   }
 }
@@ -203,6 +203,17 @@ export function updateLocalStorageCart(cart: TCart) {
   const newValue = {
     ...value,
     cart: cart,
+  };
+  setValueLocalStorage(key, newValue);
+}
+
+// Function for updating the current currency symbol in local storage
+export function updateLocalStorageCurrencySymbol(currencySymbol: string) {
+  const key = localStorageKeys.user;
+  const value = getLocalStorageValue(key);
+  const newValue = {
+    ...value,
+    currencySymbol: currencySymbol,
   };
   setValueLocalStorage(key, newValue);
 }
