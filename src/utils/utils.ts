@@ -125,11 +125,11 @@ export function decreaseProductAmount(cart: TProduct[], product: TProduct) {
 // Function for getting a tax of an amount
 export function getAmountTax(
   tax: number,
-  amount: number | undefined
-): number | undefined {
+  amount: number | undefined | string
+): string | undefined {
   if (amount) {
-    const amountTax = (amount * tax) / 100;
-    const roundedAmountTax = Number(amountTax.toFixed(2));
+    const amountTax = (+amount * tax) / 100;
+    const roundedAmountTax = amountTax.toFixed(2);
 
     return roundedAmountTax;
   }
@@ -141,7 +141,7 @@ export function getAmountTax(
 export function getAmountCart(
   cart: TProduct[],
   currentCurrency: string
-): number | undefined {
+): string | undefined {
   if (!cart.length) {
     return;
   } else {
@@ -157,7 +157,7 @@ export function getAmountCart(
 
       return 0;
     }, 0);
-    const roundedAmount = Number(amount.toFixed(2));
+    const roundedAmount = amount.toFixed(2);
 
     return roundedAmount;
   }

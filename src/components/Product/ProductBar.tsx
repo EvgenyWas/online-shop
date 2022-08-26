@@ -99,7 +99,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
     const { brand, name, attributes, prices, description, inStock } = product;
     const currentCurrency = this.props.currentCurrency;
     const price =
-      currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount;
+      currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount.toFixed(2);
 
     return (
       <StyledProductBar>

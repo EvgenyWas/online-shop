@@ -54,7 +54,7 @@ export default class ProductCard extends PureComponent<TProductCardProps> {
             {inStock && <AddToCartButton handleClick={this.handleAddToCart} />}
           </StyledImageBox>
           <StyledName>{`${brand} ${name}`}</StyledName>
-          <StyledPrice>{`${currencySymbol}${price}`}</StyledPrice>
+          <StyledPrice>{`${currencySymbol}${price.toFixed(2)}`}</StyledPrice>
         </StyledProductCard>
       </Link>
     );
