@@ -57,6 +57,9 @@ class CartItem extends Component<TCartItemProps> {
     const { product, swatch, text, amount } = this.props.product;
     const { brand, name, prices, attributes, gallery, id } = product;
     const { currentCurrency, className } = this.props;
+    const price = `${currentCurrency}${
+      getCurrentPrice(prices, currentCurrency)?.amount.toFixed(2)
+    }`;
 
     return (
       <Fragment>
@@ -69,11 +72,7 @@ class CartItem extends Component<TCartItemProps> {
             >
               <StyledTitle brand={brand} name={name} />
             </Link>
-            <StyledCartPrice>
-              {`${currentCurrency}${
-                getCurrentPrice(prices, currentCurrency)?.amount as number
-              }`}
-            </StyledCartPrice>
+            <StyledCartPrice>{price}</StyledCartPrice>
             <StyledAttributesBar
               attributes={attributes as TAttributes}
               handleChoose={() => {}}
