@@ -1,22 +1,25 @@
 import { InjectedCurrentCurrencyProps } from "../../hocs/types";
+import { ProductPdpFragment } from "../../types/generated";
 import { TAttribute } from "../../types/types";
 
 export type TProductBarProps = InjectedCurrentCurrencyProps & {
-  id: string;
+  product: ProductPdpFragment | {};
 };
 
 export type TProductGalleryProps = {
-  id: string;
+  gallery: string[] | undefined;
+  inStock: boolean | undefined;
 };
 
 export type TProductGalleryState = {
-  gallery: string[];
   activePicture: string;
-  inStock: boolean;
 };
 
 export type TProductBarState = {
-  product: any;
   chosenSwatch: TAttribute | null;
   chosenText: TAttribute | null;
 };
+
+export type TProductState = {
+  product: ProductPdpFragment | {}
+}

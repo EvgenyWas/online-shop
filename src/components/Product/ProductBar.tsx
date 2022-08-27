@@ -1,14 +1,13 @@
 import { Component } from "react";
 import { cartVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
+import { Product, ProductPdpFragment } from "../../types/generated";
 import { TAttribute } from "../../types/types";
 import
   {
     addProductToCart,
     findAttribute,
-    getCurrentPrice,
-    getProductPDP,
-    updateLocalStorageCart
+    getCurrentPrice, updateLocalStorageCart
   } from "../../utils/utils";
 import AttributesBar from "../UI/AttributesBar/AttributesBar";
 import { TType } from "../UI/AttributesBar/types";
@@ -28,7 +27,6 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   constructor(props: TProductBarProps) {
     super(props);
     this.state = {
-      product: {},
       chosenSwatch: null,
       chosenText: null,
     };
@@ -37,21 +35,19 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
     this.handleAddToCart = this.handleAddToCart.bind(this);
   }
 
-  componentDidMount = async () => {
-    // Request product by id and define default attributes
-    const product = await getProductPDP(this.props.id);
+  componentDidMount() {
+    const product = this.props.product as Product;
     const swatch = findAttribute(product, "swatch");
     const text = findAttribute(product, "text");
 
     this.setState({
-      product: product,
       chosenSwatch: swatch?.items![0] as TAttribute,
       chosenText: text?.items![0] as TAttribute,
     });
   };
 
   handleChoose(type: TType, attribute: TAttribute) {
-    const { inStock } = this.state.product;
+    const { inStock } = this.props.product as Product;
 
     if (!inStock) {
       return;
@@ -69,7 +65,8 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   }
 
   handleAddToCart() {
-    const { product, chosenSwatch, chosenText } = this.state;
+    const { chosenSwatch, chosenText } = this.state;
+    const product = this.props.product as Product;
 
     if (!product.inStock) {
       return;
@@ -86,17 +83,15 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
       amount: (cartVar().amount += 1),
       order: addProductToCart(cartVar().order, newProduct),
     });
-
     updateLocalStorageCart(cartVar());
   }
 
   render() {
     const {
-      product,
       chosenSwatch,
       chosenText,
     } = this.state;
-    const { brand, name, attributes, prices, description, inStock } = product;
+    const { brand, name, attributes, prices, description, inStock } = this.props.product as ProductPdpFragment;
     const currentCurrency = this.props.currentCurrency;
     const price =
       currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount.toFixed(2);
@@ -105,11 +100,11 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
       <StyledProductBar>
         <ProductTitle brand={brand} name={name} />
         <AttributesBar
-          attributes={attributes}
+          attributes={attributes as any}
           handleChoose={this.handleChoose}
           chosenSwatch={chosenSwatch}
           chosenText={chosenText}
-          inStock={inStock}
+          inStock={inStock as boolean}
         />
         <StyledPriceContainer>
           <StyledPriceName>PRICE:</StyledPriceName>
@@ -117,7 +112,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
         </StyledPriceContainer>
         <ProductButton
           onClick={this.handleAddToCart}
-          inStock={inStock}
+          inStock={inStock as boolean}
         >
           add to cart
         </ProductButton>

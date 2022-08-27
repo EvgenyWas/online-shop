@@ -179,19 +179,6 @@ export type CategoryQuery = {
   } | null;
 };
 
-export type GalleryProductQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type GalleryProductQuery = {
-  __typename?: "Query";
-  product?: {
-    __typename?: "Product";
-    gallery?: Array<string | null> | null;
-    inStock?: boolean | null;
-  } | null;
-};
-
 export type ProductQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
@@ -475,55 +462,6 @@ export const CategoryDocument = {
     ...ProductPlpFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<CategoryQuery, CategoryQueryVariables>;
-export const GalleryProductDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GalleryProduct" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "product" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "id" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "gallery" } },
-                { kind: "Field", name: { kind: "Name", value: "inStock" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GalleryProductQuery, GalleryProductQueryVariables>;
 export const ProductDocument = {
   kind: "Document",
   definitions: [

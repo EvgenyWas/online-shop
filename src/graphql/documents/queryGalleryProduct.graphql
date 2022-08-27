@@ -1,6 +1,0 @@
-query GalleryProduct($id: String!) {
-  product(id: $id) {
-    gallery
-    inStock
-  }
-}

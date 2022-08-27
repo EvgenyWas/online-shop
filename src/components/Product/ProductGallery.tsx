@@ -1,12 +1,12 @@
 import { PureComponent } from "react";
-import { getProductGallery } from "../../utils/utils";
-import {
-  StyledActivePicture,
-  StyledActivePictureBox,
-  StyledGalleryContainer,
-  StyledGalleryPicture,
-  StyledProductGallery,
-} from "./styles";
+import
+  {
+    StyledActivePicture,
+    StyledActivePictureBox,
+    StyledGalleryContainer,
+    StyledGalleryPicture,
+    StyledProductGallery
+  } from "./styles";
 import { TProductGalleryProps, TProductGalleryState } from "./types";
 
 export default class ProductGallery extends PureComponent<
@@ -16,20 +16,17 @@ export default class ProductGallery extends PureComponent<
   constructor(props: TProductGalleryProps) {
     super(props);
     this.state = {
-      gallery: [],
       activePicture: "",
-      inStock: true,
     };
   }
 
-  componentDidMount = async () => {
-    const { gallery, inStock } = await getProductGallery(this.props.id);
-    this.setState({
-      gallery: gallery as string[],
-      activePicture: gallery![0] as string,
-      inStock: inStock as boolean,
-    });
-  };
+  componentDidUpdate(prevProps: TProductGalleryProps) {
+    if (prevProps.gallery !== this.props.gallery) {
+      this.setState({
+        activePicture: this.props.gallery![0]
+      })
+    }
+  }
 
   handleClick = (picture: string) => {
     this.setState({
@@ -38,12 +35,13 @@ export default class ProductGallery extends PureComponent<
   };
 
   render() {
-    const { gallery, activePicture, inStock } = this.state;
+    const { gallery, inStock } = this.props;
+    const { activePicture } = this.state;
 
     return (
       <StyledProductGallery>
         <StyledGalleryContainer>
-          {gallery.map((picture) => (
+          {gallery?.map((picture: string) => (
             <StyledGalleryPicture
               key={picture}
               src={picture}
@@ -53,8 +51,8 @@ export default class ProductGallery extends PureComponent<
             />
           ))}
         </StyledGalleryContainer>
-        <StyledActivePictureBox inStock={inStock}>
-          <StyledActivePicture src={activePicture} alt="Picture" />
+        <StyledActivePictureBox inStock={inStock as boolean}>
+          <StyledActivePicture src={activePicture} alt="Product picture" />
         </StyledActivePictureBox>
       </StyledProductGallery>
     );

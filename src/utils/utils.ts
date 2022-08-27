@@ -1,14 +1,13 @@
-import { userStorageInitialValue, localStorageKeys } from "../config";
+import { localStorageKeys, userStorageInitialValue } from "../config";
 import { productsVar } from "../graphql/cache";
 import { client } from "../graphql/client";
-import {
-  CategoryDocument,
-  GalleryProductDocument,
-  Price,
-  ProductDocument,
-  ProductPdpFragment,
-  ProductPlpFragment,
-} from "../types/generated";
+import
+  {
+    CategoryDocument, Price,
+    ProductDocument,
+    ProductPdpFragment,
+    ProductPlpFragment
+  } from "../types/generated";
 import { TCart, TPrice, TProduct, TStorage } from "../types/types";
 
 // Function for getting a word from capital letter
@@ -38,18 +37,6 @@ export async function requestProductsQuery(category: string) {
   });
   const products = response.data.category?.products as ProductPlpFragment[];
   productsVar(products);
-}
-
-// Function to get product gallery and inStock value
-export async function getProductGallery(id: string) {
-  const response = await client.query({
-    query: GalleryProductDocument,
-    variables: { id: id },
-  });
-  const gallery = response.data.product?.gallery;
-  const inStock = response.data.product?.inStock;
-
-  return { gallery, inStock };
 }
 
 // Function to get product pdp
