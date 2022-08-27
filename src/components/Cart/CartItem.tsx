@@ -1,5 +1,6 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { CartOverlayContext, TCartOverlayContext } from "../../context/CartOverlayContext";
 import { cartVar, currentProductVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
 import { TManageAmountOperations } from "../../types/types";
@@ -51,7 +52,11 @@ class CartItem extends Component<TCartItemProps> {
     updateLocalStorageCart(cartVar());
   };
 
-  handleClick = (id: string) => currentProductVar(id);
+  handleClick = (id: string) => {
+    const { handleCloseCartOverlay } = this.context as TCartOverlayContext;
+    handleCloseCartOverlay();
+    currentProductVar(id);
+  };
 
   render() {
     const { product, swatch, text, amount } = this.props.product;
@@ -97,5 +102,7 @@ class CartItem extends Component<TCartItemProps> {
     );
   }
 }
+
+CartItem.contextType = CartOverlayContext;
 
 export default injectCurrentCurrency(CartItem);

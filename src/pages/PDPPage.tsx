@@ -24,7 +24,6 @@ PDPPage.contextType = CartOverlayContext;
 
 const StyledPDPPage = styled.section`
   position: relative;
-  /* padding-bottom: 88px; */
   height: calc(100vh - 159.2px);
 `;
 
