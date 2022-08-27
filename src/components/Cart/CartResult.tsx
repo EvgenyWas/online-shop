@@ -25,7 +25,7 @@ class CartResult extends Component<TCartResultProps> {
           <StyledPropertyValue>
             {`${currentCurrency}${
               isCartEmpty
-                ? "0"
+                ? "0.00"
                 : getAmountTax(tax, getAmountCart(order, currentCurrency))
             }`}
           </StyledPropertyValue>
@@ -34,7 +34,7 @@ class CartResult extends Component<TCartResultProps> {
           <StyledPropertyName total>Total:</StyledPropertyName>
           <StyledPropertyValue>
             {`${currentCurrency}${
-              isCartEmpty ? "0" : getAmountCart(order, currentCurrency)
+              isCartEmpty ? "0.00" : getAmountCart(order, currentCurrency)
             }`}
           </StyledPropertyValue>
         </StyledProperties>

@@ -2,93 +2,53 @@ import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { cartVar, currentProductVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
-import { TAttribute, TManageAmountOperations } from "../../types/types";
-import {
-  addProductToCart,
-  decreaseProductAmount,
-  findSameProductInCart,
-  getCurrentPrice,
-  updateLocalStorageCart,
-} from "../../utils/utils";
-import { TAttributes, TType } from "../UI/AttributesBar/types";
+import { TManageAmountOperations } from "../../types/types";
+import
+  {
+    addProductToCart,
+    decreaseProductAmount,
+    getCurrentPrice,
+    updateLocalStorageCart
+  } from "../../utils/utils";
+import { TAttributes } from "../UI/AttributesBar/types";
 import Line from "../UI/Molecules/Line";
 import CartGallery from "./CartGallery";
 import ManageAmount from "./ManageAmount";
-import {
-  StyledAttributesBar,
-  StyledBox,
-  StyledCartItem,
-  StyledCartPrice,
-  StyledTitle,
-} from "./styles";
+import
+  {
+    StyledAttributesBar,
+    StyledBox,
+    StyledCartItem,
+    StyledCartPrice,
+    StyledTitle
+  } from "./styles";
 import { TCartItemProps } from "./types";
 
 class CartItem extends Component<TCartItemProps> {
   constructor(props: TCartItemProps) {
     super(props);
-    this.handleChoose = this.handleChoose.bind(this);
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
   }
 
-  handleChoose(type: TType, attribute: TAttribute) {
-    // Data of current cart and product
-    const cart = cartVar().order;
-    const product = this.props.product;
-    const productNumber = findSameProductInCart(cart, product) as number;
-
-    // Update attribute current product in cart
-    type === "swatch"
-      ? (cart[productNumber].swatch = attribute)
-      : (cart[productNumber].text = attribute);
-
-    // After update attribute check does cart have the same
-    const updatedProductNumber = findSameProductInCart(
-      cart,
-      cart[productNumber],
-      productNumber
-    ) as number;
-
-    if (updatedProductNumber || updatedProductNumber === 0) {
-      // If cart has the same product then connect their amount and update cart
-      cart[productNumber].amount += cart[updatedProductNumber].amount;
-      const filteredCart = cart.filter(
-        (product, index) => index !== updatedProductNumber
-      );
-
-      cartVar({
-        ...cartVar(),
-        order: filteredCart,
-      });
-      updateLocalStorageCart(cartVar());
-    } else {
-      // If not then just update cart
-      cartVar({
-        ...cartVar(),
-        order: cart,
-      });
-      updateLocalStorageCart(cartVar());
-    }
-  }
-
   handleChangeAmount = (operation: TManageAmountOperations) => {
-    const cart = cartVar();
-    const product = this.props.product;
+    let { amount, order } = cartVar();
+    const { product } = this.props;
 
     if (operation === "decrease") {
       cartVar({
         ...cartVar(),
-        amount: (cart.amount -= 1),
-        order: decreaseProductAmount(cart.order, product),
+        amount: (amount -= 1),
+        order: decreaseProductAmount(order, product),
       });
-      updateLocalStorageCart(cartVar());
     } else {
       cartVar({
         ...cartVar(),
-        amount: (cart.amount += 1),
-        order: addProductToCart(cart.order, product),
+        amount: (amount += 1),
+        order: addProductToCart(order, product),
       });
-      updateLocalStorageCart(cartVar());
-    }
+    };
+
+    updateLocalStorageCart(cartVar());
   };
 
   handleClick = (id: string) => currentProductVar(id);
@@ -96,11 +56,11 @@ class CartItem extends Component<TCartItemProps> {
   render() {
     const { product, swatch, text, amount } = this.props.product;
     const { brand, name, prices, attributes, gallery, id } = product;
-    const currentCurrency = this.props.currentCurrency;
+    const { currentCurrency, className } = this.props;
 
     return (
       <Fragment>
-        <StyledCartItem className={this.props.className}>
+        <StyledCartItem className={className}>
           <StyledBox>
             <Link
               to={`/products/${id}`}
@@ -116,10 +76,10 @@ class CartItem extends Component<TCartItemProps> {
             </StyledCartPrice>
             <StyledAttributesBar
               attributes={attributes as TAttributes}
-              handleChoose={this.handleChoose}
+              handleChoose={() => {}}
               chosenSwatch={swatch}
               chosenText={text}
-              className={this.props.className}
+              className={className}
               inStock={true}
             />
           </StyledBox>

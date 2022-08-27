@@ -132,7 +132,6 @@ export const StyledCartOverlayItem = styled(CartItem)`
 
   ${StyledGallery} {
     width: 120px;
-    /* max-height: 100%; */
 
     ${StyledButtonsContainer} {
       display: none;

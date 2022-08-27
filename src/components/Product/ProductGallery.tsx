@@ -35,7 +35,7 @@ export default class ProductGallery extends PureComponent<
   };
 
   render() {
-    const { gallery, inStock } = this.props;
+    const { gallery, inStock = true } = this.props;
     const { activePicture } = this.state;
 
     return (

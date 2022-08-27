@@ -21,7 +21,7 @@ class CartOverlayTotal extends Component<Props> {
         <StyledTotal>Total:</StyledTotal>
         <StyledAmount>
           {`${currentCurrency}${
-            isCartEmpty ? "0" : getAmountCart(order, currentCurrency)
+            isCartEmpty ? "0.00" : getAmountCart(order, currentCurrency)
           }`}
         </StyledAmount>
       </StyledCartOverlayTotal>

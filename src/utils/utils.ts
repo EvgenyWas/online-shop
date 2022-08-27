@@ -51,23 +51,20 @@ export async function getProductPDP(id: string) {
 }
 
 // Function to find the same new product in the cart
-export function findSameProductInCart(
+function findSameProductInCart(
   cart: TProduct[],
   product: TProduct,
-  index?: number
 ) {
-  const sameProduct = cart.findIndex((prod, ind) => {
+  const sameProduct = cart.findIndex((prod) => {
     const conditionSameId = prod.product?.id === product.product?.id;
     const conditionSameSwatch = prod.swatch?.id === product.swatch?.id;
     const conditionSameText = prod.text?.id === product.text?.id;
-    const conditionSameIndex = index !== undefined ? ind !== index : true;
 
     if (
       conditionSameId &&
       conditionSameSwatch &&
-      conditionSameText &&
-      conditionSameIndex
-    ) {
+      conditionSameText
+      ) {
       return true;
     }
 

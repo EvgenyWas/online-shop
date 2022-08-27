@@ -3,6 +3,8 @@ import ProductTitle from "../UI/Titles/ProductTitle";
 import { StyledPrice } from "../Product/styles";
 import AttributesBar from "../UI/AttributesBar/AttributesBar";
 import SwitchArrowButton from "../UI/Buttons/SwitchArrowButton";
+import { StyledInput as StyledSwatchInput } from "../UI/Inputs/SwatchInput";
+import { StyledInput } from "../UI/Inputs/TextInput";
 
 export const StyledCartResult = styled.div`
   display: flex;
@@ -45,6 +47,10 @@ export const StyledCartPrice = styled(StyledPrice)`
 export const StyledAttributesBar = styled(AttributesBar)`
   gap: 16px;
   margin-bottom: 0px !important;
+
+  ${StyledInput}, ${StyledSwatchInput} {
+    cursor: default;
+  }
 `;
 
 export const StyledManageAmountContainer = styled.div`
