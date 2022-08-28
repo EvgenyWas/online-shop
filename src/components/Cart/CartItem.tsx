@@ -72,7 +72,6 @@ class CartItem extends Component<TCartItemProps> {
           <StyledBox>
             <Link
               to={`/products/${id}`}
-              key={id}
               onClick={() => this.handleClick(id)}
             >
               <StyledTitle brand={brand} name={name} />

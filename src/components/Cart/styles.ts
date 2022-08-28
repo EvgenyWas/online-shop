@@ -36,6 +36,7 @@ export const StyledPropertyValue = styled.span`
 `;
 
 export const StyledTitle = styled(ProductTitle)`
+  display: inline-flex;
   margin-bottom: 20px;
 `;
 
