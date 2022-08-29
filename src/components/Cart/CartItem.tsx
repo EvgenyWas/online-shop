@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CartOverlayContext, TCartOverlayContext } from "../../context/CartOverlayContext";
 import { cartVar, currentProductVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
+import { AttributeSet } from "../../types/generated";
 import { TManageAmountOperations } from "../../types/types";
 import
   {
@@ -11,7 +12,6 @@ import
     getCurrentPrice,
     updateLocalStorageCart
   } from "../../utils/utils";
-import { TAttributes } from "../UI/AttributesBar/types";
 import Line from "../UI/Molecules/Line";
 import CartGallery from "./CartGallery";
 import ManageAmount from "./ManageAmount";
@@ -59,7 +59,7 @@ class CartItem extends Component<TCartItemProps> {
   };
 
   render() {
-    const { product, swatch, text, amount } = this.props.product;
+    const { product, chosenAttributes, amount } = this.props.product;
     const { brand, name, prices, attributes, gallery, id } = product;
     const { currentCurrency, className } = this.props;
     const price = `${currentCurrency}${
@@ -78,10 +78,9 @@ class CartItem extends Component<TCartItemProps> {
             </Link>
             <StyledCartPrice>{price}</StyledCartPrice>
             <StyledAttributesBar
-              attributes={attributes as TAttributes}
+              attributes={attributes as AttributeSet[]}
               handleChoose={() => {}}
-              chosenSwatch={swatch}
-              chosenText={text}
+              chosenAttributes={chosenAttributes}
               className={className}
               inStock={true}
             />
@@ -91,7 +90,7 @@ class CartItem extends Component<TCartItemProps> {
             handleChangeAmount={this.handleChangeAmount}
           />
           <CartGallery
-            key={product.id}
+            key={id}
             gallery={gallery as string[]}
             name={name}
           />

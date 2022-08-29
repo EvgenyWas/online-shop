@@ -1,10 +1,11 @@
-import { TAttribute } from "../../../types/types";
+import { AttributeSet } from "../../../types/generated";
+import { TAttribute, TChosenAttributeSet } from "../../../types/types";
 
 export type TSwatchBarProps = {
   name: string;
   activeSwatch: string;
   swatches: TAttribute[];
-  handleChoose: (type: "swatch", attribute: TAttribute) => void;
+  handleChoose: (type: "swatch", attribute: TAttribute, name: string) => void;
   inStock: boolean
 };
 
@@ -12,24 +13,16 @@ export type TTextBarProps = {
   name: string;
   activeText: string;
   texts: TAttribute[];
-  handleChoose: (type: "text", attribute: TAttribute) => void;
+  handleChoose: (type: "text", attribute: TAttribute, name: string) => void;
   inStock: boolean
 };
 
-export type TType = "swatch" | "text";
-
-export type TAttributes = Array<{
-  id: string;
-  name: string;
-  type: string;
-  items: TAttribute[];
-}>;
+type TType = "swatch" | "text";
 
 export type TAttributesBarProps = {
-  attributes: TAttributes;
-  handleChoose: (type: TType, attribute: TAttribute) => void;
-  chosenSwatch: TAttribute | null;
-  chosenText: TAttribute | null;
+  attributes: AttributeSet[];
+  handleChoose: (type: TType, attribute: TAttribute, name: string) => void;
+  chosenAttributes: TChosenAttributeSet[]
   className?: string;
   inStock: boolean
 };

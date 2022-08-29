@@ -1,21 +1,24 @@
 import { MouseEvent, PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { cartVar, currentProductVar } from "../../graphql/cache";
-import { TAttribute } from "../../types/types";
-import {
-  addProductToCart,
-  findAttribute,
-  getProductPDP,
-  updateLocalStorageCart,
-} from "../../utils/utils";
+import { AttributeSet } from "../../types/generated";
+import
+  {
+    addProductToCart,
+    // findAttribute,
+    formatAttributes,
+    getProductPDP,
+    updateLocalStorageCart
+  } from "../../utils/utils";
 import AddToCartButton from "../UI/Buttons/AddToCartButton";
-import {
-  StyledImage,
-  StyledImageBox,
-  StyledName,
-  StyledPrice,
-  StyledProductCard,
-} from "./styles";
+import
+  {
+    StyledImage,
+    StyledImageBox,
+    StyledName,
+    StyledPrice,
+    StyledProductCard
+  } from "./styles";
 import { TProductCardProps } from "./types";
 
 export default class ProductCard extends PureComponent<TProductCardProps> {
@@ -26,12 +29,12 @@ export default class ProductCard extends PureComponent<TProductCardProps> {
 
     // Request product by id and define default attributes
     const product = await getProductPDP(this.props.id);
-    const swatch = findAttribute(product, "swatch");
-    const text = findAttribute(product, "text");
+    // console.log(product.attributes)
+    const attributes = formatAttributes(product.attributes as AttributeSet[]);
+    // console.log(attributes)
     const newProduct = {
       product: product,
-      swatch: swatch?.items![0] as TAttribute,
-      text: text?.items![0] as TAttribute,
+      chosenAttributes: attributes,
       amount: 1,
     };
 

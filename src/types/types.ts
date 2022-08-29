@@ -1,4 +1,4 @@
-import { ProductPdpFragment } from "./generated";
+import { AttributeSet, ProductPdpFragment } from "./generated";
 
 export type TPrice = {
   amount: number;
@@ -14,10 +14,15 @@ export type TAttribute = {
   id: string;
 };
 
+export type TChosenAttribute = {
+  chosenAttribute: TAttribute;
+}
+
+export type TChosenAttributeSet = Omit<AttributeSet, 'items'> & TChosenAttribute;
+
 export type TProduct = {
   product: ProductPdpFragment;
-  swatch: TAttribute | null;
-  text: TAttribute | null;
+  chosenAttributes: TChosenAttributeSet[];
   amount: number;
 };
 

@@ -1,16 +1,15 @@
 import { Component } from "react";
 import { cartVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
-import { Product, ProductPdpFragment } from "../../types/generated";
+import { AttributeSet, ProductPdpFragment } from "../../types/generated";
 import { TAttribute } from "../../types/types";
 import
   {
     addProductToCart,
-    findAttribute,
+    formatAttributes,
     getCurrentPrice, updateLocalStorageCart
   } from "../../utils/utils";
 import AttributesBar from "../UI/AttributesBar/AttributesBar";
-import { TType } from "../UI/AttributesBar/types";
 import ProductTitle from "../UI/Titles/ProductTitle";
 import
   {
@@ -27,8 +26,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   constructor(props: TProductBarProps) {
     super(props);
     this.state = {
-      chosenSwatch: null,
-      chosenText: null,
+      chosenAttributes: []
     };
     this.handleChoose = this.handleChoose.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -36,37 +34,40 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   }
 
   componentDidMount() {
-    const product = this.props.product as Product;
-    const swatch = findAttribute(product, "swatch");
-    const text = findAttribute(product, "text");
-
+    const { attributes } = this.props.product as ProductPdpFragment;
+    const formattedAttributes = formatAttributes(attributes as AttributeSet[]);
+    
     this.setState({
-      chosenSwatch: swatch?.items![0] as TAttribute,
-      chosenText: text?.items![0] as TAttribute,
+      chosenAttributes: formattedAttributes
     });
   };
 
-  handleChoose(type: TType, attribute: TAttribute) {
-    const { inStock } = this.props.product as Product;
+  handleChoose(id: string, attribute: TAttribute, name: string) {
+    const { inStock, attributes } = this.props.product as ProductPdpFragment;
+    const { chosenAttributes } = this.state;
 
     if (!inStock) {
       return;
     };
 
-    if (type === "swatch") {
-      this.setState({
-        chosenSwatch: { ...attribute },
-      });
-    } else {
-      this.setState({
-        chosenText: { ...attribute },
-      });
-    }
+    let formattedAttributes = chosenAttributes ?? formatAttributes(attributes as AttributeSet[]);
+    const newChosenAttributes = formattedAttributes?.map(item => {
+      if (attribute.id !== id && item.name === name) {
+        item.chosenAttribute = attribute;
+        return item
+      };
+
+      return item
+    });
+
+    this.setState({
+      chosenAttributes: newChosenAttributes
+    })
   }
 
   handleAddToCart() {
-    const { chosenSwatch, chosenText } = this.state;
-    const product = this.props.product as Product;
+    const { chosenAttributes } = this.state;
+    const product = this.props.product as ProductPdpFragment;
 
     if (!product.inStock) {
       return;
@@ -74,8 +75,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
 
     const newProduct = {
       product: product,
-      swatch: chosenSwatch,
-      text: chosenText,
+      chosenAttributes: chosenAttributes,
       amount: 1,
     };
 
@@ -87,23 +87,19 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   }
 
   render() {
-    const {
-      chosenSwatch,
-      chosenText,
-    } = this.state;
+    const { chosenAttributes } = this.state;
     const { brand, name, attributes, prices, description, inStock } = this.props.product as ProductPdpFragment;
     const currentCurrency = this.props.currentCurrency;
     const price =
       currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount.toFixed(2);
-
+    
     return (
       <StyledProductBar>
         <ProductTitle brand={brand} name={name} />
         <AttributesBar
           attributes={attributes as any}
           handleChoose={this.handleChoose}
-          chosenSwatch={chosenSwatch}
-          chosenText={chosenText}
+          chosenAttributes={chosenAttributes}
           inStock={inStock as boolean}
         />
         <StyledPriceContainer>

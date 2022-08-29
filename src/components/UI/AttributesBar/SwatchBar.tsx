@@ -21,7 +21,7 @@ export default class SwatchBar extends Component<TSwatchBarProps> {
                 key={swatch.id}
                 color={swatch.value}
                 active={activeSwatch === swatch.id}
-                handleChooseSwatch={() => handleChoose("swatch", swatch)}
+                handleChooseSwatch={() => handleChoose("swatch", swatch, name)}
                 inStock={inStock}
               />
             );

@@ -3,12 +3,13 @@ import { productsVar } from "../graphql/cache";
 import { client } from "../graphql/client";
 import
   {
+    AttributeSet,
     CategoryDocument, Price,
     ProductDocument,
     ProductPdpFragment,
     ProductPlpFragment
   } from "../types/generated";
-import { TCart, TPrice, TProduct, TStorage } from "../types/types";
+import { TCart, TChosenAttributeSet, TPrice, TProduct, TStorage } from "../types/types";
 
 // Function for getting a word from capital letter
 export function getWordFromCapitalLetter(word: string) {
@@ -50,20 +51,19 @@ export async function getProductPDP(id: string) {
   return product;
 }
 
-// Function to find the same new product in the cart
 function findSameProductInCart(
   cart: TProduct[],
   product: TProduct,
 ) {
   const sameProduct = cart.findIndex((prod) => {
     const conditionSameId = prod.product?.id === product.product?.id;
-    const conditionSameSwatch = prod.swatch?.id === product.swatch?.id;
-    const conditionSameText = prod.text?.id === product.text?.id;
+    const conditionSameAttributes = prod.chosenAttributes?.every((item, index) => {
+      return item.chosenAttribute.id === product.chosenAttributes[index].chosenAttribute.id;
+    })
 
     if (
       conditionSameId &&
-      conditionSameSwatch &&
-      conditionSameText
+      conditionSameAttributes
       ) {
       return true;
     }
@@ -147,18 +147,6 @@ export function getAmountCart(
   }
 }
 
-// Function to find an attribute in the product
-export function findAttribute(
-  product: ProductPdpFragment,
-  attribute: "swatch" | "text"
-) {
-  const findedAttribute = product.attributes?.find(
-    (attr) => attr?.type === attribute
-  );
-
-  return findedAttribute;
-}
-
 // Function to get a value from local storage with a key
 export function getLocalStorageValue(key: string) {
   try {
@@ -200,4 +188,19 @@ export function updateLocalStorageCurrencySymbol(currencySymbol: string) {
     currencySymbol: currencySymbol,
   };
   setValueLocalStorage(key, newValue);
+}
+
+// Function for formatting source attributes to needed view
+export function formatAttributes(attributes: AttributeSet[]): TChosenAttributeSet[] {
+  const formattedAttributes = attributes?.map(attribute => {
+    const formattedAttribute = {
+      ...attribute,
+      chosenAttribute: attribute.items![0]
+    }
+    delete formattedAttribute.items;
+    
+    return formattedAttribute;
+  });
+
+  return formattedAttributes as TChosenAttributeSet[];
 }

@@ -17,7 +17,7 @@ export default class TextBar extends Component<TTextBarProps> {
                 key={text.id}
                 text={text.value}
                 active={activeText === text.id}
-                handleChooseText={() => handleChoose("text", text)}
+                handleChooseText={() => handleChoose("text", text, name)}
                 inStock={inStock}
               />
             );

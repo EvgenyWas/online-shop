@@ -1,40 +1,56 @@
 import { Component } from "react";
+import { TAttribute } from "../../../types/types";
 import { StyledAttributesBar } from "./styles";
 import SwatchBar from "./SwatchBar";
 import TextBar from "./TextBar";
 import { TAttributesBarProps } from "./types";
 
 class AttributesBar extends Component<TAttributesBarProps> {
+  constructor(props: TAttributesBarProps) {
+    super(props);
+    this.getAttributes = this.getAttributes.bind(this);
+  }
+
+  getAttributes() {
+    const { attributes, chosenAttributes, handleChoose, inStock } = this.props;
+    const gottenAttributes = attributes?.map((attribute, index) => {
+      const { name, items, id } = attribute;
+      let chosenAttribute = undefined;
+      if (chosenAttributes) {
+        chosenAttribute = chosenAttributes[index].chosenAttribute;
+      };
+
+      const activeText = chosenAttribute?.id ?? items![0]?.id;
+
+      return (attribute.type === 'text' ?
+        <TextBar
+          key={id + activeText}
+          name={name as string}
+          activeText={activeText as string}
+          texts={items as TAttribute[]}
+          handleChoose={handleChoose}
+          inStock={inStock}
+        />
+        : <SwatchBar
+          key={id + activeText}
+          name={name as string}
+          activeSwatch={activeText as string}
+          swatches={items as TAttribute[]}
+          handleChoose={handleChoose}
+          inStock={inStock}
+        />
+      )
+    });
+
+    return gottenAttributes;
+  }
+
   render() {
-    const { attributes, chosenText, chosenSwatch, handleChoose, className, inStock } =
-      this.props;
-    const swatch = attributes?.find(
-      (attribute: any) => attribute?.type === "swatch"
-    );
-    const text = attributes?.find(
-      (attribute: any) => attribute?.type === "text"
-    );
+    const { className } = this.props;
 
     return (
       <StyledAttributesBar className={className}>
-        {text && (
-          <TextBar
-            name={text.name}
-            activeText={chosenText?.id ?? text.items[0].id}
-            texts={text.items}
-            handleChoose={handleChoose}
-            inStock={inStock}
-          />
-        )}
-        {swatch && (
-          <SwatchBar
-            name={swatch.name}
-            activeSwatch={chosenSwatch?.id ?? swatch.items[0].id}
-            swatches={swatch.items}
-            handleChoose={handleChoose}
-            inStock={inStock}
-          />
-        )}
+        {this.getAttributes()}
       </StyledAttributesBar>
     );
   }

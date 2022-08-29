@@ -1,6 +1,6 @@
 import { InjectedCurrentCurrencyProps } from "../../hocs/types";
 import { ProductPdpFragment } from "../../types/generated";
-import { TAttribute } from "../../types/types";
+import { TChosenAttributeSet } from "../../types/types";
 
 export type TProductBarProps = InjectedCurrentCurrencyProps & {
   product: ProductPdpFragment | {};
@@ -16,10 +16,9 @@ export type TProductGalleryState = {
 };
 
 export type TProductBarState = {
-  chosenSwatch: TAttribute | null;
-  chosenText: TAttribute | null;
+  chosenAttributes: TChosenAttributeSet[]
 };
 
 export type TProductState = {
   product: ProductPdpFragment | {}
-}
+};
