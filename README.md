@@ -39,7 +39,7 @@ Clone the repository with the GraphQL endpoint from the link above and follow th
 
 ### `running`
 
-Clone this repository and after the preparing run the app with help of **npm start**.
+Clone this repository and after the preparing run **npm install** and **npm start**.
 
 ## Summary
 
