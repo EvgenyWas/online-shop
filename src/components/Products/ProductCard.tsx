@@ -5,7 +5,6 @@ import { AttributeSet } from "../../types/generated";
 import
   {
     addProductToCart,
-    // findAttribute,
     formatAttributes,
     getProductPDP,
     updateLocalStorageCart
@@ -29,9 +28,7 @@ export default class ProductCard extends PureComponent<TProductCardProps> {
 
     // Request product by id and define default attributes
     const product = await getProductPDP(this.props.id);
-    // console.log(product.attributes)
     const attributes = formatAttributes(product.attributes as AttributeSet[]);
-    // console.log(attributes)
     const newProduct = {
       product: product,
       chosenAttributes: attributes,
@@ -50,7 +47,7 @@ export default class ProductCard extends PureComponent<TProductCardProps> {
       this.props;
 
     return (
-      <Link to={`/products/${id}`} onClick={() => this.handleClick(id)}>
+      <Link to={`/product/${id}`} onClick={() => this.handleClick(id)}>
         <StyledProductCard inStock={inStock}>
           <StyledImageBox inStock={inStock}>
             <StyledImage src={image} alt={name} />

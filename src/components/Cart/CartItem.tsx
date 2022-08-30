@@ -52,7 +52,7 @@ class CartItem extends Component<TCartItemProps> {
     updateLocalStorageCart(cartVar());
   };
 
-  handleClick = (id: string) => {
+  handleClick(id: string) {
     const { handleCloseCartOverlay } = this.context as TCartOverlayContext;
     handleCloseCartOverlay();
     currentProductVar(id);
@@ -71,7 +71,7 @@ class CartItem extends Component<TCartItemProps> {
         <StyledCartItem className={className}>
           <StyledBox>
             <Link
-              to={`/products/${id}`}
+              to={`/product/${id}`}
               onClick={() => this.handleClick(id)}
             >
               <StyledTitle brand={brand} name={name} />

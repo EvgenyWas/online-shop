@@ -148,7 +148,7 @@ export function getAmountCart(
 }
 
 // Function to get a value from local storage with a key
-export function getLocalStorageValue(key: string) {
+export function getLocalStorageValue(key: string): TStorage {
   try {
     const value = localStorage.getItem(key) as string;
     return JSON.parse(value);

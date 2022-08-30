@@ -36,4 +36,6 @@ export type TManageAmountOperations = "decrease" | "increase";
 export type TStorage = {
   cart: TCart;
   currentProductId: string;
+  currencySymbol: string;
+  currentCategory: string;
 };

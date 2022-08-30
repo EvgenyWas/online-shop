@@ -2,10 +2,11 @@ import { Component } from "react";
 import styled from "styled-components";
 import Product from "../components/Product/Product";
 import { StyledBackgroundCover } from "../components/UI/Actions/styles";
-import {
-  CartOverlayContext,
-  TCartOverlayContext,
-} from "../context/CartOverlayContext";
+import
+  {
+    CartOverlayContext,
+    TCartOverlayContext
+  } from "../context/CartOverlayContext";
 
 class PDPPage extends Component {
   render() {

@@ -13,7 +13,7 @@ export default class NavigationItem extends PureComponent<Props> {
     const { category, active, handleClick } = this.props;
 
     return (
-      <Link to="/products">
+      <Link to={category}>
         <StyledNavigationItem
           className={active ? "nav-item--active" : ""}
           onClick={() => handleClick(category)}
