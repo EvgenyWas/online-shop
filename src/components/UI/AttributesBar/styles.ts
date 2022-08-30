@@ -9,6 +9,7 @@ export const StyledAttributeBar = styled.div`
 
 export const StyledName = styled.h4`
   ${attributeNameFragment}
+  text-transform: uppercase;
 `;
 
 export const StyledSwatchContainer = styled.div`

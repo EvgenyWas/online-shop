@@ -95,6 +95,7 @@ export const StyledCartOverlayItem = styled(CartItem)`
         font-size: ${({ theme }) => theme.fontSizes.xs};
         font-weight: ${({ theme }) => theme.fontWeights.regular};
         line-height: ${({ theme }) => theme.lineHeights.xs};
+        text-transform: none;
       }
 
       ${StyledTextContainer} {
@@ -102,15 +103,20 @@ export const StyledCartOverlayItem = styled(CartItem)`
       }
 
       ${StyledInput} {
-        width: 24px;
-        height: 24px;
+        min-width: 20px;
+        width: max-content;
+        height: 22px;
+        padding: 0 1px;
         font-size: ${({ theme }) => theme.fontSizes.xs};
-        line-height: ${({ theme }) => theme.lineHeights.percentL};
       }
 
       ${StyledSwatchInput} {
         width: 16px;
         height: 16px;
+
+        &:nth-child(1) {
+          margin-left: 1px;
+        }
       }
     }
   }

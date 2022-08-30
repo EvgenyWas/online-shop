@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { getWordFromCapitalLetter } from "../../../utils/utils";
 import TextInput from "../Inputs/TextInput";
 import { StyledAttributeBar, StyledName, StyledTextContainer } from "./styles";
 import { TTextBarProps } from "./types";
@@ -9,7 +10,7 @@ export default class TextBar extends Component<TTextBarProps> {
 
     return (
       <StyledAttributeBar>
-        <StyledName>{`${name.toUpperCase()}:`}</StyledName>
+        <StyledName>{`${getWordFromCapitalLetter(name)}:`}</StyledName>
         <StyledTextContainer>
           {texts.map((text) => {
             return (

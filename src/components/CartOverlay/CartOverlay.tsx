@@ -35,6 +35,7 @@ class CartOverlay extends Component<Props, State> {
       isRedirectToCart: false,
     };
     this.handleRedirectToCart = this.handleRedirectToCart.bind(this);
+    this.getProductItems = this.getProductItems.bind(this);
   }
 
   handleRedirectToCart = async () => {
@@ -45,6 +46,15 @@ class CartOverlay extends Component<Props, State> {
     });
     handleCloseCartOverlay();
   };
+
+  getProductItems() {
+    const { cart } = this.props.data;
+    const productItems = cart.order.map((product: TProduct, index: number) => {
+      return <StyledCartOverlayItem key={index} product={product} />;
+    });
+
+    return productItems;
+  }
 
   render() {
     const { currentCurrency, cart } = this.props.data;
@@ -57,11 +67,7 @@ class CartOverlay extends Component<Props, State> {
           {isCartEmpty ? (
             <StyledCartEmpty title="the bag is empty" />
           ) : (
-            <StyledItems>
-              {cart.order.map((product: TProduct, index: number) => {
-                return <StyledCartOverlayItem key={index} product={product} />;
-              })}
-            </StyledItems>
+            <StyledItems>{this.getProductItems()}</StyledItems>
           )}
           <CartOverlayTotal currentCurrency={currentCurrency} cart={cart} />
           <StyledButtons>

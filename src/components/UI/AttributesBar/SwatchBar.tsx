@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { getWordFromCapitalLetter } from "../../../utils/utils";
 import SwatchInput from "../Inputs/SwatchInput";
 import {
   StyledAttributeBar,
@@ -13,7 +14,7 @@ export default class SwatchBar extends Component<TSwatchBarProps> {
 
     return (
       <StyledAttributeBar>
-        <StyledName>{`${name.toUpperCase()}:`}</StyledName>
+        <StyledName>{`${getWordFromCapitalLetter(name)}:`}</StyledName>
         <StyledSwatchContainer>
           {swatches.map((swatch) => {
             return (
