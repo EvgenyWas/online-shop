@@ -10,6 +10,6 @@ export const userStorageInitialValue: TStorage = {
     order: [],
   },
   currentProductId: "",
-  currencySymbol: '',
-  currentCategory: '',
+  currencySymbol: "",
+  currentCategory: "",
 };

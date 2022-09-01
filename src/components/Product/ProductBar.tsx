@@ -3,23 +3,22 @@ import { cartVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
 import { AttributeSet, ProductPdpFragment } from "../../types/generated";
 import { TAttribute } from "../../types/types";
-import
-  {
-    addProductToCart,
-    formatAttributes,
-    getCurrentPrice, updateLocalStorageCart
-  } from "../../utils/utils";
+import {
+  addProductToCart,
+  formatAttributes,
+  getCurrentPrice,
+  updateLocalStorageCart,
+} from "../../utils/utils";
 import AttributesBar from "../UI/AttributesBar/AttributesBar";
 import ProductTitle from "../UI/Titles/ProductTitle";
-import
-  {
-    ProductButton,
-    StyledDescription,
-    StyledPrice,
-    StyledPriceContainer,
-    StyledPriceName,
-    StyledProductBar
-  } from "./styles";
+import {
+  ProductButton,
+  StyledDescription,
+  StyledPrice,
+  StyledPriceContainer,
+  StyledPriceName,
+  StyledProductBar,
+} from "./styles";
 import { TProductBarProps, TProductBarState } from "./types";
 
 class ProductBar extends Component<TProductBarProps, TProductBarState> {
@@ -27,7 +26,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
     super(props);
     this.state = {
       chosenAttributes: [],
-      productId: ''
+      productId: "",
     };
     this.handleChoose = this.handleChoose.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -37,33 +36,37 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   componentDidMount() {
     const { attributes, id } = this.props.product as ProductPdpFragment;
     const formattedAttributes = formatAttributes(attributes as AttributeSet[]);
-    
+
     this.setState({
       chosenAttributes: formattedAttributes,
-      productId: id
+      productId: id,
     });
-  };
+  }
 
   handleChoose(attributeId: string, attribute: TAttribute, name: string) {
-    const { inStock, attributes, id } = this.props.product as ProductPdpFragment;
+    const { inStock, attributes, id } = this.props
+      .product as ProductPdpFragment;
     const { chosenAttributes, productId } = this.state;
     if (!inStock) {
       return;
-    };
+    }
 
-    let formattedAttributes = id === productId && chosenAttributes ? chosenAttributes : formatAttributes(attributes as AttributeSet[]);
-    const newChosenAttributes = formattedAttributes?.map(item => {
+    let formattedAttributes =
+      id === productId && chosenAttributes
+        ? chosenAttributes
+        : formatAttributes(attributes as AttributeSet[]);
+    const newChosenAttributes = formattedAttributes?.map((item) => {
       if (attribute.id !== attributeId && item.name === name) {
         item.chosenAttribute = attribute;
-        return item
-      };
+        return item;
+      }
 
-      return item
+      return item;
     });
 
     this.setState({
-      chosenAttributes: newChosenAttributes
-    })
+      chosenAttributes: newChosenAttributes,
+    });
   }
 
   handleAddToCart() {
@@ -72,7 +75,7 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
 
     if (!product.inStock) {
       return;
-    };
+    }
 
     const newProduct = {
       product: product,
@@ -89,11 +92,13 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
 
   render() {
     const { chosenAttributes } = this.state;
-    const { brand, name, attributes, prices, description, inStock, id } = this.props.product as ProductPdpFragment;
+    const { brand, name, attributes, prices, description, inStock, id } = this
+      .props.product as ProductPdpFragment;
     const currentCurrency = this.props.currentCurrency;
     const price =
-      currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount.toFixed(2);
-    
+      currentCurrency +
+      getCurrentPrice(prices, currentCurrency)?.amount.toFixed(2);
+
     return (
       <StyledProductBar key={id}>
         <ProductTitle brand={brand} name={name} />

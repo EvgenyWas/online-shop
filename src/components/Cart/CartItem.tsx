@@ -1,29 +1,30 @@
 import { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { CartOverlayContext, TCartOverlayContext } from "../../context/CartOverlayContext";
+import {
+  CartOverlayContext,
+  TCartOverlayContext,
+} from "../../context/CartOverlayContext";
 import { cartVar, currentProductVar } from "../../graphql/cache";
 import { injectCurrentCurrency } from "../../hocs/injectCurrentCurrency";
 import { AttributeSet } from "../../types/generated";
 import { TManageAmountOperations } from "../../types/types";
-import
-  {
-    addProductToCart,
-    decreaseProductAmount,
-    getCurrentPrice,
-    updateLocalStorageCart,
-    updateLocalStorageCurrentProductId
-  } from "../../utils/utils";
+import {
+  addProductToCart,
+  decreaseProductAmount,
+  getCurrentPrice,
+  updateLocalStorageCart,
+  updateLocalStorageCurrentProductId,
+} from "../../utils/utils";
 import Line from "../UI/Molecules/Line";
 import CartGallery from "./CartGallery";
 import ManageAmount from "./ManageAmount";
-import
-  {
-    StyledAttributesBar,
-    StyledBox,
-    StyledCartItem,
-    StyledCartPrice,
-    StyledTitle
-  } from "./styles";
+import {
+  StyledAttributesBar,
+  StyledBox,
+  StyledCartItem,
+  StyledCartPrice,
+  StyledTitle,
+} from "./styles";
 import { TCartItemProps } from "./types";
 
 class CartItem extends Component<TCartItemProps> {
@@ -48,7 +49,7 @@ class CartItem extends Component<TCartItemProps> {
         amount: (amount += 1),
         order: addProductToCart(order, product),
       });
-    };
+    }
 
     updateLocalStorageCart(cartVar());
   };
@@ -58,24 +59,22 @@ class CartItem extends Component<TCartItemProps> {
     handleCloseCartOverlay();
     currentProductVar(id);
     updateLocalStorageCurrentProductId(id);
-  };
+  }
 
   render() {
     const { product, chosenAttributes, amount } = this.props.product;
     const { brand, name, prices, attributes, gallery, id } = product;
     const { currentCurrency, className } = this.props;
-    const price = `${currentCurrency}${
-      getCurrentPrice(prices, currentCurrency)?.amount.toFixed(2)
-    }`;
+    const price = `${currentCurrency}${getCurrentPrice(
+      prices,
+      currentCurrency
+    )?.amount.toFixed(2)}`;
 
     return (
       <Fragment>
         <StyledCartItem className={className}>
           <StyledBox>
-            <Link
-              to={`/product/${id}`}
-              onClick={() => this.handleClick(id)}
-            >
+            <Link to={`/product/${id}`} onClick={() => this.handleClick(id)}>
               <StyledTitle brand={brand} name={name} />
             </Link>
             <StyledCartPrice>{price}</StyledCartPrice>
@@ -91,11 +90,7 @@ class CartItem extends Component<TCartItemProps> {
             amount={amount}
             handleChangeAmount={this.handleChangeAmount}
           />
-          <CartGallery
-            key={id}
-            gallery={gallery as string[]}
-            name={name}
-          />
+          <CartGallery key={id} gallery={gallery as string[]} name={name} />
         </StyledCartItem>
         <Line />
       </Fragment>

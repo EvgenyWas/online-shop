@@ -6,7 +6,7 @@ export type TSwatchBarProps = {
   activeSwatch: string;
   swatches: TAttribute[];
   handleChoose: (type: "swatch", attribute: TAttribute, name: string) => void;
-  inStock: boolean
+  inStock: boolean;
 };
 
 export type TTextBarProps = {
@@ -14,7 +14,7 @@ export type TTextBarProps = {
   activeText: string;
   texts: TAttribute[];
   handleChoose: (type: "text", attribute: TAttribute, name: string) => void;
-  inStock: boolean
+  inStock: boolean;
 };
 
 type TType = "swatch" | "text";
@@ -22,7 +22,7 @@ type TType = "swatch" | "text";
 export type TAttributesBarProps = {
   attributes: AttributeSet[];
   handleChoose: (type: TType, attribute: TAttribute, name: string) => void;
-  chosenAttributes: TChosenAttributeSet[]
+  chosenAttributes: TChosenAttributeSet[];
   className?: string;
-  inStock: boolean
+  inStock: boolean;
 };

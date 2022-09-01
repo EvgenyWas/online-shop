@@ -1,12 +1,11 @@
 import { ReactElement } from "react";
-import
-  {
-    CategoriesQuery,
-    CurrenciesQuery,
-    ProductPdpFragment,
-    ProductPlpFragment,
-    ProductQuery
-  } from "../types/generated";
+import {
+  CategoriesQuery,
+  CurrenciesQuery,
+  ProductPdpFragment,
+  ProductPlpFragment,
+  ProductQuery,
+} from "../types/generated";
 import { TCart } from "../types/types";
 
 export type InjectedCategoriesProps = {
@@ -56,6 +55,6 @@ export type TCurrencySwitcherInjectedProps = {
 export type InjectedCurrentProductProps = {
   data: {
     currentProduct: string;
-    data: ProductQuery
-  }
+    data: ProductQuery;
+  };
 };

@@ -8,15 +8,15 @@ import { getLocalStorageValue, setValueLocalStorage } from "../utils/utils";
 import Layout from "./Layout";
 
 type State = {
-  indexCategory: string
-}
+  indexCategory: string;
+};
 
 export default class AppRouter extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      indexCategory: 'all'
-    }
+      indexCategory: "all",
+    };
   }
 
   componentDidMount() {
@@ -25,21 +25,24 @@ export default class AppRouter extends Component<{}, State> {
     const currentCategory = storageValue?.currentCategory;
     if (currentCategory) {
       this.setState({
-        indexCategory: currentCategory
-      })
+        indexCategory: currentCategory,
+      });
     } else {
       setValueLocalStorage(key, {
         ...storageValue,
-        currentCategory: this.state.indexCategory
-      })
+        currentCategory: this.state.indexCategory,
+      });
     }
   }
 
   render() {
     return (
       <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<Navigate replace to={this.state.indexCategory} />} />
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={<Navigate replace to={this.state.indexCategory} />}
+          />
           <Route path=":category" element={<PLPPage />} />
           <Route path="product/:id" element={<PDPPage />} />
           <Route path="cart" element={<CartPage />} />

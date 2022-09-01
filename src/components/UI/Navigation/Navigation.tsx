@@ -3,7 +3,10 @@ import { localStorageKeys } from "../../../config";
 import { currentCategoryVar } from "../../../graphql/cache";
 import { injectCategoriesQuery } from "../../../hocs/injectCategoriesQuery";
 import { InjectedCategoriesProps } from "../../../hocs/types";
-import { getLocalStorageValue, setValueLocalStorage } from "../../../utils/utils";
+import {
+  getLocalStorageValue,
+  setValueLocalStorage,
+} from "../../../utils/utils";
 import NavigationItem from "./NavigationItem";
 import { StyledNavigation, StyledNavigationList } from "./styles";
 
@@ -23,7 +26,7 @@ class Navigation extends Component<InjectedCategoriesProps> {
 
     setValueLocalStorage(key, {
       ...storageValue,
-      currentCategory: category
+      currentCategory: category,
     });
     currentCategoryVar(category);
   }
@@ -46,9 +49,7 @@ class Navigation extends Component<InjectedCategoriesProps> {
   render() {
     return (
       <StyledNavigation>
-        <StyledNavigationList>
-          {this.getNavigationItems()}
-        </StyledNavigationList>
+        <StyledNavigationList>{this.getNavigationItems()}</StyledNavigationList>
       </StyledNavigation>
     );
   }

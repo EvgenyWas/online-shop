@@ -16,9 +16,10 @@ export type TAttribute = {
 
 export type TChosenAttribute = {
   chosenAttribute: TAttribute;
-}
+};
 
-export type TChosenAttributeSet = Omit<AttributeSet, 'items'> & TChosenAttribute;
+export type TChosenAttributeSet = Omit<AttributeSet, "items"> &
+  TChosenAttribute;
 
 export type TProduct = {
   product: ProductPdpFragment;

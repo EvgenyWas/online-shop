@@ -16,14 +16,15 @@ class AttributesBar extends Component<TAttributesBarProps> {
     const gottenAttributes = attributes?.map((attribute, index) => {
       const { name, items, id } = attribute;
       let chosenAttribute = undefined;
-      const conditionAttributesMatch = chosenAttributes.length === attributes.length;
+      const conditionAttributesMatch =
+        chosenAttributes.length === attributes.length;
       if (chosenAttributes && conditionAttributesMatch) {
         chosenAttribute = chosenAttributes[index].chosenAttribute;
-      };
+      }
 
       const activeText = chosenAttribute?.id ?? items![0]?.id;
 
-      return (attribute.type === 'text' ?
+      return attribute.type === "text" ? (
         <TextBar
           key={id + activeText}
           name={name as string}
@@ -32,7 +33,8 @@ class AttributesBar extends Component<TAttributesBarProps> {
           handleChoose={handleChoose}
           inStock={inStock}
         />
-        : <SwatchBar
+      ) : (
+        <SwatchBar
           key={id + activeText}
           name={name as string}
           activeSwatch={activeText as string}
@@ -40,7 +42,7 @@ class AttributesBar extends Component<TAttributesBarProps> {
           handleChoose={handleChoose}
           inStock={inStock}
         />
-      )
+      );
     });
 
     return gottenAttributes;

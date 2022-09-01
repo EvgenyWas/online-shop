@@ -19,7 +19,9 @@ class Cart extends Component<InjectedCartProps> {
           <CartEmpty title="the cart is empty" />
         ) : (
           cart.order.map((product: TProduct, index: number) => {
-            return <CartItem key={index + product.product.id} product={product} />;
+            return (
+              <CartItem key={index + product.product.id} product={product} />
+            );
           })
         )}
         <CartResult currentCurrency={currentCurrency} cart={cart} />

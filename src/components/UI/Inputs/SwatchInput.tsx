@@ -5,7 +5,7 @@ type Props = {
   color: string;
   active: boolean;
   handleChooseSwatch: (event: MouseEvent<HTMLInputElement>) => void;
-  inStock: boolean
+  inStock: boolean;
 };
 
 export default class SwatchInput extends PureComponent<Props> {
@@ -27,7 +27,7 @@ export default class SwatchInput extends PureComponent<Props> {
 export const StyledInput = styled.input<{
   bachground: string;
   active: boolean;
-  inStock?: boolean
+  inStock?: boolean;
 }>`
   width: 32px;
   height: 32px;

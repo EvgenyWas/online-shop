@@ -10,13 +10,16 @@ class Product extends PureComponent<TProductProps> {
     const product = this.props.product as ProductPdpFragment;
     if (!product) {
       return;
-    };
+    }
 
     const { gallery, inStock } = product;
 
     return (
       <StyledProduct className="container">
-        <ProductGallery gallery={gallery as string[]} inStock={inStock as boolean} />
+        <ProductGallery
+          gallery={gallery as string[]}
+          inStock={inStock as boolean}
+        />
         <ProductBar product={product} />
       </StyledProduct>
     );

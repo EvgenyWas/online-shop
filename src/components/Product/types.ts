@@ -21,5 +21,5 @@ export type TProductBarState = {
 };
 
 export type TProductProps = {
-  product: ProductPdpFragment
-}
+  product: ProductPdpFragment;
+};

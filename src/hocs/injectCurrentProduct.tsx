@@ -12,20 +12,22 @@ export const injectCurrentProduct = <S extends InjectedCurrentProductProps>(
   return (props: Omit<S, keyof InjectedCurrentProductProps>) => {
     const key = localStorageKeys.user;
     const currentProduct = useReactiveVar<string>(currentProductVar);
-    const idFromLocalStorage = getLocalStorageValue(
-      key
-    )?.currentProductId;
+    const idFromLocalStorage = getLocalStorageValue(key)?.currentProductId;
     const id = currentProduct || idFromLocalStorage;
     const { data, loading } = useQuery<ProductQuery>(ProductDocument, {
-      variables: { id: id }
+      variables: { id: id },
     });
     if (!loading) {
       return (
         <WrappedComponent {...(props as S)} data={{ currentProduct, data }} />
       );
     } else {
-      return <WrappedComponent {...(props as S)} data={{ currentProduct, data: null }} />
+      return (
+        <WrappedComponent
+          {...(props as S)}
+          data={{ currentProduct, data: null }}
+        />
+      );
     }
-    
   };
 };

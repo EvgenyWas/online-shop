@@ -5,7 +5,10 @@ import { currentCurrencyVar } from "../../../graphql/cache";
 import { currencySwitcherWithData } from "../../../hocs/currencySwitcherWithData";
 import OutsideClick from "../../../hocs/OutsideClick";
 import { TCurrencySwitcherInjectedProps } from "../../../hocs/types";
-import { getLocalStorageValue, updateLocalStorageCurrencySymbol } from "../../../utils/utils";
+import {
+  getLocalStorageValue,
+  updateLocalStorageCurrencySymbol,
+} from "../../../utils/utils";
 import CurrencySwitcherItem from "./CurrencySwitcherItem";
 import {
   StyledCurrencyOverlay,
@@ -32,12 +35,14 @@ class CurrencySwitcher extends Component<
   }
 
   componentDidMount() {
-    const localStorageCurrency = getLocalStorageValue(localStorageKeys.user)?.currencySymbol;
+    const localStorageCurrency = getLocalStorageValue(
+      localStorageKeys.user
+    )?.currencySymbol;
     const { symbol } = this.state;
 
     if (localStorageCurrency) {
       this.setState({
-        symbol: localStorageCurrency
+        symbol: localStorageCurrency,
       });
       currentCurrencyVar(localStorageCurrency);
     } else {
@@ -83,7 +88,7 @@ class CurrencySwitcher extends Component<
     });
 
     return currencyItems;
-  }
+  };
 
   render() {
     const { isOpen, symbol } = this.state;

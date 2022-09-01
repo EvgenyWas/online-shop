@@ -5,7 +5,7 @@ type Props = {
   text: string;
   active: boolean;
   handleChooseText: (event: MouseEvent<HTMLInputElement>) => void;
-  inStock: boolean
+  inStock: boolean;
 };
 
 export default class TextInput extends PureComponent<Props> {
@@ -24,7 +24,7 @@ export default class TextInput extends PureComponent<Props> {
   }
 }
 
-export const StyledInput = styled.input<{ active: boolean, inStock?: boolean }>`
+export const StyledInput = styled.input<{ active: boolean; inStock?: boolean }>`
   width: 63px;
   height: 45px;
   font-family: ${({ theme }) => theme.fonts.tertiary};

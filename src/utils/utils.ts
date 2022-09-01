@@ -1,15 +1,21 @@
 import { localStorageKeys, userStorageInitialValue } from "../config";
 import { productsVar } from "../graphql/cache";
 import { client } from "../graphql/client";
-import
-  {
-    AttributeSet,
-    CategoryDocument, Price,
-    ProductDocument,
-    ProductPdpFragment,
-    ProductPlpFragment
-  } from "../types/generated";
-import { TCart, TChosenAttributeSet, TPrice, TProduct, TStorage } from "../types/types";
+import {
+  AttributeSet,
+  CategoryDocument,
+  Price,
+  ProductDocument,
+  ProductPdpFragment,
+  ProductPlpFragment,
+} from "../types/generated";
+import {
+  TCart,
+  TChosenAttributeSet,
+  TPrice,
+  TProduct,
+  TStorage,
+} from "../types/types";
 
 // Function for getting a word from capital letter
 export function getWordFromCapitalLetter(word: string) {
@@ -51,20 +57,19 @@ export async function getProductPDP(id: string) {
   return product;
 }
 
-function findSameProductInCart(
-  cart: TProduct[],
-  product: TProduct,
-) {
+function findSameProductInCart(cart: TProduct[], product: TProduct) {
   const sameProduct = cart.findIndex((prod) => {
     const conditionSameId = prod.product?.id === product.product?.id;
-    const conditionSameAttributes = prod.chosenAttributes?.every((item, index) => {
-      return item.chosenAttribute.id === product.chosenAttributes[index]?.chosenAttribute.id;
-    })
+    const conditionSameAttributes = prod.chosenAttributes?.every(
+      (item, index) => {
+        return (
+          item.chosenAttribute.id ===
+          product.chosenAttributes[index]?.chosenAttribute.id
+        );
+      }
+    );
 
-    if (
-      conditionSameId &&
-      conditionSameAttributes
-      ) {
+    if (conditionSameId && conditionSameAttributes) {
       return true;
     }
 
@@ -201,14 +206,16 @@ export function updateLocalStorageCurrentProductId(id: string) {
 }
 
 // Function for formatting source attributes to needed view
-export function formatAttributes(attributes: AttributeSet[]): TChosenAttributeSet[] {
-  const formattedAttributes = attributes?.map(attribute => {
+export function formatAttributes(
+  attributes: AttributeSet[]
+): TChosenAttributeSet[] {
+  const formattedAttributes = attributes?.map((attribute) => {
     const formattedAttribute = {
       ...attribute,
-      chosenAttribute: attribute.items![0]
-    }
+      chosenAttribute: attribute.items![0],
+    };
     delete formattedAttribute.items;
-    
+
     return formattedAttribute;
   });
 

@@ -1,12 +1,11 @@
 import { PureComponent } from "react";
-import
-  {
-    StyledActivePicture,
-    StyledActivePictureBox,
-    StyledGalleryContainer,
-    StyledGalleryPicture,
-    StyledProductGallery
-  } from "./styles";
+import {
+  StyledActivePicture,
+  StyledActivePictureBox,
+  StyledGalleryContainer,
+  StyledGalleryPicture,
+  StyledProductGallery,
+} from "./styles";
 import { TProductGalleryProps, TProductGalleryState } from "./types";
 
 export default class ProductGallery extends PureComponent<
@@ -22,15 +21,15 @@ export default class ProductGallery extends PureComponent<
 
   componentDidMount() {
     this.setState({
-      activePicture: this.props.gallery![0]
-    })
+      activePicture: this.props.gallery![0],
+    });
   }
 
   componentDidUpdate(prevProps: TProductGalleryProps) {
     if (prevProps.gallery !== this.props.gallery) {
       this.setState({
-        activePicture: this.props.gallery![0]
-      })
+        activePicture: this.props.gallery![0],
+      });
     }
   }
 
