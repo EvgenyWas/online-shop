@@ -7,7 +7,8 @@ import
     addProductToCart,
     formatAttributes,
     getProductPDP,
-    updateLocalStorageCart
+    updateLocalStorageCart,
+    updateLocalStorageCurrentProductId
   } from "../../utils/utils";
 import AddToCartButton from "../UI/Buttons/AddToCartButton";
 import
@@ -21,7 +22,10 @@ import
 import { TProductCardProps } from "./types";
 
 export default class ProductCard extends PureComponent<TProductCardProps> {
-  handleClick = (id: string) => currentProductVar(id);
+  handleClick = (id: string) => {
+    currentProductVar(id);
+    updateLocalStorageCurrentProductId(id);
+  }
 
   handleAddToCart = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

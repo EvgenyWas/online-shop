@@ -7,14 +7,18 @@ import
     CartOverlayContext,
     TCartOverlayContext
   } from "../context/CartOverlayContext";
+import { injectCurrentProduct } from "../hocs/injectCurrentProduct";
+import { InjectedCurrentProductProps } from "../hocs/types";
+import { ProductPdpFragment } from "../types/generated";
 
-class PDPPage extends Component {
+class PDPPage extends Component<InjectedCurrentProductProps> {
   render() {
     const { isCartOverlayOpen } = this.context as TCartOverlayContext;
+    const product = this.props.data.data?.product as ProductPdpFragment;
 
     return (
       <StyledPDPPage>
-        <Product />
+        <Product product={product} />
         {isCartOverlayOpen && <StyledBackgroundCover />}
       </StyledPDPPage>
     );
@@ -28,4 +32,4 @@ const StyledPDPPage = styled.section`
   height: calc(100vh - 159.2px);
 `;
 
-export default PDPPage;
+export default injectCurrentProduct(PDPPage);

@@ -20,6 +20,12 @@ export default class ProductGallery extends PureComponent<
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      activePicture: this.props.gallery![0]
+    })
+  }
+
   componentDidUpdate(prevProps: TProductGalleryProps) {
     if (prevProps.gallery !== this.props.gallery) {
       this.setState({

@@ -58,7 +58,7 @@ function findSameProductInCart(
   const sameProduct = cart.findIndex((prod) => {
     const conditionSameId = prod.product?.id === product.product?.id;
     const conditionSameAttributes = prod.chosenAttributes?.every((item, index) => {
-      return item.chosenAttribute.id === product.chosenAttributes[index].chosenAttribute.id;
+      return item.chosenAttribute.id === product.chosenAttributes[index]?.chosenAttribute.id;
     })
 
     if (
@@ -186,6 +186,16 @@ export function updateLocalStorageCurrencySymbol(currencySymbol: string) {
   const newValue = {
     ...value,
     currencySymbol: currencySymbol,
+  };
+  setValueLocalStorage(key, newValue);
+}
+
+export function updateLocalStorageCurrentProductId(id: string) {
+  const key = localStorageKeys.user;
+  const value = getLocalStorageValue(key);
+  const newValue = {
+    ...value,
+    currentProductId: id,
   };
   setValueLocalStorage(key, newValue);
 }

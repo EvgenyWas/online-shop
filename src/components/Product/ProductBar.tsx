@@ -26,7 +26,8 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   constructor(props: TProductBarProps) {
     super(props);
     this.state = {
-      chosenAttributes: []
+      chosenAttributes: [],
+      productId: ''
     };
     this.handleChoose = this.handleChoose.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -34,25 +35,25 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
   }
 
   componentDidMount() {
-    const { attributes } = this.props.product as ProductPdpFragment;
+    const { attributes, id } = this.props.product as ProductPdpFragment;
     const formattedAttributes = formatAttributes(attributes as AttributeSet[]);
     
     this.setState({
-      chosenAttributes: formattedAttributes
+      chosenAttributes: formattedAttributes,
+      productId: id
     });
   };
 
-  handleChoose(id: string, attribute: TAttribute, name: string) {
-    const { inStock, attributes } = this.props.product as ProductPdpFragment;
-    const { chosenAttributes } = this.state;
-
+  handleChoose(attributeId: string, attribute: TAttribute, name: string) {
+    const { inStock, attributes, id } = this.props.product as ProductPdpFragment;
+    const { chosenAttributes, productId } = this.state;
     if (!inStock) {
       return;
     };
 
-    let formattedAttributes = chosenAttributes ?? formatAttributes(attributes as AttributeSet[]);
+    let formattedAttributes = id === productId && chosenAttributes ? chosenAttributes : formatAttributes(attributes as AttributeSet[]);
     const newChosenAttributes = formattedAttributes?.map(item => {
-      if (attribute.id !== id && item.name === name) {
+      if (attribute.id !== attributeId && item.name === name) {
         item.chosenAttribute = attribute;
         return item
       };
@@ -88,13 +89,13 @@ class ProductBar extends Component<TProductBarProps, TProductBarState> {
 
   render() {
     const { chosenAttributes } = this.state;
-    const { brand, name, attributes, prices, description, inStock } = this.props.product as ProductPdpFragment;
+    const { brand, name, attributes, prices, description, inStock, id } = this.props.product as ProductPdpFragment;
     const currentCurrency = this.props.currentCurrency;
     const price =
       currentCurrency + getCurrentPrice(prices, currentCurrency)?.amount.toFixed(2);
     
     return (
-      <StyledProductBar>
+      <StyledProductBar key={id}>
         <ProductTitle brand={brand} name={name} />
         <AttributesBar
           attributes={attributes as any}

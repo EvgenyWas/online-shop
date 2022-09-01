@@ -16,9 +16,10 @@ export type TProductGalleryState = {
 };
 
 export type TProductBarState = {
-  chosenAttributes: TChosenAttributeSet[]
+  chosenAttributes: TChosenAttributeSet[];
+  productId: string;
 };
 
-export type TProductState = {
-  product: ProductPdpFragment | {}
-};
+export type TProductProps = {
+  product: ProductPdpFragment
+}

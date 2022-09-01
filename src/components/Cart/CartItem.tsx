@@ -10,7 +10,8 @@ import
     addProductToCart,
     decreaseProductAmount,
     getCurrentPrice,
-    updateLocalStorageCart
+    updateLocalStorageCart,
+    updateLocalStorageCurrentProductId
   } from "../../utils/utils";
 import Line from "../UI/Molecules/Line";
 import CartGallery from "./CartGallery";
@@ -56,6 +57,7 @@ class CartItem extends Component<TCartItemProps> {
     const { handleCloseCartOverlay } = this.context as TCartOverlayContext;
     handleCloseCartOverlay();
     currentProductVar(id);
+    updateLocalStorageCurrentProductId(id);
   };
 
   render() {

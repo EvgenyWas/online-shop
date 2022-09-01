@@ -16,7 +16,8 @@ class AttributesBar extends Component<TAttributesBarProps> {
     const gottenAttributes = attributes?.map((attribute, index) => {
       const { name, items, id } = attribute;
       let chosenAttribute = undefined;
-      if (chosenAttributes) {
+      const conditionAttributesMatch = chosenAttributes.length === attributes.length;
+      if (chosenAttributes && conditionAttributesMatch) {
         chosenAttribute = chosenAttributes[index].chosenAttribute;
       };
 
