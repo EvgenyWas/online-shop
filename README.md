@@ -47,3 +47,27 @@ It was my first meeting with GraphQL and Apollo Client. To complete this assignm
 I'm glad I took part in this challenge because I enjoyed the time doing it. And hopefully I showed my skill level well.
 
 I wanted to use experimental technology as typescript decorators to send a component necessary data through props personally. I couldn't figure out how to implement them to a component with typing but I think it could improve and simplify my code.
+
+## UPD
+
+#### Overall:
+
+- saved a current currency to the LocalStorage.
+
+#### PLP:
+
+- added a category which is currently opened to the path and saved a current category in the LocalStorage;
+- changed styles for images without cutting.
+
+#### PDP:
+
+- for out-of-stock products, attributes are not selectable;
+- added the ability to add products into the cart as many times as the user wants. Removed the change of ‘add to cart button' to 'go to cart’ after the first addition;
+- fixed accessibility of all attributes.
+
+#### Cart Overlay and Cart:
+
+- added Cart Overlay closing on route change;
+- added rounding of all numbers to two decimal places;
+- removed the ability to change attributes in the Cart and Cart Overlay;
+- changed styles for attributes.
